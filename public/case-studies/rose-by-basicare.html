@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rose by Basicare — Case Study · Srigayaththri Tharmasoruban</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  /* Portfolio tokens (aligned with src/index.css) */
+  --bg: #f8f9fc;
+  --bg-elevated: #ffffff;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-soft: #64748b;
+  --border: rgba(15, 23, 42, 0.08);
+  --accent: #4f46e5;
+  --accent-2: #7c3aed;
+  --gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #6366f1 100%);
+  --max: 1120px;
+  --section-pad-x: clamp(24px, 7vw, 100px);
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Case-study aliases (existing selectors) */
+  --rose: var(--accent);
+  --rose-lt: #818cf8;
+  --blush: #c4b5fd;
+  --petal: rgba(79, 70, 229, 0.06);
+  --cream: var(--bg);
+  --ink: var(--text);
+  --ink-60: rgba(71, 85, 105, 0.92);
+  --ink-30: rgba(15, 23, 42, 0.28);
+  --ink-10: rgba(15, 23, 42, 0.07);
+  --white: #ffffff;
+
+  --font-display: var(--font-sans);
+  --font-ui: var(--font-sans);
+  --font-body: var(--font-sans);
+
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-xl: 24px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Parent app already renders TopNav — hide duplicate bar inside iframe */
+#mainNav {
+  display: none !important;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(79, 70, 229, 0.35); border-radius: 2px; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 4rem; height: 64px;
+  background: rgba(253,250,249,0.88);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
+.nav-logo {
+  font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--rose); }
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links a {
+  font-family: var(--font-ui); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-60);
+  text-decoration: none; padding: 0.4rem 1.1rem;
+  border-radius: 6px; transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: var(--rose); background: var(--petal); }
+.nav-cta {
+  font-family: var(--font-ui); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--rose); color: white !important;
+  padding: 0.45rem 1.2rem !important; border-radius: 8px !important;
+}
+.nav-cta:hover { background: #4338ca !important; color: white !important; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 55% 45%;
+  align-items: stretch;
+  padding-top: clamp(1rem, 3vw, 1.75rem);
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 6rem 5rem 6rem 4rem;
+  position: relative;
+}
+.hero-left::after {
+  content: '';
+  position: absolute; right: 0; top: 10%; bottom: 10%;
+  width: 1px; background: var(--border);
+}
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-ui); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #4338ca; background: rgba(79, 70, 229, 0.08);
+  border: 1px solid rgba(79, 70, 229, 0.12); border-radius: 100px;
+  padding: 0.35rem 1rem; margin-bottom: 2.5rem;
+  width: fit-content;
+  animation: chipIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+.hero-chip-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+@keyframes chipIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  color: var(--ink); margin-bottom: 2rem;
+  animation: titleIn 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+.hero-title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+@keyframes titleIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-desc {
+  font-size: 1.05rem; color: var(--ink-60); line-height: 1.85;
+  max-width: 480px; margin-bottom: 3rem;
+  animation: titleIn 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero-meta {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  overflow: hidden;
+  animation: titleIn 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+.meta-cell {
+  background: var(--white); padding: 1.2rem 1.4rem;
+  transition: background 0.2s;
+}
+.meta-cell:hover { background: var(--petal); }
+.meta-cell label {
+  display: block; font-family: var(--font-ui);
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+}
+.meta-cell span { font-size: 0.88rem; font-weight: 400; color: var(--ink); }
+
+.hero-right {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, rgba(79, 70, 229, 0.09) 0%, rgba(99, 102, 241, 0.05) 50%, var(--bg) 100%);
+  position: relative; overflow: hidden;
+  animation: fadeIn 1s 0.2s both;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.hero-right-bg-circle {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.14), transparent 70%);
+  width: 700px; height: 700px; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: breathe 6s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100% { transform: translate(-50%,-50%) scale(1); }
+  50% { transform: translate(-50%,-50%) scale(1.08); }
+}
+.phone-stack {
+  position: relative; z-index: 2;
+  display: flex; align-items: flex-end; gap: -20px;
+}
+.phone {
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 32px 64px rgba(15, 23, 42, 0.14), 0 0 0 6px rgba(255,255,255,0.65);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.phone:hover { transform: translateY(-8px) scale(1.02); }
+.phone-main { width: 200px; }
+.phone-sub {
+  width: 160px; margin-left: -30px; margin-bottom: 20px;
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.1), 0 0 0 6px rgba(255,255,255,0.65);
+}
+.phone img { width: 100%; display: block; }
+
+/* ─── CONTENT WRAPPER ─── */
+.wrap { max-width: min(var(--max), 100%); margin: 0 auto; padding: 0 var(--section-pad-x); }
+
+/* ─── SECTION HEADER ─── */
+.section-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--font-ui); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 1.6rem;
+}
+.section-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 2px; border-radius: 2px;
+  background: var(--gradient);
+}
+
+.display-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 4vw + 0.5rem, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15; color: var(--ink);
+}
+.display-heading em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+/* ─── REVEAL ANIMATION ─── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.05s; }
+.reveal-d2 { transition-delay: 0.12s; }
+.reveal-d3 { transition-delay: 0.19s; }
+.reveal-d4 { transition-delay: 0.26s; }
+
+/* ─── OVERVIEW SECTION ─── */
+.overview-section { padding: 7rem 0; background: var(--bg-elevated); }
+.overview-grid { display: grid; grid-template-columns: 1fr 400px; gap: 6rem; align-items: start; }
+.overview-text p {
+  font-size: 1.02rem; color: var(--ink-60); line-height: 1.9;
+  margin-top: 1.8rem;
+}
+.overview-text p + p { margin-top: 1rem; }
+
+.role-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+.role-pill {
+  font-family: var(--font-ui); font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.06em; padding: 0.35rem 0.85rem; border-radius: 100px;
+  border: 1px solid var(--border); color: var(--ink-60);
+  background: transparent; transition: all 0.2s;
+}
+.role-pill.active {
+  background: var(--rose); color: white; border-color: var(--rose);
+}
+.role-pill:hover { border-color: var(--rose); color: var(--rose); background: var(--petal); }
+
+.kpi-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+.kpi-cell {
+  background: var(--white); padding: 2rem 1.8rem;
+  display: flex; align-items: center; gap: 1.4rem;
+  transition: background 0.2s;
+}
+.kpi-cell:hover { background: var(--petal); }
+.kpi-number {
+  font-family: var(--font-display); font-size: 2.6rem;
+  font-weight: 800; color: var(--accent); line-height: 1; min-width: 80px;
+}
+.kpi-text label {
+  display: block; font-family: var(--font-ui); font-size: 0.68rem;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.2rem;
+}
+.kpi-text span { font-size: 0.85rem; color: var(--ink-60); }
+
+/* ─── MOODBOARD SECTION ─── */
+.moodboard-section { padding: 7rem 0; background: var(--bg); }
+.moodboard-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 3rem; }
+.moodboard-img {
+  border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: 0 24px 64px rgba(15, 23, 42,0.14);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.moodboard-img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 32px 80px rgba(15, 23, 42,0.2);
+}
+.moodboard-img img { width: 100%; display: block; }
+.moodboard-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(79, 70, 229,0.1); color: var(--rose);
+  font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.4rem 0.9rem; border-radius: 100px;
+  margin-bottom: 1.2rem; margin-top: 0.5rem;
+}
+.moodboard-tag::before { content: '✓'; font-size: 0.75rem; }
+
+/* COLOR PALETTE */
+.palette-strip { display: flex; gap: 1rem; margin-top: 3rem; }
+.swatch { flex: 1; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); }
+.swatch-fill { height: 72px; }
+.swatch-info { padding: 0.9rem 1rem; background: var(--white); }
+.swatch-name { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+.swatch-hex { font-size: 0.68rem; color: var(--ink-60); margin-top: 2px; letter-spacing: 0.05em; }
+.swatch-pantone { font-size: 0.62rem; color: var(--ink-30); margin-top: 2px; }
+
+/* TYPOGRAPHY DISPLAY */
+.type-demo {
+  background: var(--petal); border-radius: var(--r-lg);
+  padding: 2.5rem; margin-top: 1.5rem;
+  border: 1px solid var(--border);
+}
+.type-row { display: flex; gap: 2rem; flex-wrap: wrap; }
+.type-item { flex: 1; min-width: 200px; }
+.type-label { font-family: var(--font-ui); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.5rem; }
+.type-sample-ui { font-family: var(--font-sans); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+.type-sample-serif { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 500; color: var(--ink); }
+.type-sample-body { font-family: var(--font-body); font-size: 1.1rem; color: var(--ink-60); line-height: 1.6; }
+
+/* ─── PROCESS SECTION ─── */
+.process-section { padding: 7rem 0; background: var(--ink); }
+.process-section .section-eyebrow { color: var(--blush); }
+.process-section .section-eyebrow::before { background: var(--blush); }
+.process-section .display-heading { color: var(--white); }
+.process-section .display-heading em { color: var(--blush); }
+.process-section .display-heading + p { color: rgba(255,255,255,0.55); font-size: 1rem; max-width: 520px; margin-top: 1rem; line-height: 1.8; }
+
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4rem; border-radius: var(--r-lg); overflow: hidden; }
+.process-card {
+  background: rgba(255,255,255,0.04); padding: 2.5rem 2rem;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.process-card:hover { background: rgba(79, 70, 229,0.12); }
+.process-card::before {
+  content: attr(data-num);
+  font-family: var(--font-display); font-size: 5rem; font-weight: 400;
+  color: rgba(255,255,255,0.04);
+  position: absolute; top: -1rem; right: 1rem;
+  line-height: 1; pointer-events: none;
+}
+.process-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
+.process-title {
+  font-family: var(--font-ui); font-size: 0.9rem; font-weight: 600;
+  color: white; letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.process-body { font-size: 0.84rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+.process-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+.process-chip {
+  font-family: var(--font-ui); font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.2rem 0.6rem; border-radius: 100px;
+  background: rgba(79, 70, 229,0.18); color: var(--blush);
+  border: 1px solid rgba(79, 70, 229,0.25);
+}
+
+/* ─── SCREENS SECTION ─── */
+.screens-section { padding: 7rem 0; background: var(--bg); }
+.screens-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 4.5rem; }
+.screens-header p { font-size: 0.95rem; color: var(--ink-60); line-height: 1.9; padding-top: 0.8rem; }
+
+/* Screen label badge */
+.screen-label {
+  font-family: var(--font-ui); font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.25rem 0.7rem; border-radius: 100px;
+}
+.label-desktop { background: var(--ink); color: white; }
+.label-mobile  { background: var(--rose); color: white; }
+
+/* screen group heading */
+.screen-group { margin-bottom: 4rem; }
+.screen-group-title {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.screen-group-title h3 {
+  font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+}
+
+/* screen card */
+.sc { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
+.sc:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(15, 23, 42,0.12); }
+.sc img { width: 100%; display: block; }
+.sc-footer { padding: 0.75rem 1rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); background: var(--white); }
+.sc-footer-name { font-size: 0.78rem; color: var(--ink-60); }
+
+/* layout helpers */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+.grid-1-2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; }
+.grid-2-1 { display: grid; grid-template-columns: 1fr 1.5fr; gap: 1.5rem; }
+
+/* annotation callout */
+.annotation {
+  background: var(--petal); border: 1px solid var(--border);
+  border-left: 3px solid var(--rose);
+  border-radius: var(--r-sm); padding: 1.2rem 1.4rem;
+  margin-top: 1.5rem;
+}
+.annotation h4 { font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600; color: var(--rose); letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+.annotation p { font-size: 0.84rem; color: var(--ink-60); line-height: 1.7; }
+
+/* ─── DECISIONS SECTION ─── */
+.decisions-section { padding: 7rem 0; background: var(--white); }
+.decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.5rem; }
+.decision {
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 2.5rem; background: var(--cream);
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: box-shadow 0.3s, border-color 0.3s;
+  position: relative; overflow: hidden;
+}
+.decision::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--rose), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.decision:hover { box-shadow: 0 12px 40px rgba(15, 23, 42,0.08); border-color: var(--rose-lt); }
+.decision:hover::after { opacity: 1; }
+
+.decision-icon-wrap {
+  width: 44px; height: 44px; border-radius: var(--r-sm);
+  background: var(--petal); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.decision-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--ink); }
+.decision-body { font-size: 0.88rem; color: var(--ink-60); line-height: 1.8; flex: 1; }
+.decision-result {
+  font-size: 0.8rem; color: var(--rose); font-weight: 500;
+  background: rgba(79, 70, 229,0.07); border: 1px solid rgba(79, 70, 229,0.2);
+  border-radius: 8px; padding: 0.6rem 0.9rem; line-height: 1.6;
+}
+.decision-result::before { content: '→  '; font-weight: 700; }
+
+/* ─── CHALLENGES SECTION ─── */
+.challenges-section { padding: 7rem 0; background: var(--bg-elevated); }
+.challenges-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3.5rem; }
+.challenge {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 2.5rem;
+  display: grid; grid-template-columns: 60px 1fr 1fr; gap: 2.5rem;
+  align-items: start; transition: box-shadow 0.3s;
+}
+.challenge:hover { box-shadow: 0 8px 32px rgba(15, 23, 42,0.07); }
+.challenge-n {
+  font-family: var(--font-display); font-size: 3.5rem;
+  font-weight: 400; color: var(--blush); line-height: 1; padding-top: 0.2rem;
+}
+.challenge h4 { font-family: var(--font-ui); font-size: 0.92rem; font-weight: 600; color: var(--ink); margin-bottom: 0.7rem; }
+.challenge p { font-size: 0.86rem; color: var(--ink-60); line-height: 1.8; }
+.challenge-sol-wrap {
+  background: var(--petal); border-radius: var(--r-md);
+  padding: 1.5rem; border: 1px solid var(--border);
+}
+.challenge-sol-label {
+  font-family: var(--font-ui); font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose);
+  margin-bottom: 0.6rem;
+}
+
+/* ─── OUTCOMES SECTION ─── */
+.outcomes-section { padding: 7rem 0; background: var(--ink); }
+.outcomes-section .section-eyebrow { color: var(--blush); }
+.outcomes-section .section-eyebrow::before { background: var(--blush); }
+.outcomes-section .display-heading { color: var(--white); }
+.outcomes-section .display-heading em { color: var(--blush); }
+.outcomes-intro { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 560px; margin-top: 1.2rem; margin-bottom: 4rem; line-height: 1.8; }
+
+.outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: var(--r-lg); overflow: hidden; }
+.outcome-cell {
+  background: rgba(255,255,255,0.03); padding: 2.5rem;
+  transition: background 0.3s;
+}
+.outcome-cell:hover { background: rgba(79, 70, 229,0.1); }
+.outcome-emoji { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
+.outcome-title { font-family: var(--font-ui); font-size: 0.88rem; font-weight: 600; color: white; margin-bottom: 0.7rem; letter-spacing: 0.03em; }
+.outcome-body { font-size: 0.84rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+
+/* BA VALUE CALLOUT */
+.ba-callout {
+  background: rgba(79, 70, 229,0.1); border: 1px solid rgba(79, 70, 229,0.25);
+  border-radius: var(--r-lg); padding: 3rem; margin-top: 4rem;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;
+}
+.ba-callout-label {
+  font-family: var(--font-display); font-size: 2.2rem;
+  font-weight: 400; font-style: italic; color: var(--blush); line-height: 1.2;
+}
+.ba-callout-body { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.9; }
+.ba-points { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.ba-point { font-size: 0.85rem; color: rgba(255,255,255,0.5); padding-left: 1rem; position: relative; }
+.ba-point::before { content: '→'; position: absolute; left: 0; color: var(--rose); }
+
+/* ─── LEARNINGS ─── */
+.learnings-section { padding: 7rem 0; background: var(--white); }
+.learnings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.learning-card {
+  padding: 2rem 1.8rem; background: var(--cream);
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  border-top: 2px solid var(--rose);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.learning-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(15, 23, 42,0.08); }
+.learning-num {
+  font-family: var(--font-display); font-size: 1.3rem; font-style: italic;
+  color: var(--blush); margin-bottom: 0.8rem; line-height: 1;
+}
+.learning-title { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.7rem; }
+.learning-body { font-size: 0.83rem; color: var(--ink-60); line-height: 1.8; }
+
+/* ─── NEXT CASE STUDY ─── */
+.next-section {
+  padding: clamp(64px, 9vw, 120px) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.next-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.next-label { font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.next-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.next-title em { font-family: var(--font-serif); font-style: italic; font-weight: 500; color: var(--accent); }
+.next-btn {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  background: var(--text); color: white; text-decoration: none;
+  font-family: var(--font-ui); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: 0.55rem 1.15rem; border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.next-btn:hover { background: #1e293b; transform: translateY(-1px); box-shadow: 0 6px 18px -8px rgba(15, 23, 42, 0.35); }
+.next-btn-arrow { font-size: 1rem; transition: transform 0.2s; }
+.next-btn:hover .next-btn-arrow { transform: translateX(4px); }
+
+/* ─── FOOTER ─── */
+footer {
+  padding-block: clamp(0.875rem, 2.2vw, 1.125rem);
+  padding-inline: var(--section-pad-x);
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
+  align-items: center; justify-content: space-between;
+}
+.footer-name {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  margin: 0;
+}
+.footer-sub { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.45; }
+.footer-right { font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0; }
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--gradient); width: 0%; z-index: 200;
+  transition: width 0.1s linear;
+}
+
+/* ─── BACK TO TOP ─── */
+.back-top {
+  position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 200;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: white; border: none; cursor: pointer;
+  font-size: 1rem; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-top.show { opacity: 1; transform: translateY(0); }
+.back-top:hover { background: #4338ca; }
+
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ══ NAV ══ -->
+<nav id="mainNav">
+  <a class="nav-logo" href="/" target="_parent"><span>Sri</span>gaya</a>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#screens">Screens</a></li>
+    <li><a href="#decisions">Decisions</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="/#projects" target="_parent" class="nav-cta">Portfolio ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-chip">
+      <span class="hero-chip-dot"></span>
+      Case Study 01 · eCommerce · K-Beauty
+    </div>
+    <h1 class="hero-title">
+      Rose by<br><em>Basicare</em>
+    </h1>
+    <p class="hero-desc">
+      Designing a complete eCommerce experience for a new K-beauty sub-brand — mobile-first UX, visual identity, AR product features, and a brand system that scales. From brief to launch in 3–4 months.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-cell">
+        <label>My Role</label>
+        <span>UI/UX + Brand Designer</span>
+      </div>
+      <div class="meta-cell">
+        <label>Agency</label>
+        <span>Meridian Creative Solutions</span>
+      </div>
+      <div class="meta-cell">
+        <label>Client</label>
+        <span>Basicare</span>
+      </div>
+      <div class="meta-cell">
+        <label>Timeline</label>
+        <span>3–4 Months</span>
+      </div>
+      <div class="meta-cell">
+        <label>Platforms</label>
+        <span>Web · Mobile Web</span>
+      </div>
+      <div class="meta-cell">
+        <label>Status</label>
+        <span>✦ Launched</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg-circle"></div>
+    <div class="phone-stack">
+      <div class="phone phone-sub">
+        <img src="/mnt/user-data/uploads/My_Bag.png" alt="Cart screen" onerror="this.style.background='#e0e7ff';this.style.height='320px'">
+      </div>
+      <div class="phone phone-main">
+        <img src="/mnt/user-data/uploads/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#c7d2fe';this.style.height='420px'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW ══ -->
+<section class="overview-section" id="overview">
+  <div class="wrap">
+    <div class="overview-grid">
+      <div class="overview-text reveal">
+        <div class="section-eyebrow">Project Overview</div>
+        <h2 class="display-heading">A new sub-brand needed<br>an identity as bold as<br>its <em>audience</em></h2>
+        <p>Basicare — a globally recognised beauty label — was launching <strong>Rose by Basicare</strong>, a new cosmetics sub-brand targeting tweens, teenagers, and young adults aged 18–30, heavily shaped by Korean beauty culture, K-pop aesthetics, and social-first shopping habits.</p>
+        <p>The brand had products. It had a name. What it needed was a full digital presence — a visual identity that could stand next to global K-beauty brands, a shopping experience native to how its audience actually browses, and a scalable brand system that could be handed off to marketers, creators, and developers.</p>
+        <p>I was brought in at <strong>Meridian Creative Solutions</strong> as the UI/UX and Brand Designer, responsible for the entire design lifecycle: research, moodboard, information architecture, wireframing, high-fidelity UI, AR feature planning, developer collaboration, and the Digital Brand & Media Guide.</p>
+        <div class="role-list">
+          <span class="role-pill active">UX Research</span>
+          <span class="role-pill active">UI Design</span>
+          <span class="role-pill active">Brand Design</span>
+          <span class="role-pill active">Mobile-First</span>
+          <span class="role-pill active">Design Systems</span>
+          <span class="role-pill">Figma</span>
+          <span class="role-pill">Next.js</span>
+          <span class="role-pill">AR Planning</span>
+          <span class="role-pill">Stakeholder Mgmt</span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <div class="kpi-grid">
+          <div class="kpi-cell">
+            <div class="kpi-number">30+</div>
+            <div class="kpi-text"><label>Scope</label><span>Product SKUs catalogued & designed for</span></div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-number">8+</div>
+            <div class="kpi-text"><label>Screens</label><span>Core pages across desktop & mobile</span></div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-number">3–4</div>
+            <div class="kpi-text"><label>Timeline</label><span>Months from brief to live launch</span></div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-number">2</div>
+            <div class="kpi-text"><label>Reviews</label><span>CEO & Creative Director milestone presentations</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MOODBOARD + BRAND ══ -->
+<section class="moodboard-section" id="brand">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">Research & Brand Direction</div>
+
+    <div class="moodboard-layout reveal">
+      <div>
+        <h2 class="display-heading">The moodboard that<br><em>set the tone</em></h2>
+        <div class="moodboard-tag">Approved by CEO & Creative Director — Round 1</div>
+        <p style="font-size:0.95rem; color:var(--ink-60); line-height:1.9; margin-bottom:1.2rem;">
+          Before opening Figma, I spent time immersed in the visual world of Rose's audience — K-pop visual language, Korean cherry blossom imagery, rose gold editorial spreads, and the soft femininity of brands like Romand and Etude House.
+        </p>
+        <p style="font-size:0.95rem; color:var(--ink-60); line-height:1.9;">
+          The moodboard was my first client deliverable. It defined the brand's emotional register — the balance between <em>premium softness</em> and <em>youthful energy</em> — and became the reference point every design decision was checked against. Getting this right in round one built the trust that carried the rest of the project.
+        </p>
+        <div class="annotation">
+          <h4>Business Analyst Lens</h4>
+          <p>Before presenting the moodboard, I mapped the client's business goals against audience insights — the brand needed to compete with K-beauty imports while being accessible to a Southeast Asian market. The visual direction had to signal premium quality at affordable price points, a strategic constraint that shaped every aesthetic decision.</p>
+        </div>
+      </div>
+      <div class="moodboard-img reveal reveal-d2">
+        <img src="/mnt/user-data/uploads/Group_1.png" alt="K-beauty inspired moodboard" onerror="this.style.background='linear-gradient(135deg,#eef2ff,#e0e7ff)';this.style.height='340px'">
+      </div>
+    </div>
+
+    <!-- COLOUR PALETTE -->
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="section-eyebrow">Visual Identity — Colour Palette</div>
+      <h2 class="display-heading" style="margin-bottom:0.6rem;">Soft luxury, <em>by design</em></h2>
+      <p style="font-size:0.9rem; color:var(--ink-60); max-width:540px;">The palette needed to communicate femininity and warmth without reading as childish. Rose pinks and petal tones create desirability; near-black anchors the premium feel.</p>
+      <div class="palette-strip">
+        <div class="swatch"><div class="swatch-fill" style="background:#EF8D9D;"></div><div class="swatch-info"><div class="swatch-name">Rose Pink</div><div class="swatch-hex">#EF8D9D</div><div class="swatch-pantone">Pantone 708 C</div></div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#F7C8CE;"></div><div class="swatch-info"><div class="swatch-name">Blush</div><div class="swatch-hex">#F7C8CE</div><div class="swatch-pantone">Pantone 698 C</div></div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#FDEEED;"></div><div class="swatch-info"><div class="swatch-name">Petal</div><div class="swatch-hex">#FDEEED</div><div class="swatch-pantone">Pantone 705 C</div></div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#222222;"></div><div class="swatch-info"><div class="swatch-name">Noir</div><div class="swatch-hex">#222222</div><div class="swatch-pantone">Pantone Black 7C</div></div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#FFFFFF; border-bottom:1px solid #f0e8ea;"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-pantone">Pure White</div></div></div>
+      </div>
+    </div>
+
+    <!-- TYPOGRAPHY -->
+    <div class="reveal" style="margin-top:3.5rem;">
+      <div class="section-eyebrow">Visual Identity — Typography</div>
+      <h2 class="display-heading" style="margin-bottom:1.2rem;">Two type systems — <em>packaging</em> and <em>web</em></h2>
+      <div class="type-demo">
+        <div class="type-row">
+          <div class="type-item">
+            <div class="type-label">Packaging — Myriad Pro</div>
+            <div class="type-sample-serif" style="font-family:Georgia,serif;">Rose by Basicare</div>
+            <div style="font-size:0.78rem;color:var(--ink-60);margin-top:0.4rem;">Bold · Regular · Light</div>
+          </div>
+          <div class="type-item">
+            <div class="type-label">Web Headings — Manrope</div>
+            <div class="type-sample-ui">Every Blink, Beautiful</div>
+            <div style="font-size:0.78rem;color:var(--ink-60);margin-top:0.4rem;">SemiBold · Medium</div>
+          </div>
+          <div class="type-item">
+            <div class="type-label">Web Body — Bai Jamjuree</div>
+            <div class="type-sample-body">Beautifully designed beauty tools for the trend-driven youth.</div>
+            <div style="font-size:0.78rem;color:var(--ink-60);margin-top:0.4rem;">SemiBold · Medium</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section class="process-section" id="process">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">Design Process</div>
+    <h2 class="display-heading reveal reveal-d1">From research to a <em>live brand</em></h2>
+    <p class="reveal reveal-d2">Every screen was earned through a structured process — competitive research and audience analysis first, then brand direction, then architecture, then design. Nothing was decorative without purpose.</p>
+    <div class="process-grid reveal">
+      <div class="process-card" data-num="01">
+        <div class="process-icon">🔍</div>
+        <div class="process-title">Discovery & Research</div>
+        <div class="process-body">Analysed K-beauty eCommerce brands — Romand, Etude House, Innisfree — and studied youth mobile shopping behaviours, social-media-influenced purchase patterns, and beauty product trust signals. Identified the gap Rose could own.</div>
+        <div class="process-chips"><span class="process-chip">Competitive Analysis</span><span class="process-chip">User Behaviour</span><span class="process-chip">Trend Research</span></div>
+      </div>
+      <div class="process-card" data-num="02">
+        <div class="process-icon">🎨</div>
+        <div class="process-title">Brand Direction</div>
+        <div class="process-body">Built the moodboard from K-beauty references, cherry blossom aesthetics, and rose-gold editorial language. Presented to client CEO and Creative Director. Defined brand personality, colour system, and typography hierarchy. Approved in round one.</div>
+        <div class="process-chips"><span class="process-chip">Moodboarding</span><span class="process-chip">Colour Systems</span><span class="process-chip">Client Presentation</span></div>
+      </div>
+      <div class="process-card" data-num="03">
+        <div class="process-icon">📐</div>
+        <div class="process-title">UX Architecture</div>
+        <div class="process-body">Mapped the full information architecture — 8 core pages, product categorisation logic, user flows from landing to checkout. Planned lash-specific filters (eye shape, lash type, style, length). Created wireframes mobile-first for all screens.</div>
+        <div class="process-chips"><span class="process-chip">Information Architecture</span><span class="process-chip">User Flows</span><span class="process-chip">Wireframing</span></div>
+      </div>
+      <div class="process-card" data-num="04">
+        <div class="process-icon">✦</div>
+        <div class="process-title">UI Design & Delivery</div>
+        <div class="process-body">Designed all high-fidelity screens in Figma. Planned AR lash try-on integration. Built the Digital Brand & Media Guide. Collaborated with developers on Next.js implementation. Validated against business requirements at handoff.</div>
+        <div class="process-chips"><span class="process-chip">Figma</span><span class="process-chip">Brand Guide</span><span class="process-chip">AR Planning</span><span class="process-chip">Dev Handoff</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCREENS ══ -->
+<section class="screens-section" id="screens">
+  <div class="wrap">
+    <div class="screens-header reveal">
+      <div>
+        <div class="section-eyebrow">Design Screens</div>
+        <h2 class="display-heading">Every screen,<br><em>mobile first</em></h2>
+      </div>
+      <p>The primary audience browses beauty content through Instagram and TikTok — on their phones. Every screen was designed for mobile first, then extended to desktop. The result is a consistent, scroll-native experience that feels at home on any device.</p>
+    </div>
+
+    <!-- HOMEPAGE -->
+    <div class="screen-group reveal">
+      <div class="screen-group-title">
+        <h3>Homepage</h3>
+        <div style="display:flex;gap:0.5rem;">
+          <span class="screen-label label-desktop">Desktop</span>
+          <span class="screen-label label-mobile">Mobile</span>
+        </div>
+      </div>
+      <div class="grid-1-2">
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Frame_1984078151.png" alt="Homepage desktop" onerror="this.style.background='#eef2ff';this.style.height='400px'">
+          <div class="sc-footer"><span class="sc-footer-name">Homepage — Full page</span><span class="screen-label label-desktop">Desktop</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#e0e7ff';this.style.height='400px'">
+          <div class="sc-footer"><span class="sc-footer-name">Homepage — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+      </div>
+      <div class="annotation">
+        <h4>Key UX Decisions — Homepage</h4>
+        <p>Hero section leads with aspirational imagery and a clear brand voice, not a product grid. The AR try-on announcement banner ("Swipe. Snap. Slay. AR Try-On Now Available") is surfaced high in the page — this was a strategic BA decision to lead with the most differentiating feature. Product sections use horizontal scroll with quick-add to bag, reducing friction for mobile impulse purchases.</p>
+      </div>
+    </div>
+
+    <!-- PRODUCT LISTING -->
+    <div class="screen-group reveal">
+      <div class="screen-group-title">
+        <h3>Product Listing Page</h3>
+        <div style="display:flex;gap:0.5rem;">
+          <span class="screen-label label-desktop">Desktop</span>
+          <span class="screen-label label-mobile">Mobile</span>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page.png" alt="Products desktop" onerror="this.style.background='#eef2ff';this.style.height='360px'">
+          <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Desktop</span><span class="screen-label label-desktop">Desktop</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page-1.png" alt="Products mobile" onerror="this.style.background='#e0e7ff';this.style.height='360px'">
+          <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER SYSTEM -->
+    <div class="screen-group reveal">
+      <div class="screen-group-title">
+        <h3>Filter System — A UX Innovation</h3>
+        <div style="display:flex;gap:0.5rem;">
+          <span class="screen-label label-desktop">Desktop</span>
+          <span class="screen-label label-mobile">Mobile</span>
+        </div>
+      </div>
+      <p style="font-size:0.9rem;color:var(--ink-60);margin-bottom:1.5rem;max-width:700px;">Standard eCommerce filters (size, colour, price) don't solve the beauty shopper's real problem. A woman looking for lashes needs to filter by <em>eye shape, lash type, style, and length</em>. I designed a beauty-specific filter taxonomy — this was a BA-driven insight translated directly into UX.</p>
+      <div class="grid-3" style="margin-bottom:1.5rem;">
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page_-_Filter.png" alt="Filter empty" onerror="this.style.background='#eef2ff';this.style.height='300px'">
+          <div class="sc-footer"><span class="sc-footer-name">Filter panel — collapsed</span><span class="screen-label label-desktop">Desktop</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page_-_Filter-1.png" alt="Filter active" onerror="this.style.background='#e0e7ff';this.style.height='300px'">
+          <div class="sc-footer"><span class="sc-footer-name">Filters expanded (3 active)</span><span class="screen-label label-desktop">Desktop</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page_-_Filters-2.png" alt="Filter full" onerror="this.style.background='#f9e8ea';this.style.height='300px'">
+          <div class="sc-footer"><span class="sc-footer-name">Full filter taxonomy</span><span class="screen-label label-desktop">Desktop</span></div>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page_-_Filters.png" alt="Mobile filter" onerror="this.style.background='#eef2ff';this.style.height='300px'">
+          <div class="sc-footer"><span class="sc-footer-name">Filter bottom sheet</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page_-_Filters-1.png" alt="Mobile filter expanded" onerror="this.style.background='#e0e7ff';this.style.height='300px'">
+          <div class="sc-footer"><span class="sc-footer-name">Categories expanded</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Products_Page_-_Filters-3.png" alt="Mobile filter selected" onerror="this.style.background='#f9e8ea';this.style.height='300px'">
+          <div class="sc-footer"><span class="sc-footer-name">3 filters active</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+      </div>
+      <div class="annotation">
+        <h4>Filter Design Rationale</h4>
+        <p>The filter system required me to act as a BA first — I had to understand the product catalogue deeply before I could design filters that were genuinely useful. I mapped all 30+ SKUs by type, then defined the filter taxonomy: Product Category → Lash Type → Eye Shape → Style → Length → Price Range → Pack Type → Lash Color → Availability. Each filter was validated against real browsing scenarios before implementation.</p>
+      </div>
+    </div>
+
+    <!-- PDP -->
+    <div class="screen-group reveal">
+      <div class="screen-group-title">
+        <h3>Product Detail Page</h3>
+        <div style="display:flex;gap:0.5rem;">
+          <span class="screen-label label-desktop">Desktop</span>
+          <span class="screen-label label-mobile">Mobile</span>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Product_Detail_Page.png" alt="PDP desktop" onerror="this.style.background='#eef2ff';this.style.height='400px'">
+          <div class="sc-footer"><span class="sc-footer-name">Product Detail — Desktop</span><span class="screen-label label-desktop">Desktop</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Product_Detail_Page-1.png" alt="PDP mobile" onerror="this.style.background='#e0e7ff';this.style.height='400px'">
+          <div class="sc-footer"><span class="sc-footer-name">Product Detail — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:1.5rem;">
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Product_Detail_Page-2.png" alt="PDP state 2" onerror="this.style.background='#eef2ff';this.style.height='280px'">
+          <div class="sc-footer"><span class="sc-footer-name">Product detail — quantity state</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/Product_Detail_Page-3.png" alt="PDP state 3" onerror="this.style.background='#e0e7ff';this.style.height='280px'">
+          <div class="sc-footer"><span class="sc-footer-name">Product detail — scrolled</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+      </div>
+      <div class="annotation">
+        <h4>PDP Strategy — "In This Set" Cross-sell</h4>
+        <p>The "In This Set" component on the PDP was a deliberate business decision — beauty sets have higher average order value than individual items. Surfacing individual products from a bundle directly on the bundle's page increases both discovery and basket size. This was a requirement I identified during stakeholder discussions and translated into a reusable UI component.</p>
+      </div>
+    </div>
+
+    <!-- CART -->
+    <div class="screen-group reveal">
+      <div class="screen-group-title">
+        <h3>Shopping Bag</h3>
+        <span class="screen-label label-mobile">Mobile</span>
+      </div>
+      <div class="grid-2-1">
+        <div class="annotation" style="margin-top:0; height:fit-content; align-self:center;">
+          <h4>Cart UX — Micro-persuasion at the Right Moment</h4>
+          <p style="margin-top:0.6rem;">The "You are $10 away from Free Shipping" nudge at the top of the cart is a conversion-focused design pattern I proposed after researching industry best practices. It creates a tangible incentive to add one more item — a low-cost product recommendation below the cart reinforces this without being pushy. The sticky Order Total with a prominent Checkout CTA removes any friction from completing purchase.</p>
+        </div>
+        <div class="sc">
+          <img src="/mnt/user-data/uploads/My_Bag.png" alt="Shopping bag" onerror="this.style.background='#e0e7ff';this.style.height='440px'">
+          <div class="sc-footer"><span class="sc-footer-name">My Bag — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ DESIGN DECISIONS ══ -->
+<section class="decisions-section" id="decisions">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">Design Decisions</div>
+    <h2 class="display-heading reveal reveal-d1">Every decision had a<br><em>reason</em></h2>
+    <p class="reveal reveal-d2" style="font-size:0.95rem;color:var(--ink-60);max-width:560px;margin-top:1rem;line-height:1.85;">Good design is defensible design. Here is why I made the choices that defined this product — and the business logic behind each one.</p>
+    <div class="decisions-grid">
+      <div class="decision reveal">
+        <div class="decision-icon-wrap">📱</div>
+        <div class="decision-title">Mobile-first, always</div>
+        <div class="decision-body">The target audience — 18–30 year olds in Southeast Asia — primarily discovers and shops for beauty products through Instagram and TikTok. I designed every screen for 375px mobile first and scaled to desktop, ensuring the core experience was never a downsized afterthought.</div>
+        <div class="decision-result">Touch-optimised interactions, vertical scroll layouts, simplified navigation, bottom-sheet modals for filters and cart</div>
+      </div>
+      <div class="decision reveal reveal-d1">
+        <div class="decision-icon-wrap">🖼️</div>
+        <div class="decision-title">Large product imagery = purchase confidence</div>
+        <div class="decision-body">Beauty shoppers can't touch or try products online. Visual trust is the only trust available. I used large, image-dominant product cards and full-bleed PDPs to show texture, detail, and quality — so users could make a confident purchase decision before adding to cart.</div>
+        <div class="decision-result">Larger imagery directly correlates to higher perceived quality and reduced purchase hesitation in beauty eCommerce</div>
+      </div>
+      <div class="decision reveal reveal-d2">
+        <div class="decision-icon-wrap">✨</div>
+        <div class="decision-title">AR Try-On — reducing the biggest barrier</div>
+        <div class="decision-body">The biggest hesitation in lash purchasing is "will this look right on me?" The AR try-on feature (accessible via "Try It" on every eligible lash product card) was planned to answer that question before checkout. I designed the UX to keep it one tap away without disrupting the browsing flow.</div>
+        <div class="decision-result">AR Try-On addresses the #1 reason beauty shoppers abandon — uncertainty about how products will look on them</div>
+      </div>
+      <div class="decision reveal reveal-d3">
+        <div class="decision-icon-wrap">🎨</div>
+        <div class="decision-title">Soft luxury colour system</div>
+        <div class="decision-body">The brand needed to feel premium without being cold or unattainable to a younger audience. I chose rose pinks and petal tones over clinical whites or bold saturated colours. The palette signals warmth, femininity, and desirability — qualities the target demographic actively seeks in the brands they follow.</div>
+        <div class="decision-result">Warm tones create emotional connection; premium spacing signals quality without price-point intimidation</div>
+      </div>
+      <div class="decision reveal">
+        <div class="decision-icon-wrap">📐</div>
+        <div class="decision-title">Minimal layout for an expressive brand</div>
+        <div class="decision-body">Despite playful, expressive branding, I kept page layouts restrained and clean. Whitespace became the luxury signal. Over-decorating would have created visual noise that competed with the products — the opposite of what a beauty brand needs. Products must be the hero.</div>
+        <div class="decision-result">Clean layouts reduce cognitive load, increase product visibility, and communicate premium quality through negative space</div>
+      </div>
+      <div class="decision reveal reveal-d1">
+        <div class="decision-icon-wrap">🔍</div>
+        <div class="decision-title">Beauty-specific filter taxonomy</div>
+        <div class="decision-body">Generic eCommerce filters (size, colour, price) don't work for lash shopping. I designed a contextual taxonomy specific to the product — filtering by eye shape, lash type, style, length, and availability. This required deep product knowledge and stakeholder collaboration before a single filter UI was drawn.</div>
+        <div class="decision-result">Right filters reduce browsing friction, increase product discovery, and help users find the exact product for their specific look</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CHALLENGES ══ -->
+<section class="challenges-section" id="challenges">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">Challenges & How I Solved Them</div>
+    <h2 class="display-heading reveal reveal-d1">The hard parts of<br>building <em>Rose</em></h2>
+    <div class="challenges-list">
+      <div class="challenge reveal">
+        <div class="challenge-n">01</div>
+        <div>
+          <h4>Balancing aesthetic richness with usability</h4>
+          <p>Soft colour palettes risk poor contrast. Decorative elements compete with CTAs. The brand demanded visual beauty and functional clarity simultaneously — a tension that ran through every screen.</p>
+        </div>
+        <div class="challenge-sol-wrap">
+          <div class="challenge-sol-label">How I solved it</div>
+          <p style="font-size:0.84rem;color:var(--ink-60);line-height:1.8;">Used whitespace strategically as a luxury signal rather than decoration. Maintained strict typographic hierarchy so CTAs always read clearly against soft backgrounds. Tested contrast ratios at every stage and used the near-black (#222) to anchor key actions.</p>
+        </div>
+      </div>
+      <div class="challenge reveal">
+        <div class="challenge-n">02</div>
+        <div>
+          <h4>Premium branding for a young audience — without feeling childish</h4>
+          <p>The audience is young (Gen Z / early Millennials) but the brand needs to feel trustworthy and premium enough to justify purchasing. Too playful risks feeling cheap; too serious loses the audience entirely.</p>
+        </div>
+        <div class="challenge-sol-wrap">
+          <div class="challenge-sol-label">How I solved it</div>
+          <p style="font-size:0.84rem;color:var(--ink-60);line-height:1.8;">Applied "soft luxury" styling — generous spacing, editorial photography direction, and modern typography that reads as elegant, not toy-like. The brand voice is youthful ("Confidence Starts With The Right Tools"); the visual structure is premium.</p>
+        </div>
+      </div>
+      <div class="challenge reveal">
+        <div class="challenge-n">03</div>
+        <div>
+          <h4>30+ product SKUs across a 375px mobile screen</h4>
+          <p>A large, diverse product catalogue needs to be browsable without overwhelming users on small screens. Product-heavy layouts easily become cluttered and hard to scan.</p>
+        </div>
+        <div class="challenge-sol-wrap">
+          <div class="challenge-sol-label">How I solved it</div>
+          <p style="font-size:0.84rem;color:var(--ink-60);line-height:1.8;">Designed a 2-column product grid on mobile with consistent card sizing. Added visual category thumbnails (Lashes / Nails / Eyes / Face) as quick-filters at the top of the listing page. Surfaced the filter button prominently so users can narrow the catalogue without scrolling through everything.</p>
+        </div>
+      </div>
+      <div class="challenge reveal">
+        <div class="challenge-n">04</div>
+        <div>
+          <h4>Consistency across website, brand guide, and social media direction</h4>
+          <p>The project scope included multiple deliverables — website, Digital Brand Guide, social direction, product catalogue design. Keeping all touchpoints visually aligned without a pre-existing system was a significant challenge.</p>
+        </div>
+        <div class="challenge-sol-wrap">
+          <div class="challenge-sol-label">How I solved it</div>
+          <p style="font-size:0.84rem;color:var(--ink-60);line-height:1.8;">Built a reusable design system in Figma — standardised spacing tokens, button styles, icon pack, component library — before designing any specific page. The Brand & Media Guide then codified these rules for creators and marketers working outside Figma.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OUTCOMES ══ -->
+<section class="outcomes-section" id="outcomes">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">Outcomes & Impact</div>
+    <h2 class="display-heading reveal reveal-d1">What this project<br><em>delivered</em></h2>
+    <p class="outcomes-intro reveal reveal-d2">Rose by Basicare launched as a complete, production-ready beauty eCommerce brand — from zero to live in under 4 months. Here's what the project delivered across UX, business, and brand dimensions.</p>
+
+    <div class="outcomes-grid reveal">
+      <div class="outcome-cell">
+        <span class="outcome-emoji">🚀</span>
+        <div class="outcome-title">Full eCommerce Launch</div>
+        <div class="outcome-body">Delivered a complete, production-ready Next.js eCommerce website — homepage, product listing, PDP, cart, checkout, and user account — from first moodboard to live product in under 4 months.</div>
+      </div>
+      <div class="outcome-cell">
+        <span class="outcome-emoji">📱</span>
+        <div class="outcome-title">Mobile-Native Experience</div>
+        <div class="outcome-body">All screens designed mobile-first with touch-optimised interactions, bottom-sheet patterns, and scroll-native layouts — ensuring the primary audience's experience was seamless from day one.</div>
+      </div>
+      <div class="outcome-cell">
+        <span class="outcome-emoji">✨</span>
+        <div class="outcome-title">AR Try-On Integration</div>
+        <div class="outcome-body">Designed and planned the AR lash try-on feature — one of the most differentiating capabilities in the beauty eCommerce space. "Try It" CTA visible on all lash product cards across the catalogue.</div>
+      </div>
+      <div class="outcome-cell">
+        <span class="outcome-emoji">📘</span>
+        <div class="outcome-title">Scalable Brand System</div>
+        <div class="outcome-body">Delivered a full Digital Brand & Media Guide — logo usage, colour system, typography, icon pack, social media direction, creator do's & don'ts, and product catalogue layout rules.</div>
+      </div>
+      <div class="outcome-cell">
+        <span class="outcome-emoji">🎯</span>
+        <div class="outcome-title">Stakeholder Alignment</div>
+        <div class="outcome-body">Led client presentations with the CEO and Creative Director at three milestone stages — moodboard, wireframes, and final UI — achieving approval at each stage with structured design rationale.</div>
+      </div>
+      <div class="outcome-cell">
+        <span class="outcome-emoji">🔁</span>
+        <div class="outcome-title">Developer-Ready Handoff</div>
+        <div class="outcome-body">Built a component library and design system in Figma that enabled development teams to implement consistently — with standardised spacing, button states, and interaction patterns documented.</div>
+      </div>
+    </div>
+
+    <!-- BA CALLOUT -->
+    <div class="ba-callout reveal">
+      <div class="ba-callout-label">The BA<br>Difference</div>
+      <div class="ba-callout-body">
+        <p>This project demonstrates why UI/UX and Business Analysis skills belong together. Decisions I made as a designer were informed by requirements I gathered as a BA:</p>
+        <div class="ba-points">
+          <div class="ba-point">The beauty-specific filter taxonomy came from mapping the product catalogue — a BA task — before designing any UI</div>
+          <div class="ba-point">The "In This Set" cross-sell component came from identifying basket size as a business KPI during stakeholder discussions</div>
+          <div class="ba-point">The "Free Shipping" nudge in cart came from researching conversion best practices and translating them into a UX requirement</div>
+          <div class="ba-point">AR try-on was identified as the highest-impact differentiator through competitive analysis, then scoped as a feature requirement before design began</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ LEARNINGS ══ -->
+<section class="learnings-section" id="learnings">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">Key Learnings</div>
+    <h2 class="display-heading reveal reveal-d1">What building Rose<br><em>taught me</em></h2>
+    <div class="learnings-grid">
+      <div class="learning-card reveal">
+        <div class="learning-num">01</div>
+        <div class="learning-title">Emotional design is a business lever in beauty</div>
+        <div class="learning-body">How the interface makes a user feel is as important as how usable it is. Trust and desirability are built through visual consistency, imagery quality, and aesthetic warmth — not just clear navigation flows.</div>
+      </div>
+      <div class="learning-card reveal reveal-d1">
+        <div class="learning-num">02</div>
+        <div class="learning-title">Brand systems are a UX investment, not overhead</div>
+        <div class="learning-body">Investing time early in design tokens, component libraries, and spacing systems paid off significantly in the second half of the project — decisions were faster, consistency was automatic, and developer handoff was smoother.</div>
+      </div>
+      <div class="learning-card reveal reveal-d2">
+        <div class="learning-num">03</div>
+        <div class="learning-title">BA thinking makes design rationale unbreakable</div>
+        <div class="learning-body">Grounding design decisions in business requirements and audience insights made them far easier to defend in client presentations. "Because it looks good" loses every stakeholder meeting. "Because research shows this increases purchase confidence" wins them.</div>
+      </div>
+      <div class="learning-card reveal">
+        <div class="learning-num">04</div>
+        <div class="learning-title">Mobile-first is a prioritisation discipline</div>
+        <div class="learning-body">Designing mobile-first forced ruthless prioritisation — what content truly matters, which interactions are essential. The desktop experience was better because the mobile constraints had already resolved the hardest UX decisions.</div>
+      </div>
+      <div class="learning-card reveal reveal-d1">
+        <div class="learning-num">05</div>
+        <div class="learning-title">Presenting design in the client's language builds trust</div>
+        <div class="learning-body">Framing moodboards and UI decisions in terms of brand goals, audience behaviour, and business outcomes — rather than aesthetic preference — won the trust of the CEO and Creative Director. Communication is a design skill.</div>
+      </div>
+      <div class="learning-card reveal reveal-d2">
+        <div class="learning-num">06</div>
+        <div class="learning-title">Innovation must stay simple at the UX layer</div>
+        <div class="learning-body">Planning the AR try-on showed me that advanced technology must be invisible in the user experience. If users have to think about how to use a feature, the feature has failed — no matter how technically impressive it is behind the scenes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEXT ══ -->
+<section class="next-section">
+  <div class="wrap next-inner">
+    <div>
+      <div class="next-label">Next Case Study</div>
+      <div class="next-title">Data-Driven UX:<br><em>Coming Soon</em></div>
+    </div>
+    <a href="/#projects" target="_parent" class="next-btn">View all work <span class="next-btn-arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div>
+    <div class="footer-name">Srigayaththri Tharmasoruban</div>
+    <div class="footer-sub">UI/UX Designer & Business Analyst · Colombo, Sri Lanka</div>
+  </div>
+  <div class="footer-right">Case study · © 2026</div>
+</footer>
+
+<script>
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.07 });
+revealEls.forEach(el => io.observe(el));
+
+// Progress bar + nav shadow + back to top
+const bar = document.getElementById('progressBar');
+const nav = document.getElementById('mainNav');
+const btn = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+  nav.classList.toggle('scrolled', s > 60);
+  btn.classList.toggle('show', s > 600);
+});
+
+// Image fallback paths — try loading from uploads dir
+document.querySelectorAll('img[src]').forEach(img => {
+  const src = img.getAttribute('src');
+  if (!src.startsWith('/') && !src.startsWith('http')) {
+    img.src = '/mnt/user-data/uploads/' + src;
+  }
+});
+</script>
+</body>
+</html>
