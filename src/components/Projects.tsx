@@ -52,18 +52,24 @@ function getProjectVisual(id: string): CSSProperties {
 function WorkRowItem({ row, index }: { row: WorkRow; index: number }) {
   const reduce = useReducedMotion();
   const visualStyle = getProjectVisual(row.id);
+  const caseHref = `/case/${row.id}`;
 
   return (
-    <motion.article
-      className={`works-row${row.flipped ? " works-row--flip" : ""}`}
-      style={{ "--row-accent": row.accent } as CSSProperties}
+    <motion.div
+      className="works-row-wrap"
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-6%" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.06 * index }}
     >
-      <div className="works-row__text">
-        <p className="works-row__num" aria-hidden>
+      <Link
+        to={caseHref}
+        className={`works-row${row.flipped ? " works-row--flip" : ""}`}
+        style={{ "--row-accent": row.accent } as CSSProperties}
+        aria-label={`View case study: ${row.title}`}
+      >
+        <div className="works-row__text">
+          <p className="works-row__num" aria-hidden>
           {row.number}
         </p>
         <h3 className="works-row__title">{row.title}</h3>
@@ -75,9 +81,7 @@ function WorkRowItem({ row, index }: { row: WorkRow; index: number }) {
           ))}
         </ul>
         <p className="works-row__desc">{row.description}</p>
-        <Link to={`/case/${row.id}`} className="works-row__cta">
-          View case study →
-        </Link>
+        <span className="works-row__cta">View case study →</span>
       </div>
 
       <div className="works-row__media">
@@ -85,7 +89,8 @@ function WorkRowItem({ row, index }: { row: WorkRow; index: number }) {
           <div className="works-row__media-inner" style={visualStyle} aria-hidden />
         </div>
       </div>
-    </motion.article>
+      </Link>
+    </motion.div>
   );
 }
 
@@ -138,15 +143,27 @@ export function Projects() {
           flex-direction: column;
           width: 100%;
         }
+        .works-row-wrap + .works-row-wrap {
+          border-top: 1px solid var(--border);
+        }
         .works-row {
           display: grid;
           grid-template-columns: minmax(0, 55%) minmax(0, 45%);
           gap: clamp(1.15rem, 3vw, 2rem);
           align-items: center;
           padding-block: clamp(1.25rem, 3vw, 1.75rem);
+          text-decoration: none;
+          color: inherit;
+          cursor: pointer;
+          border-radius: 8px;
+          transition: background 0.2s ease;
         }
-        .works-row + .works-row {
-          border-top: 1px solid var(--border);
+        .works-row:hover {
+          background: rgba(15, 23, 42, 0.02);
+        }
+        .works-row:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 4px;
         }
         .works-row--flip {
           grid-template-columns: minmax(0, 45%) minmax(0, 55%);
@@ -222,14 +239,9 @@ export function Projects() {
           text-decoration: none;
           transition: text-decoration-color 0.2s ease, color 0.2s ease;
         }
-        .works-row__cta:hover {
+        .works-row:hover .works-row__cta {
           text-decoration: underline;
           text-underline-offset: 3px;
-        }
-        .works-row__cta:focus-visible {
-          outline: 2px solid var(--accent);
-          outline-offset: 4px;
-          border-radius: 2px;
         }
         .works-row__media {
           min-width: 0;

@@ -1,6 +1,9 @@
 import { useCallback, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { siteConfig } from "../config";
+import aboutLife1 from "../assets/about-life-1.png";
+import aboutLife2 from "../assets/about-life-2.png";
+import aboutLife3 from "../assets/about-life-3.png";
 import aboutPortrait from "../assets/about-portrait.png";
 
 export type AboutStackPhoto = {
@@ -9,12 +12,11 @@ export type AboutStackPhoto = {
   objectPosition?: string;
 };
 
-/** Add more imports here when you have extra photos for the stack. */
 export const ABOUT_STACK_PHOTOS: AboutStackPhoto[] = [
   { src: aboutPortrait, alt: siteConfig.name, objectPosition: "center 12%" },
-  { src: aboutPortrait, alt: siteConfig.name, objectPosition: "center 35%" },
-  { src: aboutPortrait, alt: siteConfig.name, objectPosition: "35% 22%" },
-  { src: aboutPortrait, alt: siteConfig.name, objectPosition: "65% 28%" },
+  { src: aboutLife1, alt: `${siteConfig.name} outdoors`, objectPosition: "center 22%" },
+  { src: aboutLife2, alt: `${siteConfig.name} relaxing in a garden`, objectPosition: "center 35%" },
+  { src: aboutLife3, alt: `${siteConfig.name} at a floating market`, objectPosition: "center 28%" },
 ];
 
 const STACK_LAYOUT = [

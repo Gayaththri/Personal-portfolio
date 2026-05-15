@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 const FACTS = [
   { emoji: "📚", text: "probably lost in a book again" },
   { emoji: "📌", text: "pinterest is basically my second home" },
-  { emoji: "🎮", text: "I play games... very competitively" },
+  { emoji: "✈️", text: "always planning the next trip somewhere new" },
   { emoji: "🎧", text: "there's always music in the background" },
   { emoji: "🩺", text: "thought I'd become a doctor. now I diagnose UX problems" },
   { emoji: "✨", text: "turning chaos into organized systems is oddly satisfying" },
