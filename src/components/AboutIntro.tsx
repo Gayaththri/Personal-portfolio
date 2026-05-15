@@ -17,9 +17,12 @@ export function AboutIntro() {
         animate={reduce ? undefined : { opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <header className="about-intro__head section-head">
-          <p className="section-head__eyebrow">About</p>
-          <h1 id="about-intro-heading" className="section-head__title about-intro__title">
+        <header className="about-intro__head">
+          <p className="about-intro__status" role="status">
+            <span className="about-intro__status-dot" aria-hidden />
+            Available for work
+          </p>
+          <h1 id="about-intro-heading" className="about-intro__title">
             Hey, I&apos;m {firstName}.
           </h1>
         </header>
@@ -87,8 +90,35 @@ export function AboutIntro() {
           width: 100%;
           min-width: 0;
         }
-        .about-intro__head.section-head {
+        .about-intro__head {
+          width: 100%;
+          max-width: 52rem;
+          margin-inline: auto;
           margin-bottom: var(--section-head-gap);
+        }
+        .about-intro__status {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin: 0 0 0.75rem;
+          padding: 0.4rem 0.85rem;
+          border-radius: 999px;
+          border: 1px solid #86efac;
+          background: #f0fdf4;
+          font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+          font-size: 0.8125rem;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+          line-height: 1.2;
+          color: #15803d;
+        }
+        .about-intro__status-dot {
+          flex-shrink: 0;
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #22c55e;
+          box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
         }
         .about-intro__title {
           font-family: var(--font-serif);
@@ -101,11 +131,14 @@ export function AboutIntro() {
           display: grid;
           gap: clamp(1.25rem, 3.5vw, 2rem);
           align-items: start;
+          width: 100%;
+          max-width: 52rem;
+          margin-inline: auto;
         }
         @media (min-width: 768px) {
           .about-intro__layout {
-            grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
-            column-gap: clamp(1.75rem, 4vw, 3rem);
+            grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+            column-gap: clamp(2rem, 5vw, 3.5rem);
           }
         }
         .about-intro__stack {
@@ -114,13 +147,19 @@ export function AboutIntro() {
         }
         @media (min-width: 768px) {
           .about-intro__stack {
-            justify-content: flex-start;
+            justify-content: center;
             padding-top: 0.15rem;
           }
         }
         .about-intro__copy {
           min-width: 0;
-          max-width: 40rem;
+          max-width: 38rem;
+        }
+        @media (min-width: 768px) {
+          .about-intro__copy {
+            margin-inline: auto;
+            width: 100%;
+          }
         }
         .about-intro__body {
           display: flex;
@@ -133,6 +172,9 @@ export function AboutIntro() {
           font-size: 0.9375rem;
           line-height: 1.7;
           color: var(--text-muted);
+          text-align: justify;
+          text-wrap: pretty;
+          hyphens: auto;
         }
         .about-intro__pullquote {
           margin: 0.25rem 0;
@@ -145,6 +187,9 @@ export function AboutIntro() {
           font-style: normal;
           line-height: 1.6;
           color: var(--text);
+          text-align: justify;
+          text-wrap: pretty;
+          hyphens: auto;
         }
         .about-intro__chips {
           list-style: none;
@@ -152,7 +197,13 @@ export function AboutIntro() {
           padding: 0;
           display: flex;
           flex-wrap: wrap;
+          justify-content: center;
           gap: 0.5rem;
+        }
+        @media (min-width: 768px) {
+          .about-intro__chips {
+            justify-content: flex-start;
+          }
         }
         .about-intro__chip {
           display: inline-flex;
