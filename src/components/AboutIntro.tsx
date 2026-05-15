@@ -91,16 +91,17 @@ export function AboutIntro() {
           min-width: 0;
         }
         .about-intro__head {
-          width: 100%;
-          max-width: 52rem;
-          margin-inline: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
           margin-bottom: var(--section-head-gap);
         }
         .about-intro__status {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          margin: 0 0 0.75rem;
+          margin: 0;
           padding: 0.4rem 0.85rem;
           border-radius: 999px;
           border: 1px solid #86efac;
@@ -121,6 +122,7 @@ export function AboutIntro() {
           box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
         }
         .about-intro__title {
+          margin: 0;
           font-family: var(--font-serif);
           font-size: clamp(2rem, 5vw, 2.75rem);
           font-weight: 500;
@@ -131,14 +133,11 @@ export function AboutIntro() {
           display: grid;
           gap: clamp(1.25rem, 3.5vw, 2rem);
           align-items: start;
-          width: 100%;
-          max-width: 52rem;
-          margin-inline: auto;
         }
         @media (min-width: 768px) {
           .about-intro__layout {
-            grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
-            column-gap: clamp(2rem, 5vw, 3.5rem);
+            grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+            column-gap: clamp(1.75rem, 4vw, 3rem);
           }
         }
         .about-intro__stack {
@@ -147,19 +146,13 @@ export function AboutIntro() {
         }
         @media (min-width: 768px) {
           .about-intro__stack {
-            justify-content: center;
+            justify-content: flex-start;
             padding-top: 0.15rem;
           }
         }
         .about-intro__copy {
           min-width: 0;
-          max-width: 38rem;
-        }
-        @media (min-width: 768px) {
-          .about-intro__copy {
-            margin-inline: auto;
-            width: 100%;
-          }
+          max-width: 40rem;
         }
         .about-intro__body {
           display: flex;
@@ -197,13 +190,7 @@ export function AboutIntro() {
           padding: 0;
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
           gap: 0.5rem;
-        }
-        @media (min-width: 768px) {
-          .about-intro__chips {
-            justify-content: flex-start;
-          }
         }
         .about-intro__chip {
           display: inline-flex;
