@@ -258,17 +258,55 @@ export function TopNav() {
           }
         }
         @media (max-width: 720px) {
+          .topnav__wrap {
+            width: 100%;
+            max-width: 100%;
+          }
           .topnav__bar {
-            padding: 8px 14px;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.35rem 0.5rem;
+            padding: 6px 10px 6px 12px;
+            min-height: 42px;
+          }
+          .topnav__brand {
+            min-width: 2rem;
+            min-height: 2rem;
+          }
+          .topnav__brand-letter {
+            font-size: 1.2rem;
           }
           .topnav__nav {
-            order: 3;
-            flex-basis: 100%;
-            justify-content: flex-start;
-            gap: 0.65rem 0.85rem;
+            flex: 1 1 auto;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: clamp(0.35rem, 2.5vw, 0.65rem);
+            min-width: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .topnav__nav::-webkit-scrollbar {
+            display: none;
+          }
+          .topnav__link {
+            font-size: clamp(0.625rem, 2.8vw, 0.75rem);
+            flex-shrink: 0;
           }
           .topnav__tools {
-            margin-left: auto;
+            flex-wrap: nowrap;
+            flex-shrink: 0;
+            margin-left: 0;
+            gap: 0.2rem;
+          }
+          .topnav__icon {
+            width: 28px;
+            height: 28px;
+          }
+          .topnav__resume {
+            padding: 5px 10px;
+            font-size: clamp(0.625rem, 2.6vw, 0.7rem);
           }
         }
       `}</style>

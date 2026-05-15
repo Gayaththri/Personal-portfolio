@@ -36,6 +36,12 @@
   --font-serif: "Playfair Display", ui-serif, serif;
 }
 
+@media (max-width: 720px) {
+  :root {
+    --topnav-stack: 3.75rem;
+  }
+}
+
 *,
 *::before,
 *::after {

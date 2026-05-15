@@ -5,7 +5,7 @@ export const siteConfig = {
   navBrand: "Gaya",
   title: "Business Analyst & UI/UX Designer | Product Analyst",
   email: "sriigaya3@gmail.com",
-  linkedin: "https://www.linkedin.com/in/srigayaththri-tharmasoruban",
+  linkedin: "https://www.linkedin.com/in/srigayaththri",
   github: "https://github.com/srigayaththri",
   /** Optional — shows “Blogs” in the top nav when set */
   blogUrl: "",
