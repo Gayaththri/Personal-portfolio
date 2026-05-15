@@ -35,7 +35,7 @@ export function AboutSkillsScrapbook() {
       <div id="skills" className="about-scrap">
       <div className="about-scrap__inner">
         <header className="about-scrap__head section-head">
-          <p className="section-head__eyebrow section-head__eyebrow--literal">[ Skills ]</p>
+          <p className="section-head__eyebrow">Skills</p>
           <h2 className="section-head__title">Skills</h2>
           <p className="section-head__lead">
             Grouped by analysis, design, delivery, and technical work.

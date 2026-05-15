@@ -121,6 +121,217 @@ video {
   flex-direction: column;
 }
 
+/** Shared fixed pill nav (TopNav) — single source for all routes */
+.topnav {
+  position: fixed;
+  top: max(0.65rem, env(safe-area-inset-top, 0px));
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--section-pad-inline-end) 0 var(--section-pad-inline-start);
+  pointer-events: none;
+}
+.topnav__wrap {
+  pointer-events: auto;
+  width: max-content;
+  max-width: min(var(--max), calc(100vw - var(--section-pad-inline-start) - var(--section-pad-inline-end)));
+}
+.topnav__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem 1.1rem;
+  min-height: 44px;
+  padding: 8px 18px;
+  background: color-mix(in srgb, #ffffff 92%, var(--bg));
+  color: var(--text);
+  border-radius: 9999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 4px 24px -12px rgba(15, 23, 42, 0.12),
+    0 12px 36px -20px rgba(15, 23, 42, 0.08);
+}
+.topnav__brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  margin: -2px 0;
+  text-decoration: none;
+  flex-shrink: 0;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+.topnav__brand:hover {
+  transform: scale(1.04);
+}
+.topnav__brand:hover .topnav__brand-letter {
+  color: var(--text-muted);
+}
+.topnav__brand-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.topnav__brand-letter {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.42rem;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+.topnav__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.topnav__link {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topnav__link:hover {
+  color: var(--text);
+}
+.topnav__link:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.topnav__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem 0.5rem;
+  flex-shrink: 0;
+  margin-left: 0.15rem;
+}
+.topnav__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.topnav__icon:hover {
+  color: var(--text);
+  background: rgba(15, 23, 42, 0.06);
+}
+.topnav__icon:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+.topnav__resume {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  background: #0f172a;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.topnav__resume:hover {
+  transform: translateY(-1px);
+  background: #1e293b;
+  box-shadow: 0 6px 18px -8px rgba(15, 23, 42, 0.35);
+}
+.topnav__resume:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 3px;
+}
+.topnav__brand:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+@media (max-width: 420px) {
+  .topnav__link {
+    font-size: 0.75rem;
+  }
+  .topnav__brand-letter {
+    font-size: 1.28rem;
+  }
+}
+@media (max-width: 720px) {
+  .topnav__wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+  .topnav__bar {
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem 0.5rem;
+    padding: 6px 10px 6px 12px;
+    min-height: 42px;
+  }
+  .topnav__brand {
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+  .topnav__brand-letter {
+    font-size: 1.2rem;
+  }
+  .topnav__nav {
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: clamp(0.35rem, 2.5vw, 0.65rem);
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .topnav__nav::-webkit-scrollbar {
+    display: none;
+  }
+  .topnav__link {
+    font-size: clamp(0.625rem, 2.8vw, 0.75rem);
+    flex-shrink: 0;
+  }
+  .topnav__tools {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    margin-left: 0;
+    gap: 0.2rem;
+  }
+  .topnav__icon {
+    width: 28px;
+    height: 28px;
+  }
+  .topnav__resume {
+    padding: 5px 10px;
+    font-size: clamp(0.625rem, 2.6vw, 0.7rem);
+  }
+}
+
 h1,
 h2,
 h3,
@@ -168,26 +379,6 @@ main [role="region"][id] {
   margin: 0 auto;
 }
 
-.section__label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
-}
-
-.section__label::before {
-  content: "";
-  width: 22px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--gradient);
-}
-
 .section__title {
   font-size: clamp(1.5rem, 4.2vw, 2.35rem);
   font-weight: 700;
@@ -208,31 +399,34 @@ main [role="region"][id] {
   margin: 0 0 var(--section-head-gap);
   text-align: left;
 }
-.section-head__eyebrow {
+.section-head__eyebrow,
+.section__label {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   margin: 0 0 0.5rem;
   font-family: var(--font-sans);
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   line-height: 1.25;
 }
-.section-head__eyebrow::before {
-  content: "";
-  width: 12px;
-  height: 1px;
-  background: var(--text-muted);
-  opacity: 0.45;
-  border-radius: 1px;
+.section-head__eyebrow::before,
+.section__label::before {
+  content: "—";
   flex-shrink: 0;
-}
-.section-head__eyebrow--literal {
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  opacity: 1;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
   text-transform: none;
-  letter-spacing: 0.03em;
 }
 .section-head__title {
   margin: 0 0 0.5rem;

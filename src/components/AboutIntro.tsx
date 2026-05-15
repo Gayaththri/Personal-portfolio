@@ -20,7 +20,7 @@ export function AboutIntro() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             <header className="about-intro__head">
-              <p className="section__label">About</p>
+              <p className="section-head__eyebrow">About</p>
               <h1 id="about-intro-heading" className="section__title about-intro__title">
                 Hey, I&apos;m <strong>{siteConfig.name.split(" ")[0]}</strong>.
               </h1>
@@ -35,11 +35,13 @@ export function AboutIntro() {
                 I&apos;m especially drawn to the systems behind the interface - the workflows,
                 logic, and user interactions that shape how a product actually functions.
               </p>
+              <blockquote className="about-intro__pullquote">
+                I enjoy creating systems that feel simple, thoughtful, and reliable.
+              </blockquote>
               <p>
                 A big part of my work involves understanding messy problems and turning them into
                 clear workflows, intuitive experiences, and practical solutions. Whether it&apos;s
-                through research, user flows, requirement analysis, or interface design, I enjoy
-                creating systems that feel simple, thoughtful, and reliable.
+                through research, user flows, requirement analysis, or interface design.
               </p>
               <p>
                 At the center of how I work is curiosity - understanding how things work, why users
@@ -121,8 +123,21 @@ export function AboutIntro() {
           line-height: 1.65;
           color: var(--text-muted);
         }
-        .about-intro__body p + p {
+        .about-intro__body p + p,
+        .about-intro__body p + .about-intro__pullquote,
+        .about-intro__body .about-intro__pullquote + p {
           margin-top: 1rem;
+        }
+        .about-intro__pullquote {
+          margin: 0;
+          padding: 0 0 0 1rem;
+          border: none;
+          border-left: 3px solid var(--text);
+          font-family: var(--font-sans);
+          font-size: clamp(1.25rem, 2.2vw, 1.375rem);
+          font-weight: 700;
+          line-height: 1.45;
+          color: var(--text);
         }
         .about-intro__body strong {
           color: var(--text);

@@ -200,7 +200,7 @@ export function Testimonials() {
         <header className="tsay__head section-head">
           <p className="section-head__eyebrow">Testimonials</p>
           <h2 id="tsay-heading" className="section-head__title">
-            What others say!
+            What others say
           </h2>
           <p className="section-head__lead">Kind words from people I&apos;ve worked with.</p>
         </header>

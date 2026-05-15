@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { siteConfig } from "../config";
 import aboutPortrait from "../assets/about-portrait.png";
 
-const STROKE = "var(--accent-2)";
+const STROKE = "var(--text)";
 
 const FACTS: { icon: "book" | "pin" | "game" | "music" | "scope" | "phone" | "sparkle"; text: string }[] = [
   { icon: "book", text: "📚 probably lost in a book again" },
@@ -153,7 +153,7 @@ export function FunFacts() {
     <section id="fun-facts" className="funfacts section" aria-labelledby="funfacts-heading">
       <div className="wrap">
         <header className="funfacts__head">
-          <p className="section__label">Personality</p>
+          <p className="section-head__eyebrow">Personality</p>
           <h2 id="funfacts-heading" className="section__title">
             Fun Facts
           </h2>
@@ -258,7 +258,7 @@ export function FunFacts() {
           font-size: 0.78rem;
           font-weight: 600;
           letter-spacing: 0.02em;
-          color: var(--accent-2);
+          color: var(--text);
         }
         .funfacts__emoji {
           font-size: 1rem;
@@ -326,7 +326,7 @@ export function FunFacts() {
           margin: 1rem 0 0;
           font-size: clamp(1.1rem, 2.5vw, 1.35rem);
           font-weight: 600;
-          color: var(--accent-2);
+          color: var(--text);
           text-align: center;
           line-height: 1.25;
           max-width: 14rem;

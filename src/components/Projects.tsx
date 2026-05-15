@@ -1,62 +1,111 @@
+import type { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { showcaseProjects, type ShowcaseProject } from "../data/showcase-projects";
+import { showcaseProjects } from "../data/showcase-projects";
 
-function ProjectCard({ project, index }: { project: ShowcaseProject; index: number }) {
+type WorkRow = {
+  id: string;
+  number: string;
+  title: string;
+  tags: string[];
+  description: string;
+  accent: string;
+  flipped: boolean;
+};
+
+const WORK_ROWS: WorkRow[] = [
+  {
+    id: "rose-by-basicare",
+    number: "01",
+    title: "Rose by Basicare",
+    tags: ["Beauty eCommerce", "K-beauty", "Mobile-first"],
+    description:
+      "End-to-end UX and brand system design for a mobile-first K-beauty eCommerce platform.",
+    accent: "#c96b5c",
+    flipped: false,
+  },
+  {
+    id: "prose-meet",
+    number: "02",
+    title: "PROSE–MEET",
+    tags: ["AI & governance", "Final-year capstone"],
+    description:
+      "AI-assisted meeting workflow tool designed to help teams capture decisions and move faster.",
+    accent: "#4f46e5",
+    flipped: true,
+  },
+];
+
+function getProjectVisual(id: string): CSSProperties {
+  const project = showcaseProjects.find((p) => p.id === id);
+  if (!project) return { background: "var(--bg-elevated)" };
+  if (project.coverImage) {
+    return {
+      backgroundImage: `url(${project.coverImage})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    };
+  }
+  return { background: project.coverGradient };
+}
+
+function WorkRowItem({ row, index }: { row: WorkRow; index: number }) {
   const reduce = useReducedMotion();
-  const coverStyle = project.coverImage
-    ? ({
-        backgroundImage: `url(${project.coverImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      } as const)
-    : ({ background: project.coverGradient } as const);
+  const visualStyle = getProjectVisual(row.id);
 
   return (
-    <Link to={`/case/${project.id}`} className="work-card">
-      <motion.article
-        className="work-card__inner"
-        initial={reduce ? false : { opacity: 0, y: 20 }}
-        whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-8%" }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.05 * index }}
-      >
-        <motion.div
-          className="work-card__cover"
-          style={coverStyle}
-          aria-hidden
-          whileHover={reduce ? undefined : { scale: 1.01 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        />
-        <motion.div className="work-card__body">
-          <h3 className="work-card__title">{project.title}</h3>
-          <p className="work-card__meta">{project.metaLine}</p>
-        </motion.div>
-      </motion.article>
-    </Link>
+    <motion.article
+      className={`works-row${row.flipped ? " works-row--flip" : ""}`}
+      style={{ "--row-accent": row.accent } as CSSProperties}
+      initial={reduce ? false : { opacity: 0, y: 24 }}
+      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-6%" }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.06 * index }}
+    >
+      <div className="works-row__text">
+        <p className="works-row__num" aria-hidden>
+          {row.number}
+        </p>
+        <h3 className="works-row__title">{row.title}</h3>
+        <ul className="works-row__tags" aria-label="Categories">
+          {row.tags.map((tag) => (
+            <li key={tag}>
+              <span className="works-row__tag">{tag}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="works-row__desc">{row.description}</p>
+        <Link to={`/case/${row.id}`} className="works-row__cta">
+          View case study →
+        </Link>
+      </div>
+
+      <div className="works-row__media">
+        <div className="works-row__media-frame">
+          <div className="works-row__media-inner" style={visualStyle} aria-hidden />
+        </div>
+      </div>
+    </motion.article>
   );
 }
 
 export function Projects() {
   return (
     <section id="projects" className="works">
-      <motion.div
-        className="works__inner wrap"
-        initial={false}
-      >
+      <div className="works__inner wrap">
         <header className="works__head section-head">
-          <p className="section-head__eyebrow">Selected Works</p>
-          <h2 className="section-head__title section-head__title--sans">
+          <p className="section-head__eyebrow">Selected works</p>
+          <h2 className="section-head__title section-head__title--sans works__title">
             Case studies &amp; product work
           </h2>
         </header>
 
-        <div className="works__list">
-          {showcaseProjects.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} />
+        <div className="works__stack">
+          {WORK_ROWS.map((row, i) => (
+            <WorkRowItem key={row.id} row={row} index={i} />
           ))}
         </div>
-      </motion.div>
+      </div>
 
       <style>{`
         .works {
@@ -68,74 +117,166 @@ export function Projects() {
         .works__inner {
           max-width: var(--max);
           margin: 0 auto;
+          width: 100%;
         }
         .works__head.section-head {
-          margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
-          max-width: 32rem;
+          margin-bottom: clamp(2rem, 4vw, 2.75rem);
+          max-width: 100%;
         }
-        .works__list {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
-          max-width: 36rem;
+        .works__title.section-head__title {
+          font-size: clamp(1.35rem, 2.8vw + 0.35rem, 2rem);
+          white-space: nowrap;
+          max-width: 100%;
         }
-        .work-card {
-          display: block;
-          text-decoration: none;
-          color: inherit;
+        @media (max-width: 520px) {
+          .works__title.section-head__title {
+            white-space: normal;
+          }
         }
-        .work-card:focus-visible {
-          outline: none;
-        }
-        .work-card:focus-visible .work-card__cover {
-          outline: 2px solid var(--accent);
-          outline-offset: 4px;
-        }
-        .work-card__inner {
+        .works__stack {
           display: flex;
           flex-direction: column;
-          gap: 0.65rem;
-        }
-        .work-card__cover {
           width: 100%;
-          height: clamp(7.5rem, 22vw, 9.5rem);
-          border-radius: 10px;
-          border: 1px solid var(--border);
-          background-color: var(--bg-elevated);
-          overflow: hidden;
-          transform-origin: center;
         }
-        .work-card__body {
+        .works-row {
+          display: grid;
+          grid-template-columns: minmax(0, 55%) minmax(0, 45%);
+          gap: clamp(1.5rem, 4vw, 3rem);
+          align-items: center;
+          padding-block: clamp(2rem, 4.5vw, 3rem);
+        }
+        .works-row + .works-row {
+          border-top: 1px solid var(--border);
+        }
+        .works-row--flip {
+          grid-template-columns: minmax(0, 45%) minmax(0, 55%);
+        }
+        .works-row--flip .works-row__text {
+          order: 2;
+        }
+        .works-row--flip .works-row__media {
+          order: 1;
+        }
+        .works-row__text {
           display: flex;
           flex-direction: column;
-          gap: 0.2rem;
-          padding: 0;
+          align-items: flex-start;
+          min-width: 0;
         }
-        .work-card__title {
-          margin: 0;
+        .works-row__num {
+          margin: 0 0 0.75rem;
           font-family: var(--font-sans);
-          font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
-          font-weight: 700;
-          letter-spacing: -0.02em;
-          line-height: 1.3;
+          font-size: 0.8125rem;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          color: var(--text-muted);
+          transition: color 0.35s ease;
+        }
+        .works-row:hover .works-row__num {
+          color: var(--row-accent);
+        }
+        .works-row__title {
+          margin: 0 0 1rem;
+          font-family: var(--font-sans);
+          font-size: clamp(1.75rem, 2.8vw, 2rem);
+          font-weight: 800;
+          letter-spacing: -0.03em;
+          line-height: 1.12;
           color: var(--text);
         }
-        .work-card__meta {
-          margin: 0;
+        .works-row__tags {
+          list-style: none;
+          margin: 0 0 1rem;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+        }
+        .works-row__tag {
+          display: inline-block;
+          padding: 0.3rem 0.65rem;
           font-family: var(--font-sans);
-          font-size: clamp(0.75rem, 1.4vw, 0.8125rem);
-          font-weight: 500;
-          line-height: 1.4;
+          font-size: 0.6875rem;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          line-height: 1.3;
+          color: var(--text-muted);
+          background: var(--bg-elevated);
+          border: 1px solid var(--border);
+          border-radius: 999px;
+        }
+        .works-row__desc {
+          margin: 0 0 1.25rem;
+          max-width: 34rem;
+          font-family: var(--font-sans);
+          font-size: clamp(0.9375rem, 1.6vw, 1rem);
+          font-weight: 400;
+          line-height: 1.55;
           color: var(--text-muted);
         }
-        @media (min-width: 640px) {
-          .works__list {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            max-width: 52rem;
-            gap: 1.25rem 1.5rem;
+        .works-row__cta {
+          font-family: var(--font-sans);
+          font-size: 0.9375rem;
+          font-weight: 600;
+          color: #0f172a;
+          text-decoration: none;
+          transition: text-decoration-color 0.2s ease, color 0.2s ease;
+        }
+        .works-row__cta:hover {
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .works-row__cta:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 4px;
+          border-radius: 2px;
+        }
+        .works-row__media {
+          min-width: 0;
+        }
+        .works-row__media-frame {
+          position: relative;
+          border-radius: 12px;
+          border: 1px solid var(--border);
+          overflow: hidden;
+          background: var(--bg-elevated);
+          aspect-ratio: 4 / 3;
+        }
+        .works-row__media-inner {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          transform: scale(1);
+          transform-origin: center;
+          transition: transform 0.35s ease;
+        }
+        .works-row:hover .works-row__media-inner {
+          transform: scale(1.04);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .works-row__media-inner {
+            transition: none;
           }
-          .work-card__cover {
-            height: clamp(7rem, 14vw, 8.5rem);
+          .works-row:hover .works-row__media-inner {
+            transform: none;
+          }
+          .works-row__num {
+            transition: none;
+          }
+        }
+        @media (max-width: 768px) {
+          .works-row,
+          .works-row--flip {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+          }
+          .works-row--flip .works-row__text,
+          .works-row--flip .works-row__media {
+            order: unset;
+          }
+          .works-row__media-frame {
+            aspect-ratio: 16 / 10;
           }
         }
       `}</style>

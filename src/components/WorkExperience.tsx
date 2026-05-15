@@ -182,6 +182,11 @@ export function WorkExperience() {
         .wxp__intro {
           max-width: 28rem;
         }
+        .wxp__intro .section-head__title {
+          font-family: var(--font-sans);
+          font-weight: 700;
+          font-style: normal;
+        }
         .wxp__stack {
           display: flex;
           flex-direction: column;

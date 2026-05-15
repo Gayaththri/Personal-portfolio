@@ -56,14 +56,17 @@ export function Contact() {
       <Reveal className="contact-touch__reveal">
         <div className="wrap contact-touch__inner">
           <div className="contact-touch__primary">
-            <header className="section-head">
+            <header className="section-head contact-touch__head">
               <p className="section-head__eyebrow">Get in touch</p>
-              <h2 id="contact-heading" className="section-head__title contact-touch__headline">
-                <span className="contact-touch__headline-sans">Crafted with </span>
-                <span className="contact-touch__headline-care">care</span>
+              <h2
+                id="contact-heading"
+                className="section-head__title section-head__title--sans contact-touch__title"
+              >
+                Let&apos;s work together.
               </h2>
-              <p className="section-head__lead contact-touch__lead">
-                Email first—then resume, social profiles, and more.
+              <p className="section-head__lead contact-touch__subtitle">
+                Open to UI/UX Design and Business Analyst roles — available for full-time and
+                freelance.
               </p>
             </header>
             <a className="contact-touch__email" href={`mailto:${siteConfig.email}`}>
@@ -123,40 +126,29 @@ export function Contact() {
           min-width: 0;
           max-width: 100%;
         }
-        .contact-touch__headline-sans {
-          font-family: var(--font-sans);
-          font-weight: 800;
-          color: var(--text);
+        .contact-touch__head.section-head {
+          margin: 0 0 clamp(1rem, 2.5vw, 1.35rem);
         }
-        .contact-touch__headline-care {
-          font-family: var(--font-serif);
-          font-style: italic;
-          font-weight: 500;
-          color: var(--accent);
-        }
-        .contact-touch .section-head {
-          margin: 0 0 clamp(0.85rem, 2vw, 1.15rem);
-        }
-        .contact-touch .section-head__lead.contact-touch__lead {
-          margin-bottom: 0;
-          max-width: 36ch;
-        }
-        .contact-touch .section-head__title.contact-touch__headline {
+        .contact-touch__title.section-head__title {
           font-weight: 800;
           letter-spacing: -0.03em;
-          line-height: 1.12;
-          font-size: clamp(1.35rem, 3.2vw + 0.35rem, 2rem);
-          min-width: 0;
+          line-height: 1.1;
+          font-size: clamp(1.75rem, 4.5vw + 0.25rem, 2.75rem);
+        }
+        .contact-touch__subtitle.section-head__lead {
+          margin: 0;
+          max-width: 38rem;
         }
         .contact-touch__email {
-          margin-top: 0.85rem;
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.55rem;
           max-width: 100%;
           font-family: var(--font-sans);
-          font-size: clamp(0.875rem, 2.2vw, 1.125rem);
-          font-weight: 500;
+          font-size: clamp(1.35rem, 3.5vw + 0.2rem, 2.25rem);
+          font-weight: 800;
+          letter-spacing: -0.03em;
+          line-height: 1.15;
           color: var(--text);
           text-decoration: none;
           transition: color 0.2s ease;
