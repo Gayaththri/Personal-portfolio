@@ -147,7 +147,7 @@ export function CaseStudyPage() {
           min-height: 100vh;
           background: var(--bg-elevated);
           color: var(--text);
-          padding-block: calc(var(--topnav-stack) + 1rem) var(--section-pad-y);
+          padding-block: calc(var(--topnav-stack) + 0.65rem) var(--section-pad-y);
           padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
         }
         .case-page__inner {
@@ -170,7 +170,7 @@ export function CaseStudyPage() {
           color: var(--accent);
         }
         .case-page__head.section-head {
-          margin-bottom: clamp(1.5rem, 3vw, 2rem);
+          margin-bottom: var(--section-head-gap);
         }
         .case-page__meta {
           margin: 0 0 0.75rem;
@@ -190,13 +190,13 @@ export function CaseStudyPage() {
           border-radius: clamp(16px, 3vw, 24px);
           border: 1px solid var(--border);
           box-shadow: var(--shadow-md);
-          margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+          margin-bottom: clamp(1.15rem, 2.5vw, 1.65rem);
         }
         .case-page__body {
           max-width: 48rem;
         }
         .case-page__section + .case-page__section {
-          margin-top: clamp(1.75rem, 3vw, 2.25rem);
+          margin-top: clamp(1.15rem, 2.5vw, 1.65rem);
         }
         .case-page__section-title {
           margin: 0 0 0.65rem;

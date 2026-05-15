@@ -10,13 +10,12 @@ const SKILL_GROUPS = [
       "Workflow documentation",
       "Business process analysis",
       "Stakeholder communication",
-      "UAT & QA",
     ],
   },
   {
     id: "design",
     label: "DESIGN",
-    items: ["Figma & Photoshop", "User flows", "Interface design", "Prototyping", "UX Research"],
+    items: ["Figma", "Photoshop", "User flows", "Interface design", "Prototyping", "UX Research"],
   },
   {
     id: "delivery",
@@ -55,9 +54,10 @@ export function AboutSkillsScrapbook() {
               </ul>
             </div>
           ))}
-          <div className="about-scrap__tools-strip">
-            <TechStackIconsRow />
-          </div>
+        </div>
+
+        <div className="about-scrap__tools-strip">
+          <TechStackIconsRow />
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export function AboutSkillsScrapbook() {
           padding: 0;
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 0.9rem;
         }
         .about-scrap__row {
           display: grid;
@@ -124,6 +124,13 @@ export function AboutSkillsScrapbook() {
         .about-scrap__tools-strip {
           width: 100%;
           min-width: 0;
+          margin-top: clamp(1.15rem, 2.5vw, 1.5rem);
+          padding-top: clamp(0.5rem, 1.5vw, 0.75rem);
+          padding-bottom: clamp(0.35rem, 1vw, 0.5rem);
+        }
+        .about-scrap__tools-strip .tech-stack__viewport {
+          padding-top: 0.35rem;
+          padding-bottom: 0.5rem;
         }
         @media (max-width: 520px) {
           .about-scrap__row {

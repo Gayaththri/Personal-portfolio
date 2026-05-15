@@ -13,9 +13,14 @@ export function AboutPage() {
   }, []);
 
   return (
-    <main>
+    <main className="about-page">
       <AboutIntro />
       <FunFacts />
+      <style>{`
+        .about-page {
+          background: var(--bg);
+        }
+      `}</style>
     </main>
   );
 }

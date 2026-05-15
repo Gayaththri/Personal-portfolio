@@ -65,14 +65,13 @@ export function Contact() {
                 Let&apos;s work together.
               </h2>
               <p className="section-head__lead contact-touch__subtitle">
-                Open to UI/UX Design and Business Analyst roles — available for full-time and
-                freelance.
+                Open to UI/UX Design roles - available for full-time and freelance.
               </p>
+              <a className="contact-touch__email" href={`mailto:${siteConfig.email}`}>
+                <span>{siteConfig.email}</span>
+                <IconArrowOut />
+              </a>
             </header>
-            <a className="contact-touch__email" href={`mailto:${siteConfig.email}`}>
-              <span>{siteConfig.email}</span>
-              <IconArrowOut />
-            </a>
           </div>
 
           <nav className="contact-touch__aside" aria-label="Links">
@@ -99,7 +98,7 @@ export function Contact() {
         .contact-touch {
           background: var(--bg);
           color: var(--text);
-          padding-block: clamp(40px, 5.5vw, 72px);
+          padding-block: clamp(32px, 4vw, 52px);
           padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
           border-top: 1px solid var(--border);
         }
@@ -110,15 +109,16 @@ export function Contact() {
           max-width: var(--max);
           margin: 0 auto;
           display: grid;
-          gap: clamp(1.25rem, 3vw, 2rem);
+          gap: clamp(1rem, 2.5vw, 1.5rem);
           align-items: start;
           min-width: 0;
           width: 100%;
         }
         @media (min-width: 640px) {
           .contact-touch__inner {
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.55fr);
-            gap: clamp(1.25rem, 3vw, 2rem);
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: clamp(1.25rem, 3.5vw, 2rem);
+            align-items: end;
           }
         }
         .contact-touch__primary {
@@ -127,7 +127,7 @@ export function Contact() {
           max-width: 100%;
         }
         .contact-touch__head.section-head {
-          margin: 0 0 clamp(1rem, 2.5vw, 1.35rem);
+          margin: 0;
         }
         .contact-touch__title.section-head__title {
           font-weight: 800;
@@ -136,19 +136,20 @@ export function Contact() {
           font-size: clamp(1.75rem, 4.5vw + 0.25rem, 2.75rem);
         }
         .contact-touch__subtitle.section-head__lead {
-          margin: 0;
+          margin: 0 0 0.85rem;
           max-width: 38rem;
         }
         .contact-touch__email {
           display: inline-flex;
+          margin-top: 0.15rem;
           align-items: center;
           gap: 0.55rem;
           max-width: 100%;
           font-family: var(--font-sans);
-          font-size: clamp(1.35rem, 3.5vw + 0.2rem, 2.25rem);
-          font-weight: 800;
-          letter-spacing: -0.03em;
-          line-height: 1.15;
+          font-size: clamp(1rem, 2vw, 1.125rem);
+          font-weight: 600;
+          letter-spacing: -0.02em;
+          line-height: 1.35;
           color: var(--text);
           text-decoration: none;
           transition: color 0.2s ease;
@@ -176,12 +177,14 @@ export function Contact() {
           transform: translate(1px, -1px);
         }
         .contact-touch__aside {
-          padding-top: 0.15rem;
+          padding-top: 0;
         }
         @media (min-width: 640px) {
           .contact-touch__aside {
             justify-self: end;
+            align-self: end;
             min-width: 10rem;
+            padding-bottom: 0.2rem;
           }
         }
         .contact-touch__links {

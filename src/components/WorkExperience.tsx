@@ -190,7 +190,7 @@ export function WorkExperience() {
         .wxp__stack {
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.75rem;
         }
         .wxp-card {
           border-radius: 18px;

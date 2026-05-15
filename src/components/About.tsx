@@ -22,7 +22,7 @@ export function About() {
           padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
           display: flex;
           flex-direction: column;
-          gap: clamp(1.25rem, 3vw, 2rem);
+          gap: clamp(0.85rem, 2vw, 1.25rem);
         }
       `}</style>
     </>

@@ -1,31 +1,46 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { AboutPortraitOrbit } from "./AboutPortraitOrbit";
 import { siteConfig } from "../config";
+import { AboutPhotoStack } from "./AboutPhotoStack";
+
+const STAT_CHIPS = ["CS Graduate", "Based in Sri Lanka", "Open to opportunities"] as const;
 
 /** Long-form intro used on the dedicated About page. */
 export function AboutIntro() {
   const reduce = useReducedMotion();
+  const firstName = siteConfig.name.split(" ")[0] ?? siteConfig.name;
 
   return (
-    <section id="about-intro" className="about-intro section" aria-labelledby="about-intro-heading">
-      <div className="about-intro__inner wrap">
-        <div className="about-intro__layout">
-          <div id="about-portrait" className="about-intro__portrait">
-            <AboutPortraitOrbit />
-          </div>
+    <section id="about-intro" className="about-intro" aria-labelledby="about-intro-heading">
+      <motion.div
+        className="about-intro__inner wrap"
+        initial={reduce ? false : { opacity: 0, y: 12 }}
+        animate={reduce ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <header className="about-intro__head section-head">
+          <p className="section-head__eyebrow">About</p>
+          <h1 id="about-intro-heading" className="section-head__title about-intro__title">
+            Hey, I&apos;m {firstName}.
+          </h1>
+        </header>
+
+        <motion.div
+          className="about-intro__layout"
+          initial={reduce ? false : { opacity: 0, y: 10 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.06 }}
+        >
+          <motion.div className="about-intro__stack">
+            <AboutPhotoStack />
+          </motion.div>
+
           <motion.div
             className="about-intro__copy"
-            initial={reduce ? false : { opacity: 0, y: 20 }}
+            initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           >
-            <header className="about-intro__head">
-              <p className="section-head__eyebrow">About</p>
-              <h1 id="about-intro-heading" className="section__title about-intro__title">
-                Hey, I&apos;m <strong>{siteConfig.name.split(" ")[0]}</strong>.
-              </h1>
-            </header>
-            <div className="about-intro__body">
+            <motion.div className="about-intro__body">
               <p>
                 I&apos;m a Computer Science graduate interested in UI/UX, Product Thinking, and
                 Business Analysis, which gives me a broader perspective on how digital products are
@@ -48,18 +63,23 @@ export function AboutIntro() {
                 behave the way they do, and how technology can make experiences more meaningful and
                 intuitive.
               </p>
-            </div>
+              <ul className="about-intro__chips" aria-label="Quick facts">
+                {STAT_CHIPS.map((chip) => (
+                  <li key={chip}>
+                    <span className="about-intro__chip">{chip}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </motion.div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <style>{`
-        .about-intro.section {
-          padding-top: calc(var(--topnav-stack) + max(1rem, var(--section-pad-y) * 0.45));
-          padding-bottom: var(--section-pad-y);
-        }
         .about-intro {
-          background: var(--bg-elevated);
+          padding-top: calc(var(--topnav-stack) + clamp(1rem, 2.5vw, 1.5rem));
+          padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+          padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
         }
         .about-intro__inner {
           max-width: var(--max);
@@ -67,81 +87,85 @@ export function AboutIntro() {
           width: 100%;
           min-width: 0;
         }
+        .about-intro__head.section-head {
+          margin-bottom: var(--section-head-gap);
+        }
+        .about-intro__title {
+          font-family: var(--font-serif);
+          font-size: clamp(2rem, 5vw, 2.75rem);
+          font-weight: 500;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
+        }
         .about-intro__layout {
           display: grid;
-          gap: clamp(1.75rem, 4vw, 2.75rem);
+          gap: clamp(1.25rem, 3.5vw, 2rem);
           align-items: start;
         }
-        @media (min-width: 900px) {
+        @media (min-width: 768px) {
           .about-intro__layout {
-            grid-template-columns: minmax(240px, 0.4fr) minmax(0, 1fr);
-            column-gap: clamp(1.5rem, 4vw, 3rem);
+            grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+            column-gap: clamp(1.75rem, 4vw, 3rem);
           }
         }
-        .about-intro__portrait {
-          width: 100%;
-          max-width: min(360px, 100%);
-          margin-inline: auto;
-          justify-self: center;
+        .about-intro__stack {
+          display: flex;
+          justify-content: center;
         }
-        @media (min-width: 900px) {
-          .about-intro__portrait {
-            margin-inline: 0;
-            justify-self: start;
-            position: sticky;
-            top: calc(env(safe-area-inset-top, 0px) + var(--topnav-stack) + 0.75rem);
-          }
-        }
-        .about-intro__portrait .about-ed__visual {
-          min-height: min(380px, 52vh);
-        }
-        @media (min-width: 900px) {
-          .about-intro__portrait .about-ed__visual {
-            min-height: min(440px, 58vh);
+        @media (min-width: 768px) {
+          .about-intro__stack {
+            justify-content: flex-start;
+            padding-top: 0.15rem;
           }
         }
         .about-intro__copy {
-          text-align: left;
           min-width: 0;
+          max-width: 40rem;
         }
-        .about-intro__title {
-          font-weight: 800;
-          line-height: 1.12;
-          letter-spacing: -0.03em;
-          font-size: clamp(1.35rem, 4.5vw + 0.35rem, 2.35rem);
-          white-space: normal;
-          overflow-wrap: break-word;
-          max-width: 100%;
-        }
-        .about-intro__title strong {
-          font-weight: 800;
-          color: inherit;
+        .about-intro__body {
+          display: flex;
+          flex-direction: column;
+          gap: 0.85rem;
         }
         .about-intro__body p {
           margin: 0;
-          font-size: clamp(0.875rem, 1.55vw, 0.97rem);
-          line-height: 1.65;
+          font-family: var(--font-sans);
+          font-size: 0.9375rem;
+          line-height: 1.7;
           color: var(--text-muted);
         }
-        .about-intro__body p + p,
-        .about-intro__body p + .about-intro__pullquote,
-        .about-intro__body .about-intro__pullquote + p {
-          margin-top: 1rem;
-        }
         .about-intro__pullquote {
-          margin: 0;
-          padding: 0 0 0 1rem;
+          margin: 0.25rem 0;
+          padding: 0 0 0 0.85rem;
           border: none;
-          border-left: 3px solid var(--text);
+          border-left: 2px solid var(--border);
           font-family: var(--font-sans);
-          font-size: clamp(1.25rem, 2.2vw, 1.375rem);
-          font-weight: 700;
-          line-height: 1.45;
+          font-size: 1rem;
+          font-weight: 500;
+          font-style: normal;
+          line-height: 1.6;
           color: var(--text);
         }
-        .about-intro__body strong {
-          color: var(--text);
-          font-weight: 600;
+        .about-intro__chips {
+          list-style: none;
+          margin: 0.5rem 0 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .about-intro__chip {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-sans);
+          font-size: 0.75rem;
+          font-weight: 500;
+          line-height: 1.3;
+          padding: 0.4rem 0.75rem;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: transparent;
+          color: var(--text-muted);
         }
       `}</style>
     </section>

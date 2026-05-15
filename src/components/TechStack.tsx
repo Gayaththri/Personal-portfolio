@@ -409,7 +409,7 @@ export function TechStackIconsRow() {
           display: flex;
           flex-direction: row;
           align-items: center;
-          gap: clamp(1.5rem, 3.5vw, 2.75rem);
+          gap: clamp(1rem, 2.5vw, 1.75rem);
           flex-shrink: 0;
           padding-inline: clamp(0.75rem, 2vw, 1.25rem);
         }

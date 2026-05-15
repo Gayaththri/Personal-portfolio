@@ -408,8 +408,8 @@ export function Hero() {
         }
         .hero-canvas__stage {
           position: relative;
-          min-height: 100dvh;
-          min-height: 100vh;
+          min-height: min(100dvh, 880px);
+          min-height: min(100vh, 880px);
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -418,8 +418,8 @@ export function Hero() {
           box-sizing: border-box;
           padding-left: var(--section-pad-inline-start);
           padding-right: var(--section-pad-inline-end);
-          padding-top: max(0.75rem, calc(env(safe-area-inset-top, 0px) + var(--topnav-stack) + 0.5rem));
-          padding-bottom: max(var(--section-pad-y), env(safe-area-inset-bottom, 0px));
+          padding-top: max(0.5rem, calc(env(safe-area-inset-top, 0px) + var(--topnav-stack) + 0.25rem));
+          padding-bottom: max(clamp(1.25rem, 3.5vw, 2rem), env(safe-area-inset-bottom, 0px));
         }
         .hero-canvas__grid {
           position: absolute;
@@ -438,8 +438,8 @@ export function Hero() {
           max-width: min(100%, 96vw);
           text-align: center;
           /* Room so frames sit like the reference: top-right + bottom-left around the word */
-          padding: clamp(1.1rem, 3.5vw, 2.1rem) clamp(1.25rem, 4.5vw, 3.75rem)
-            clamp(1.15rem, 3.2vw, 2rem) clamp(1.25rem, 4.5vw, 3.75rem);
+          padding: clamp(0.75rem, 2.5vw, 1.35rem) clamp(1rem, 3.5vw, 2.5rem)
+            clamp(0.85rem, 2.5vw, 1.5rem) clamp(1rem, 3.5vw, 2.5rem);
           box-sizing: border-box;
         }
         .hero-canvas__intro-wrap {
