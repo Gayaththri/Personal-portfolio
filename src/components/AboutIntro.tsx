@@ -80,7 +80,7 @@ export function AboutIntro() {
 
       <style>{`
         .about-intro {
-          padding-top: calc(var(--topnav-stack) + clamp(1rem, 2.5vw, 1.5rem));
+          padding-top: calc(var(--topnav-stack) + clamp(1.75rem, 4vw, 2.5rem));
           padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
           padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
         }
@@ -105,10 +105,10 @@ export function AboutIntro() {
           border-radius: 999px;
           border: 1px solid #86efac;
           background: #f0fdf4;
-          font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+          font-family: var(--font-sans);
           font-size: 0.8125rem;
-          font-weight: 500;
-          letter-spacing: -0.01em;
+          font-weight: 600;
+          letter-spacing: 0.01em;
           line-height: 1.2;
           color: #15803d;
         }
