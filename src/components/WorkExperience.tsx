@@ -1,6 +1,9 @@
 import { useId, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { siteConfig } from "../config";
 import { workExperienceEntries } from "../data/experience";
+
+const PANEL_EASE = [0.22, 1, 0.36, 1] as const;
 
 const BG = "var(--bg-elevated)";
 const INK = "var(--text)";
@@ -21,8 +24,24 @@ function IconDoc() {
   );
 }
 
+function ToggleIcon({ open, reduce }: { open: boolean; reduce: boolean }) {
+  return (
+    <motion.span
+      className="wxp-card__icon"
+      aria-hidden
+      animate={reduce ? undefined : { rotate: open ? 45 : 0 }}
+      transition={{ duration: 0.32, ease: PANEL_EASE }}
+    >
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+        <path d="M12 6v12M6 12h12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+      </svg>
+    </motion.span>
+  );
+}
+
 export function WorkExperience() {
   const baseId = useId();
+  const reduce = useReducedMotion();
   const [openId, setOpenId] = useState<string>(workExperienceEntries[0]?.id ?? "");
 
   const cv = siteConfig.cvUrl.trim();
@@ -67,37 +86,48 @@ export function WorkExperience() {
                         <span className="wxp-card__company">{job.company}</span>
                       </span>
                     </span>
-                    <span className="wxp-card__icon" aria-hidden>
-                      {isOpen ? (
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                          <path
-                            d="M6 6l12 12M18 6L6 18"
-                            stroke="currentColor"
-                            strokeWidth="1.75"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      ) : (
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                          <path
-                            d="M12 6v12M6 12h12"
-                            stroke="currentColor"
-                            strokeWidth="1.75"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      )}
-                    </span>
+                    <ToggleIcon open={isOpen} reduce={!!reduce} />
                   </button>
-                  <div
+                  <motion.div
                     id={panelId}
                     role="region"
                     aria-labelledby={btnId}
                     className="wxp-card__panel"
-                    hidden={!isOpen}
+                    initial={false}
+                    animate={{
+                      height: isOpen ? "auto" : 0,
+                      opacity: isOpen ? 1 : 0,
+                    }}
+                    transition={
+                      reduce
+                        ? { duration: 0 }
+                        : {
+                            height: { duration: 0.42, ease: PANEL_EASE },
+                            opacity: { duration: 0.28, ease: "easeOut" },
+                          }
+                    }
+                    style={{ overflow: "hidden" }}
+                    aria-hidden={!isOpen}
                   >
-                    {isOpen ? (
-                      Array.isArray(job.description) ? (
+                    <motion.div
+                      className="wxp-card__panel-inner"
+                      initial={false}
+                      animate={
+                        reduce
+                          ? undefined
+                          : { y: isOpen ? 0 : -6, opacity: isOpen ? 1 : 0 }
+                      }
+                      transition={
+                        reduce
+                          ? { duration: 0 }
+                          : {
+                              duration: 0.32,
+                              ease: PANEL_EASE,
+                              delay: isOpen ? 0.06 : 0,
+                            }
+                      }
+                    >
+                      {Array.isArray(job.description) ? (
                         <ul className="wxp-card__body wxp-card__body--bullets">
                           {job.description.map((item, i) => (
                             <li key={`${job.id}-${i}`}>{item}</li>
@@ -105,9 +135,9 @@ export function WorkExperience() {
                         </ul>
                       ) : (
                         <p className="wxp-card__body">{job.description}</p>
-                      )
-                    ) : null}
-                  </div>
+                      )}
+                    </motion.div>
+                  </motion.div>
                 </div>
               );
             })}
@@ -163,6 +193,7 @@ export function WorkExperience() {
           border: 1px solid rgba(15, 23, 42, 0.06);
           box-shadow: 0 10px 40px -28px rgba(15, 23, 42, 0.35);
           overflow: hidden;
+          transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .wxp-card--open {
           box-shadow: 0 16px 48px -24px rgba(15, 23, 42, 0.28);
@@ -240,10 +271,10 @@ export function WorkExperience() {
           color: rgba(71, 85, 105, 0.95);
         }
         .wxp-card__panel {
-          padding: 0 clamp(0.9rem, 3vw, 1.25rem) clamp(0.95rem, 3vw, 1.2rem);
+          padding: 0;
         }
-        .wxp-card__panel[hidden] {
-          display: none;
+        .wxp-card__panel-inner {
+          padding: 0 clamp(0.9rem, 3vw, 1.25rem) clamp(0.95rem, 3vw, 1.2rem);
         }
         .wxp-card__body {
           margin: 0;

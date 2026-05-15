@@ -11,12 +11,9 @@ import {
   useMotionValue,
   useSpring,
   useReducedMotion,
-  AnimatePresence,
   type MotionValue,
 } from "framer-motion";
 import { siteConfig } from "../config";
-
-const FIGMA_BLUE = "#18A0FB";
 
 const TITLE_WORD = "Portfolio";
 
@@ -154,58 +151,6 @@ function MagneticHeroFrame({
   );
 }
 
-function CollaborativeCursor({
-  sx,
-  sy,
-  visible,
-  name,
-}: {
-  sx: MotionValue<number>;
-  sy: MotionValue<number>;
-  visible: boolean;
-  name: string;
-}) {
-  const reduce = useReducedMotion();
-  return (
-    <AnimatePresence>
-      {visible ? (
-        <motion.div
-          className="figma-cursor"
-          aria-hidden
-          style={{ x: sx, y: sy }}
-          initial={reduce ? false : { opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={
-            reduce
-              ? { duration: 0 }
-              : { type: "spring", stiffness: 380, damping: 28, mass: 0.55 }
-          }
-        >
-          <svg
-            className="figma-cursor__pointer"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.2.2 0 01.14-.06h6.43a.5.5 0 00.35-.85L6.35 2.86a.5.5 0 00-.85.35z"
-              fill={FIGMA_BLUE}
-              stroke="white"
-              strokeWidth="1.25"
-            />
-          </svg>
-          <div className="figma-cursor__pill">
-            <span className="figma-cursor__avatar" aria-hidden />
-            <span className="figma-cursor__name">{name}</span>
-          </div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
-  );
-}
-
 export function Hero() {
   const reduce = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
@@ -215,12 +160,9 @@ export function Hero() {
   const wireFrameRef = useRef<HTMLDivElement>(null);
   const resFrameRef = useRef<HTMLDivElement>(null);
   const [finePointer, setFinePointer] = useState(true);
-  const [cursorReady, setCursorReady] = useState(false);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 380, damping: 32, mass: 0.6 });
-  const sy = useSpring(my, { stiffness: 380, damping: 32, mass: 0.6 });
 
   const baTargetX = useMotionValue(0);
   const baTargetY = useMotionValue(0);
@@ -234,11 +176,11 @@ export function Hero() {
   const resTargetY = useMotionValue(0);
 
   useEffect(() => {
-    const mq = window.matchMedia("(pointer: fine)");
-    const update = () => setFinePointer(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    const mqFine = window.matchMedia("(pointer: fine)");
+    const updateFine = () => setFinePointer(mqFine.matches);
+    updateFine();
+    mqFine.addEventListener("change", updateFine);
+    return () => mqFine.removeEventListener("change", updateFine);
   }, []);
 
   useEffect(() => {
@@ -263,8 +205,7 @@ export function Hero() {
     const r = el.getBoundingClientRect();
     mx.set(r.width * 0.48);
     my.set(r.height * 0.44);
-    setCursorReady(true);
-  }, [finePointer, mx, my]);
+  }, [mx, my]);
 
   useEffect(() => {
     if (reduce) {
@@ -405,6 +346,13 @@ export function Hero() {
             <p className="hero-canvas__subtitle">
               UI/UX Designer - focused on research, systems, and clear outcomes.
             </p>
+            <div className="hero-canvas__tags-row" aria-hidden>
+              <span className="hero-canvas__tag-pill">Figma</span>
+              <span className="hero-canvas__tag-pill">UI UX</span>
+              <span className="hero-canvas__tag-pill">User flows</span>
+              <span className="hero-canvas__tag-pill">Research</span>
+              <span className="hero-canvas__tag-pill">Wireframing</span>
+            </div>
           </div>
 
           <MagneticHeroFrame
@@ -449,16 +397,9 @@ export function Hero() {
           />
         </div>
 
-        <CollaborativeCursor
-          sx={sx}
-          sy={sy}
-          visible={cursorReady}
-          name={displayName}
-        />
       </div>
       <style>{`
         .hero-canvas {
-          --figma-blue: ${FIGMA_BLUE};
           position: relative;
           background-color: var(--bg);
           background-image: radial-gradient(rgba(15, 23, 42, 0.1) 1px, transparent 1px);
@@ -479,11 +420,6 @@ export function Hero() {
           padding-right: var(--section-pad-inline-end);
           padding-top: max(0.75rem, calc(env(safe-area-inset-top, 0px) + var(--topnav-stack) + 0.5rem));
           padding-bottom: max(var(--section-pad-y), env(safe-area-inset-bottom, 0px));
-        }
-        @media (pointer: fine) {
-          .hero-canvas__stage {
-            cursor: none;
-          }
         }
         .hero-canvas__grid {
           position: absolute;
@@ -588,6 +524,33 @@ export function Hero() {
           color: var(--text-muted);
           text-align: center;
         }
+        .hero-canvas__tags-row {
+          display: none;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: 0.45rem;
+          margin-top: clamp(0.75rem, 2.5vw, 1.1rem);
+          padding: 0 0.25rem;
+          max-width: min(22rem, 100%);
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .hero-canvas__tag-pill {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-family: var(--font-sans);
+          font-size: 0.6875rem;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+          line-height: 1.2;
+          padding: 0.35rem 0.6rem;
+          border-radius: 7px;
+          border: 1px solid rgba(24, 160, 251, 0.42);
+          background: rgba(255, 255, 255, 0.72);
+          color: var(--text-muted);
+        }
         .visually-hidden {
           position: absolute;
           width: 1px;
@@ -665,18 +628,50 @@ export function Hero() {
             calc(-1 * clamp(0.25rem, 1.5vw, 0.75rem))
           );
         }
-        @media (max-width: 520px) {
-          .hero-canvas__frame--fig-tl {
-            top: 22%;
-            transform: translate(0, -50%);
+        @media (max-width: 720px) {
+          .hero-canvas__stage {
+            padding-top: max(0.5rem, calc(env(safe-area-inset-top, 0px) + var(--topnav-stack) + 0.35rem));
+            padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
           }
-          .hero-canvas__frame--res-tr {
-            top: 50%;
-            transform: translate(0.2rem, -50%);
+          .hero-canvas__title-cluster {
+            padding: 0.75rem 0.5rem 0.85rem;
+            max-width: 100%;
           }
-          .hero-canvas__frame--wire-br {
-            bottom: 10%;
-            transform: translate(0.35rem, -0.35rem);
+          .hero-canvas__title {
+            font-size: clamp(2rem, 10.5vw + 0.35rem, 2.85rem);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+          }
+          .hero-canvas__title-main {
+            flex-wrap: wrap;
+            justify-content: center;
+            row-gap: 0.08em;
+            column-gap: 0.02em;
+          }
+          .hero-canvas__title-year {
+            margin-left: 0.12em;
+            font-size: 0.48em;
+          }
+          .hero-canvas__below-title {
+            max-width: min(100%, 22rem);
+            margin-top: clamp(0.5rem, 2vw, 0.75rem);
+          }
+          .hero-canvas__subtitle {
+            font-size: clamp(0.9rem, 3.8vw, 1.02rem);
+            line-height: 1.45;
+            padding: 0 0.15rem;
+          }
+          .hero-canvas__tags-row {
+            display: flex;
+          }
+          .hero-canvas__frame {
+            display: none !important;
+          }
+          .hero-canvas__intro-pill {
+            padding: 0.42rem 0.85rem;
+          }
+          .hero-canvas__intro-text {
+            font-size: clamp(0.82rem, 3.5vw, 0.95rem);
           }
         }
         .figma-frame__label {
@@ -709,73 +704,6 @@ export function Hero() {
         .figma-frame__handle--se {
           bottom: -3px;
           right: -3px;
-        }
-        .figma-cursor {
-          position: absolute;
-          z-index: 4;
-          left: 0;
-          top: 0;
-          margin-left: -8px;
-          margin-top: -5px;
-          pointer-events: none;
-          display: flex;
-          align-items: flex-start;
-          gap: 0;
-          will-change: transform;
-        }
-        .figma-cursor__pointer {
-          flex-shrink: 0;
-          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
-        }
-        .figma-cursor__pill {
-          margin-left: 2px;
-          margin-top: 14px;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          padding: 0.28rem 0.65rem 0.28rem 0.4rem;
-          border-radius: 999px;
-          background: var(--figma-blue);
-          color: #fff;
-          font-family: var(--font-sans);
-          font-size: 0.75rem;
-          font-weight: 600;
-          letter-spacing: -0.01em;
-          white-space: nowrap;
-          box-shadow: 0 4px 14px rgba(24, 160, 251, 0.35);
-        }
-        .figma-cursor__avatar {
-          width: 18px;
-          height: 18px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.95);
-          border: 1.5px solid rgba(255, 255, 255, 0.9);
-        }
-        .figma-cursor__name {
-          max-width: 200px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        @media (max-width: 520px) {
-          .hero-canvas__title-cluster {
-            padding: 0.85rem 0.65rem 1rem 0.65rem;
-            max-width: 100%;
-          }
-          .hero-canvas__intro-pill {
-            padding: 0.45rem 0.95rem;
-          }
-          .figma-frame {
-            white-space: normal;
-            max-width: 42vw;
-            text-align: center;
-          }
-          .figma-frame__label {
-            font-size: 0.68rem;
-            line-height: 1.25;
-          }
-          .figma-cursor__name {
-            max-width: 140px;
-          }
         }
       `}</style>
     </section>

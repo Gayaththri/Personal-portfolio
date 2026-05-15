@@ -96,7 +96,7 @@ export function Contact() {
         .contact-touch {
           background: var(--bg);
           color: var(--text);
-          padding-block: var(--section-pad-y);
+          padding-block: clamp(40px, 5.5vw, 72px);
           padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
           border-top: 1px solid var(--border);
         }
@@ -107,7 +107,7 @@ export function Contact() {
           max-width: var(--max);
           margin: 0 auto;
           display: grid;
-          gap: var(--section-grid-gap);
+          gap: clamp(1.25rem, 3vw, 2rem);
           align-items: start;
           min-width: 0;
           width: 100%;
@@ -115,7 +115,7 @@ export function Contact() {
         @media (min-width: 640px) {
           .contact-touch__inner {
             grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.55fr);
-            gap: var(--section-grid-gap);
+            gap: clamp(1.25rem, 3vw, 2rem);
           }
         }
         .contact-touch__primary {
@@ -129,20 +129,27 @@ export function Contact() {
           color: var(--text);
         }
         .contact-touch__headline-care {
-          font-family: var(--font-display);
+          font-family: var(--font-serif);
           font-style: italic;
-          font-weight: 400;
+          font-weight: 500;
           color: var(--accent);
+        }
+        .contact-touch .section-head {
+          margin: 0 0 clamp(0.85rem, 2vw, 1.15rem);
+        }
+        .contact-touch .section-head__lead.contact-touch__lead {
+          margin-bottom: 0;
+          max-width: 36ch;
         }
         .contact-touch .section-head__title.contact-touch__headline {
           font-weight: 800;
-          letter-spacing: -0.035em;
-          line-height: 1.1;
-          font-size: clamp(1.75rem, 5vw + 0.5rem, 2.75rem);
+          letter-spacing: -0.03em;
+          line-height: 1.12;
+          font-size: clamp(1.35rem, 3.2vw + 0.35rem, 2rem);
           min-width: 0;
         }
         .contact-touch__email {
-          margin-top: 1.25rem;
+          margin-top: 0.85rem;
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;

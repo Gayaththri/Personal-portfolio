@@ -6,7 +6,10 @@ export function Footer() {
     <footer className="footer">
       <div className="wrap footer__inner">
         <p className="footer__left">
-          © {year} {siteConfig.name}. All rights reserved.
+          <span className="footer__left-full">
+            © {year} {siteConfig.name}. All rights reserved.
+          </span>
+          <span className="footer__left-compact">@{year}</span>
         </p>
         <p className="footer__right">Designed &amp; built with care</p>
       </div>
@@ -33,19 +36,43 @@ export function Footer() {
           flex: 1 1 auto;
           min-width: min(100%, 280px);
         }
+        .footer__left-compact {
+          display: none;
+        }
+        .footer__left-full {
+          display: inline;
+        }
         .footer__right {
           margin: 0;
           flex: 0 0 auto;
           color: var(--text-muted);
           font-weight: 500;
         }
-        @media (max-width: 520px) {
+        @media (max-width: 640px) {
+          .footer {
+            padding-block: clamp(0.65rem, 2vw, 0.9rem);
+          }
           .footer__inner {
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+          }
+          .footer__left {
+            flex: 0 1 auto;
+            min-width: 0;
+          }
+          .footer__left-full {
+            display: none;
+          }
+          .footer__left-compact {
+            display: inline;
           }
           .footer__right {
-            align-self: flex-end;
+            flex: 0 0 auto;
+            text-align: right;
           }
         }
       `}</style>
