@@ -419,7 +419,7 @@ export function Hero() {
           padding-left: var(--section-pad-inline-start);
           padding-right: var(--section-pad-inline-end);
           padding-top: max(0.5rem, calc(env(safe-area-inset-top, 0px) + var(--topnav-stack) + 0.25rem));
-          padding-bottom: max(clamp(1.25rem, 3.5vw, 2rem), env(safe-area-inset-bottom, 0px));
+          padding-bottom: max(clamp(0.75rem, 2vw, 1.25rem), env(safe-area-inset-bottom, 0px));
         }
         .hero-canvas__grid {
           position: absolute;
