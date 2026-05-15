@@ -1,73 +1,52 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rose by Basicare — Case Study · Srigayaththri Tharmasoruban</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Syne:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
 :root {
-  /* Portfolio tokens (aligned with src/index.css) */
-  --bg: #f8f9fc;
-  --bg-elevated: #ffffff;
-  --text: #0f172a;
-  --text-muted: #475569;
-  --text-soft: #64748b;
-  --border: rgba(15, 23, 42, 0.08);
-  --accent: #4f46e5;
-  --accent-2: #7c3aed;
-  --gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #6366f1 100%);
-  --max: 1120px;
-  --section-pad-x: clamp(24px, 7vw, 100px);
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --rose:    #C85B6E;
+  --rose-lt: #E8919E;
+  --blush:   #F2C4CA;
+  --petal:   #FBF0F1;
+  --cream:   #FDFAF9;
+  --ink:     #1A1014;
+  --ink-60:  rgba(26,16,20,0.6);
+  --ink-30:  rgba(26,16,20,0.3);
+  --ink-10:  rgba(26,16,20,0.07);
+  --border:  rgba(200,91,110,0.15);
+  --white:   #ffffff;
 
-  /* Case-study aliases (existing selectors) */
-  --rose: var(--accent);
-  --rose-lt: #818cf8;
-  --blush: #c4b5fd;
-  --petal: rgba(79, 70, 229, 0.06);
-  --cream: var(--bg);
-  --ink: var(--text);
-  --ink-60: rgba(71, 85, 105, 0.92);
-  --ink-30: rgba(15, 23, 42, 0.28);
-  --ink-10: rgba(15, 23, 42, 0.07);
-  --white: #ffffff;
-
-  --font-display: var(--font-sans);
-  --font-ui: var(--font-sans);
-  --font-body: var(--font-sans);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ui:      'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
 
   --r-sm: 12px;
-  --r-md: 16px;
-  --r-lg: 20px;
-  --r-xl: 24px;
+  --r-md: 20px;
+  --r-lg: 32px;
+  --r-xl: 48px;
 }
 
 body {
   font-family: var(--font-body);
-  background: var(--bg);
+  background: var(--cream);
   color: var(--ink);
-  line-height: 1.65;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Parent app already renders TopNav — hide duplicate bar inside iframe */
-#mainNav {
-  display: none !important;
-}
-
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(79, 70, 229, 0.35); border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--petal); }
+::-webkit-scrollbar-thumb { background: var(--rose-lt); border-radius: 2px; }
 
 /* ─── NAV ─── */
 nav {
@@ -79,7 +58,7 @@ nav {
   border-bottom: 1px solid var(--border);
   transition: box-shadow 0.3s;
 }
-nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
+nav.scrolled { box-shadow: 0 4px 32px rgba(200,91,110,0.08); }
 .nav-logo {
   font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
@@ -100,14 +79,14 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   background: var(--rose); color: white !important;
   padding: 0.45rem 1.2rem !important; border-radius: 8px !important;
 }
-.nav-cta:hover { background: #4338ca !important; color: white !important; }
+.nav-cta:hover { background: #a8485a !important; color: white !important; }
 
 /* ─── HERO ─── */
 .hero {
   min-height: 100vh;
   display: grid; grid-template-columns: 55% 45%;
   align-items: stretch;
-  padding-top: clamp(1rem, 3vw, 1.75rem);
+  padding-top: 64px;
 }
 .hero-left {
   display: flex; flex-direction: column; justify-content: center;
@@ -123,15 +102,15 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-ui); font-size: 0.68rem; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: #4338ca; background: rgba(79, 70, 229, 0.08);
-  border: 1px solid rgba(79, 70, 229, 0.12); border-radius: 100px;
+  color: var(--rose); background: var(--petal);
+  border: 1px solid var(--border); border-radius: 100px;
   padding: 0.35rem 1rem; margin-bottom: 2.5rem;
   width: fit-content;
   animation: chipIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
 }
 .hero-chip-dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent); animation: pulse 2s infinite;
+  background: var(--rose); animation: pulse 2s infinite;
 }
 @keyframes pulse {
   0%,100% { opacity: 1; transform: scale(1); }
@@ -144,20 +123,12 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1.08;
+  font-size: clamp(3.4rem, 5.5vw, 6rem);
+  font-weight: 400; line-height: 1.02;
   color: var(--ink); margin-bottom: 2rem;
   animation: titleIn 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
 }
-.hero-title em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--accent);
-}
+.hero-title em { font-style: italic; color: var(--rose); }
 @keyframes titleIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -184,73 +155,65 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 .meta-cell label {
   display: block; font-family: var(--font-ui);
   font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+  text-transform: uppercase; color: var(--rose); margin-bottom: 0.3rem;
 }
 .meta-cell span { font-size: 0.88rem; font-weight: 400; color: var(--ink); }
 
 .hero-right {
   display: flex; align-items: center; justify-content: center;
-  background: transparent;
-  position: relative; overflow: visible;
+  background: linear-gradient(160deg, #fceef0 0%, #f9e8ea 50%, #f4dde0 100%);
+  position: relative; overflow: hidden;
   animation: fadeIn 1s 0.2s both;
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.hero-shots {
+.hero-right-bg-circle {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,91,110,0.12), transparent 70%);
+  width: 700px; height: 700px; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: breathe 6s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100% { transform: translate(-50%,-50%) scale(1); }
+  50% { transform: translate(-50%,-50%) scale(1.08); }
+}
+.phone-stack {
   position: relative; z-index: 2;
-  display: flex; align-items: flex-end; justify-content: center;
-  gap: 0;
-  padding: 0 1rem;
+  display: flex; align-items: flex-end; gap: -20px;
 }
-.hero-shot {
-  display: block;
-  width: auto;
-  max-width: min(220px, 42vw);
-  height: auto;
-  border-radius: 12px;
-  border: none;
-  box-shadow: none;
-  background: transparent;
+.phone {
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 32px 64px rgba(120,40,55,0.22), 0 0 0 6px rgba(255,255,255,0.5);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
 }
-.hero-shot--back {
-  max-width: min(168px, 34vw);
-  margin-right: -2.5rem;
-  margin-bottom: 1.25rem;
-  opacity: 0.92;
+.phone:hover { transform: translateY(-8px) scale(1.02); }
+.phone-main { width: 200px; }
+.phone-sub {
+  width: 160px; margin-left: -30px; margin-bottom: 20px;
+  box-shadow: 0 20px 48px rgba(120,40,55,0.16), 0 0 0 6px rgba(255,255,255,0.5);
 }
-.hero-shot--front {
-  position: relative;
-  z-index: 1;
-}
+.phone img { width: 100%; display: block; }
 
 /* ─── CONTENT WRAPPER ─── */
-.wrap { max-width: min(var(--max), 100%); margin: 0 auto; padding: 0 var(--section-pad-x); }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 4rem; }
 
 /* ─── SECTION HEADER ─── */
 .section-eyebrow {
   display: flex; align-items: center; gap: 1rem;
   font-family: var(--font-ui); font-size: 0.68rem; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose);
   margin-bottom: 1.6rem;
 }
 .section-eyebrow::before {
-  content: ''; display: block; width: 24px; height: 2px; border-radius: 2px;
-  background: var(--gradient);
+  content: ''; display: block; width: 24px; height: 1px; background: var(--rose);
 }
 
 .display-heading {
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 4vw + 0.5rem, 2.35rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15; color: var(--ink);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400; line-height: 1.15; color: var(--ink);
 }
-.display-heading em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--accent);
-}
+.display-heading em { font-style: italic; color: var(--rose); }
 
 /* ─── REVEAL ANIMATION ─── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -261,7 +224,7 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 .reveal-d4 { transition-delay: 0.26s; }
 
 /* ─── OVERVIEW SECTION ─── */
-.overview-section { padding: 7rem 0; background: var(--bg-elevated); }
+.overview-section { padding: 7rem 0; background: var(--white); }
 .overview-grid { display: grid; grid-template-columns: 1fr 400px; gap: 6rem; align-items: start; }
 .overview-text p {
   font-size: 1.02rem; color: var(--ink-60); line-height: 1.9;
@@ -290,31 +253,31 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 .kpi-cell:hover { background: var(--petal); }
 .kpi-number {
   font-family: var(--font-display); font-size: 2.6rem;
-  font-weight: 800; color: var(--accent); line-height: 1; min-width: 80px;
+  font-weight: 400; color: var(--rose); line-height: 1; min-width: 80px;
 }
 .kpi-text label {
   display: block; font-family: var(--font-ui); font-size: 0.68rem;
   font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 0.2rem;
+  color: var(--rose); margin-bottom: 0.2rem;
 }
 .kpi-text span { font-size: 0.85rem; color: var(--ink-60); }
 
 /* ─── MOODBOARD SECTION ─── */
-.moodboard-section { padding: 7rem 0; background: var(--bg); }
+.moodboard-section { padding: 7rem 0; }
 .moodboard-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 3rem; }
 .moodboard-img {
   border-radius: var(--r-lg); overflow: hidden;
-  box-shadow: 0 24px 64px rgba(15, 23, 42,0.14);
+  box-shadow: 0 24px 64px rgba(120,40,55,0.14);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 .moodboard-img:hover {
   transform: scale(1.01);
-  box-shadow: 0 32px 80px rgba(15, 23, 42,0.2);
+  box-shadow: 0 32px 80px rgba(120,40,55,0.2);
 }
-.moodboard-img img { width: 100%; display: block; }
+.moodboard-img img { width: auto; max-width: 100%; height: auto; display: block; }
 .moodboard-tag {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(79, 70, 229,0.1); color: var(--rose);
+  background: rgba(200,91,110,0.1); color: var(--rose);
   font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
   padding: 0.4rem 0.9rem; border-radius: 100px;
@@ -340,8 +303,8 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 .type-row { display: flex; gap: 2rem; flex-wrap: wrap; }
 .type-item { flex: 1; min-width: 200px; }
 .type-label { font-family: var(--font-ui); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.5rem; }
-.type-sample-ui { font-family: var(--font-sans); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
-.type-sample-serif { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 500; color: var(--ink); }
+.type-sample-ui { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 600; color: var(--ink); }
+.type-sample-serif { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--ink); }
 .type-sample-body { font-family: var(--font-body); font-size: 1.1rem; color: var(--ink-60); line-height: 1.6; }
 
 /* ─── PROCESS SECTION ─── */
@@ -358,7 +321,7 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   position: relative; overflow: hidden;
   transition: background 0.3s;
 }
-.process-card:hover { background: rgba(79, 70, 229,0.12); }
+.process-card:hover { background: rgba(200,91,110,0.12); }
 .process-card::before {
   content: attr(data-num);
   font-family: var(--font-display); font-size: 5rem; font-weight: 400;
@@ -377,12 +340,12 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   font-family: var(--font-ui); font-size: 0.62rem; font-weight: 500;
   letter-spacing: 0.06em; text-transform: uppercase;
   padding: 0.2rem 0.6rem; border-radius: 100px;
-  background: rgba(79, 70, 229,0.18); color: var(--blush);
-  border: 1px solid rgba(79, 70, 229,0.25);
+  background: rgba(200,91,110,0.18); color: var(--blush);
+  border: 1px solid rgba(200,91,110,0.25);
 }
 
 /* ─── SCREENS SECTION ─── */
-.screens-section { padding: 7rem 0; background: var(--bg); }
+.screens-section { padding: 7rem 0; }
 .screens-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 4.5rem; }
 .screens-header p { font-size: 0.95rem; color: var(--ink-60); line-height: 1.9; padding-top: 0.8rem; }
 
@@ -409,8 +372,8 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 
 /* screen card */
 .sc { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
-.sc:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(15, 23, 42,0.12); }
-.sc img { width: 100%; display: block; }
+.sc:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(120,40,55,0.12); }
+.sc img { width: auto; max-width: 100%; height: auto; display: block; }
 .sc-footer { padding: 0.75rem 1rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); background: var(--white); }
 .sc-footer-name { font-size: 0.78rem; color: var(--ink-60); }
 
@@ -445,7 +408,7 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   background: linear-gradient(90deg, var(--rose), transparent);
   opacity: 0; transition: opacity 0.3s;
 }
-.decision:hover { box-shadow: 0 12px 40px rgba(15, 23, 42,0.08); border-color: var(--rose-lt); }
+.decision:hover { box-shadow: 0 12px 40px rgba(120,40,55,0.08); border-color: var(--rose-lt); }
 .decision:hover::after { opacity: 1; }
 
 .decision-icon-wrap {
@@ -458,13 +421,13 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 .decision-body { font-size: 0.88rem; color: var(--ink-60); line-height: 1.8; flex: 1; }
 .decision-result {
   font-size: 0.8rem; color: var(--rose); font-weight: 500;
-  background: rgba(79, 70, 229,0.07); border: 1px solid rgba(79, 70, 229,0.2);
+  background: rgba(200,91,110,0.07); border: 1px solid rgba(200,91,110,0.2);
   border-radius: 8px; padding: 0.6rem 0.9rem; line-height: 1.6;
 }
 .decision-result::before { content: '→  '; font-weight: 700; }
 
 /* ─── CHALLENGES SECTION ─── */
-.challenges-section { padding: 7rem 0; background: var(--bg-elevated); }
+.challenges-section { padding: 7rem 0; }
 .challenges-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3.5rem; }
 .challenge {
   background: var(--white); border: 1px solid var(--border);
@@ -472,7 +435,7 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   display: grid; grid-template-columns: 60px 1fr 1fr; gap: 2.5rem;
   align-items: start; transition: box-shadow 0.3s;
 }
-.challenge:hover { box-shadow: 0 8px 32px rgba(15, 23, 42,0.07); }
+.challenge:hover { box-shadow: 0 8px 32px rgba(120,40,55,0.07); }
 .challenge-n {
   font-family: var(--font-display); font-size: 3.5rem;
   font-weight: 400; color: var(--blush); line-height: 1; padding-top: 0.2rem;
@@ -502,14 +465,14 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   background: rgba(255,255,255,0.03); padding: 2.5rem;
   transition: background 0.3s;
 }
-.outcome-cell:hover { background: rgba(79, 70, 229,0.1); }
+.outcome-cell:hover { background: rgba(200,91,110,0.1); }
 .outcome-emoji { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
 .outcome-title { font-family: var(--font-ui); font-size: 0.88rem; font-weight: 600; color: white; margin-bottom: 0.7rem; letter-spacing: 0.03em; }
 .outcome-body { font-size: 0.84rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
 
 /* BA VALUE CALLOUT */
 .ba-callout {
-  background: rgba(79, 70, 229,0.1); border: 1px solid rgba(79, 70, 229,0.25);
+  background: rgba(200,91,110,0.1); border: 1px solid rgba(200,91,110,0.25);
   border-radius: var(--r-lg); padding: 3rem; margin-top: 4rem;
   display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;
 }
@@ -531,7 +494,7 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
   border-top: 2px solid var(--rose);
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.learning-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(15, 23, 42,0.08); }
+.learning-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(120,40,55,0.08); }
 .learning-num {
   font-family: var(--font-display); font-size: 1.3rem; font-style: italic;
   color: var(--blush); margin-bottom: 0.8rem; line-height: 1;
@@ -540,57 +503,37 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 .learning-body { font-size: 0.83rem; color: var(--ink-60); line-height: 1.8; }
 
 /* ─── NEXT CASE STUDY ─── */
-.next-section {
-  padding: clamp(64px, 9vw, 120px) 0;
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-}
-.next-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-.next-label { font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-.next-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-}
-.next-title em { font-family: var(--font-serif); font-style: italic; font-weight: 500; color: var(--accent); }
+.next-section { padding: 6rem 0; background: var(--petal); border-top: 1px solid var(--border); }
+.next-inner { display: flex; justify-content: space-between; align-items: center; }
+.next-label { font-family: var(--font-ui); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.5rem; }
+.next-title { font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--ink); }
+.next-title em { font-style: italic; color: var(--rose); }
 .next-btn {
   display: inline-flex; align-items: center; gap: 0.8rem;
-  background: var(--text); color: white; text-decoration: none;
-  font-family: var(--font-ui); font-size: 0.75rem; font-weight: 700;
-  letter-spacing: -0.01em;
-  padding: 0.55rem 1.15rem; border-radius: 999px;
-  border: 1px solid rgba(15, 23, 42, 0.15);
-  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  background: var(--ink); color: white; text-decoration: none;
+  font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 1rem 2rem; border-radius: 100px;
+  transition: background 0.2s, transform 0.2s;
 }
-.next-btn:hover { background: #1e293b; transform: translateY(-1px); box-shadow: 0 6px 18px -8px rgba(15, 23, 42, 0.35); }
+.next-btn:hover { background: var(--rose); transform: translateX(4px); }
 .next-btn-arrow { font-size: 1rem; transition: transform 0.2s; }
 .next-btn:hover .next-btn-arrow { transform: translateX(4px); }
 
 /* ─── FOOTER ─── */
 footer {
-  padding-block: clamp(0.875rem, 2.2vw, 1.125rem);
-  padding-inline: var(--section-pad-x);
-  border-top: 1px solid var(--border);
-  background: var(--bg-elevated);
-  display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
-  align-items: center; justify-content: space-between;
+  background: var(--ink); padding: 3rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
-.footer-name {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--text-soft);
-  margin: 0;
-}
-.footer-sub { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.45; }
-.footer-right { font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0; }
+.footer-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: white; }
+.footer-sub { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+.footer-right { font-family: var(--font-ui); font-size: 0.72rem; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
 
 /* ─── PROGRESS BAR ─── */
 .progress-bar {
-  position: fixed; top: 0; left: 0; height: 2px;
-  background: var(--gradient); width: 0%; z-index: 200;
+  position: fixed; top: 64px; left: 0; height: 2px;
+  background: var(--rose); width: 0%; z-index: 200;
   transition: width 0.1s linear;
 }
 
@@ -598,64 +541,44 @@ footer {
 .back-top {
   position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 200;
   width: 44px; height: 44px; border-radius: 50%;
-  background: var(--accent); color: white; border: none; cursor: pointer;
+  background: var(--rose); color: white; border: none; cursor: pointer;
   font-size: 1rem; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  box-shadow: 0 8px 24px rgba(120,40,55,0.3);
   opacity: 0; transform: translateY(8px);
   transition: opacity 0.3s, transform 0.3s, background 0.2s;
 }
 .back-top.show { opacity: 1; transform: translateY(0); }
-.back-top:hover { background: #4338ca; }
+.back-top:hover { background: #a8485a; }
 
-/* ─── Simplified “Wall-style” display ───
-   Keep the case study feeling clean: hero + screenshot gallery only.
-*/
-.progress-bar {
-  display: none !important;
-}
-.back-top {
-  display: none !important;
-}
+/* Portfolio iframe — parent app renders TopNav */
+#mainNav { display: none !important; }
+.hero { padding-top: clamp(2rem, 5vw, 3.5rem); min-height: auto; }
+.progress-bar { top: 0; }
 
-/* Hide long narrative sections for a simpler, profile-like layout */
-#overview,
-#brand,
-#process,
-#decisions,
-#challenges,
-#outcomes,
-#learnings,
-.next-section {
-  display: none !important;
+/* Screens at intrinsic size, capped so mockups don’t dominate */
+.sc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 0.75rem 0;
 }
-
-@media (max-width: 720px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-  .hero-left {
-    padding: 4.5rem 1.25rem 2.5rem;
-  }
-  .hero-left::after {
-    display: none;
-  }
-  .hero-right {
-    padding-bottom: 1.5rem;
-  }
-  .hero-shots {
-    padding: 0.5rem 0 0;
-  }
-  .hero-shot {
-    max-width: min(200px, 46vw);
-  }
-  .hero-shot--back {
-    max-width: min(150px, 38vw);
-    margin-right: -1.75rem;
-    margin-bottom: 0.75rem;
-  }
-  .hero-meta {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.sc img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.sc:has(.label-desktop) img { max-width: min(100%, 700px); }
+.sc:has(.label-mobile) img { max-width: min(100%, 260px); }
+.moodboard-img {
+  display: flex;
+  justify-content: center;
+}
+.moodboard-img img {
+  width: auto;
+  max-width: min(100%, 520px);
+  height: auto;
+  display: block;
 }
 
 </style>
@@ -704,24 +627,17 @@ footer {
         <label>Client</label>
         <span>Basicare</span>
       </div>
-      <div class="meta-cell">
-        <label>Timeline</label>
-        <span>3–4 Months</span>
-      </div>
-      <div class="meta-cell">
-        <label>Platforms</label>
-        <span>Web · Mobile Web</span>
-      </div>
-      <div class="meta-cell">
-        <label>Status</label>
-        <span>✦ Launched</span>
-      </div>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-shots">
-      <img class="hero-shot hero-shot--back" src="/case-studies/rose-assets/My_Bag.png" alt="Cart screen" onerror="this.style.background='#e0e7ff';this.style.height='320px'">
-      <img class="hero-shot hero-shot--front" src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#c7d2fe';this.style.height='420px'">
+    <div class="hero-right-bg-circle"></div>
+    <div class="phone-stack">
+      <div class="phone phone-sub">
+        <img src="/case-studies/rose-assets/My_Bag.png" alt="Cart screen" onerror="this.style.background='#f2c4ca';this.style.height='320px'">
+      </div>
+      <div class="phone phone-main">
+        <img src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#e8919e';this.style.height='420px'">
+      </div>
     </div>
   </div>
 </section>
@@ -794,7 +710,7 @@ footer {
         </div>
       </div>
       <div class="moodboard-img reveal reveal-d2">
-        <img src="/case-studies/rose-assets/Group_1.png" alt="K-beauty inspired moodboard" onerror="this.style.background='linear-gradient(135deg,#eef2ff,#e0e7ff)';this.style.height='340px'">
+        <img src="/case-studies/rose-assets/Group_1.png" alt="K-beauty inspired moodboard" onerror="this.style.background='linear-gradient(135deg,#fceef0,#f2c4ca)';this.style.height='340px'">
       </div>
     </div>
 
@@ -897,11 +813,11 @@ footer {
       </div>
       <div class="grid-1-2">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Frame_1984078151.png" alt="Homepage desktop" onerror="this.style.background='#eef2ff';this.style.height='400px'">
+          <img src="/case-studies/rose-assets/Frame_1984078151.png" alt="Homepage desktop" onerror="this.style.background='#fceef0';this.style.height='400px'">
           <div class="sc-footer"><span class="sc-footer-name">Homepage — Full page</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#e0e7ff';this.style.height='400px'">
+          <img src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#f2c4ca';this.style.height='400px'">
           <div class="sc-footer"><span class="sc-footer-name">Homepage — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -922,11 +838,11 @@ footer {
       </div>
       <div class="grid-2">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page.png" alt="Products desktop" onerror="this.style.background='#eef2ff';this.style.height='360px'">
+          <img src="/case-studies/rose-assets/Products_Page.png" alt="Products desktop" onerror="this.style.background='#fceef0';this.style.height='360px'">
           <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Desktop</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page-1.png" alt="Products mobile" onerror="this.style.background='#e0e7ff';this.style.height='360px'">
+          <img src="/case-studies/rose-assets/Products_Page-1.png" alt="Products mobile" onerror="this.style.background='#f2c4ca';this.style.height='360px'">
           <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -944,11 +860,11 @@ footer {
       <p style="font-size:0.9rem;color:var(--ink-60);margin-bottom:1.5rem;max-width:700px;">Standard eCommerce filters (size, colour, price) don't solve the beauty shopper's real problem. A woman looking for lashes needs to filter by <em>eye shape, lash type, style, and length</em>. I designed a beauty-specific filter taxonomy — this was a BA-driven insight translated directly into UX.</p>
       <div class="grid-3" style="margin-bottom:1.5rem;">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filter.png" alt="Filter empty" onerror="this.style.background='#eef2ff';this.style.height='300px'">
+          <img src="/case-studies/rose-assets/Products_Page_-_Filter.png" alt="Filter empty" onerror="this.style.background='#fceef0';this.style.height='300px'">
           <div class="sc-footer"><span class="sc-footer-name">Filter panel — collapsed</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filter-1.png" alt="Filter active" onerror="this.style.background='#e0e7ff';this.style.height='300px'">
+          <img src="/case-studies/rose-assets/Products_Page_-_Filter-1.png" alt="Filter active" onerror="this.style.background='#f2c4ca';this.style.height='300px'">
           <div class="sc-footer"><span class="sc-footer-name">Filters expanded (3 active)</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
@@ -958,11 +874,11 @@ footer {
       </div>
       <div class="grid-3">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filters.png" alt="Mobile filter" onerror="this.style.background='#eef2ff';this.style.height='300px'">
+          <img src="/case-studies/rose-assets/Products_Page_-_Filters.png" alt="Mobile filter" onerror="this.style.background='#fceef0';this.style.height='300px'">
           <div class="sc-footer"><span class="sc-footer-name">Filter bottom sheet</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filters-1.png" alt="Mobile filter expanded" onerror="this.style.background='#e0e7ff';this.style.height='300px'">
+          <img src="/case-studies/rose-assets/Products_Page_-_Filters-1.png" alt="Mobile filter expanded" onerror="this.style.background='#f2c4ca';this.style.height='300px'">
           <div class="sc-footer"><span class="sc-footer-name">Categories expanded</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
         <div class="sc">
@@ -987,21 +903,21 @@ footer {
       </div>
       <div class="grid-2">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page.png" alt="PDP desktop" onerror="this.style.background='#eef2ff';this.style.height='400px'">
+          <img src="/case-studies/rose-assets/Product_Detail_Page.png" alt="PDP desktop" onerror="this.style.background='#fceef0';this.style.height='400px'">
           <div class="sc-footer"><span class="sc-footer-name">Product Detail — Desktop</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page-1.png" alt="PDP mobile" onerror="this.style.background='#e0e7ff';this.style.height='400px'">
+          <img src="/case-studies/rose-assets/Product_Detail_Page-1.png" alt="PDP mobile" onerror="this.style.background='#f2c4ca';this.style.height='400px'">
           <div class="sc-footer"><span class="sc-footer-name">Product Detail — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
       <div class="grid-2" style="margin-top:1.5rem;">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page-2.png" alt="PDP state 2" onerror="this.style.background='#eef2ff';this.style.height='280px'">
+          <img src="/case-studies/rose-assets/Product_Detail_Page-2.png" alt="PDP state 2" onerror="this.style.background='#fceef0';this.style.height='280px'">
           <div class="sc-footer"><span class="sc-footer-name">Product detail — quantity state</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page-3.png" alt="PDP state 3" onerror="this.style.background='#e0e7ff';this.style.height='280px'">
+          <img src="/case-studies/rose-assets/Product_Detail_Page-3.png" alt="PDP state 3" onerror="this.style.background='#f2c4ca';this.style.height='280px'">
           <div class="sc-footer"><span class="sc-footer-name">Product detail — scrolled</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -1023,7 +939,7 @@ footer {
           <p style="margin-top:0.6rem;">The "You are $10 away from Free Shipping" nudge at the top of the cart is a conversion-focused design pattern I proposed after researching industry best practices. It creates a tangible incentive to add one more item — a low-cost product recommendation below the cart reinforces this without being pushy. The sticky Order Total with a prominent Checkout CTA removes any friction from completing purchase.</p>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/My_Bag.png" alt="Shopping bag" onerror="this.style.background='#e0e7ff';this.style.height='440px'">
+          <img src="/case-studies/rose-assets/My_Bag.png" alt="Shopping bag" onerror="this.style.background='#f2c4ca';this.style.height='440px'">
           <div class="sc-footer"><span class="sc-footer-name">My Bag — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -1235,9 +1151,9 @@ footer {
   <div class="wrap next-inner">
     <div>
       <div class="next-label">Next Case Study</div>
-      <div class="next-title">Data-Driven UX:<br><em>Coming Soon</em></div>
+      <div class="next-title">PickMe<br><em>Ride tracking</em></div>
     </div>
-    <a href="/#projects" target="_parent" class="next-btn">View all work <span class="next-btn-arrow">→</span></a>
+    <a href="/case/pickme" target="_parent" class="next-btn">View case study <span class="next-btn-arrow">→</span></a>
   </div>
 </section>
 
@@ -1247,7 +1163,7 @@ footer {
     <div class="footer-name">Srigayaththri Tharmasoruban</div>
     <div class="footer-sub">UI/UX Designer & Business Analyst · Colombo, Sri Lanka</div>
   </div>
-  <div class="footer-right">Case study · © 2026</div>
+  <div class="footer-right">Case Study 01 of 02 · © 2025</div>
 </footer>
 
 <script>

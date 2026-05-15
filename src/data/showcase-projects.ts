@@ -40,37 +40,16 @@ export const showcaseProjects: ShowcaseProject[] = [
     caseSections: [],
   },
   {
-    id: "prose-meet",
-    title: "PROSE-MEET",
-    metaLine: "AI & governance • Final-year capstone",
+    id: "pickme",
+    title: "PickMe",
+    metaLine: "Mobility · Ride tracking · UX case study",
     description:
-      "An AI-assisted workflow for meeting summaries and lightweight governance—built to help teams capture decisions clearly and move faster with less manual overhead.",
+      "A workflow-focused UX redesign of PickMe's ride tracking experience—reducing rider anxiety, improving transparency, and rebuilding trust during the most emotionally charged moments of a ride.",
     coverGradient:
-      "linear-gradient(135deg, #0f172a 0%, #1e3a5f 42%, #312e81 88%, #1e1b4b 100%)",
+      "linear-gradient(145deg, #fff4ed 0%, #ffe8d9 42%, #ffd4bc 100%)",
     accentWell: "sky",
-    externalUrl: "https://github.com/srigayaththri",
-    caseSections: [
-      {
-        heading: "Context",
-        paragraphs: [
-          "PROSE-MEET started as a capstone problem: teams lose nuance in meeting notes, and governance asks for traceability without adding heavy process. The goal was a lightweight flow that nudges structure instead of forcing templates.",
-          "I focused on how summaries are produced, reviewed, and shared—so the product could stay opinionated about clarity while remaining flexible for different team sizes.",
-        ],
-      },
-      {
-        heading: "What I explored",
-        paragraphs: [
-          "Workflows for capture → draft summary → quick human edit → publish, with simple roles so accountability stays visible.",
-          "UX patterns that reduce fear of “AI replacing notes”: transparent sourcing, diff-friendly output, and defaults that favor short, scannable updates.",
-        ],
-      },
-      {
-        heading: "Outcome",
-        paragraphs: [
-          "A coherent narrative for the experience and a prototype direction teams could react to—prioritizing trust, speed, and low ceremony over feature sprawl.",
-        ],
-      },
-    ],
+    embeddedHtmlPath: "/case-studies/pickme.html",
+    caseSections: [],
   },
 ];
 

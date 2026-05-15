@@ -217,10 +217,6 @@ export function WorkExperience() {
           text-align: left;
           font: inherit;
           color: inherit;
-          transition: background 0.15s ease;
-        }
-        .wxp-card__toggle:hover {
-          background: color-mix(in srgb, var(--text) 4%, transparent);
         }
         .wxp-card__toggle:focus-visible {
           outline: 2px solid var(--accent);

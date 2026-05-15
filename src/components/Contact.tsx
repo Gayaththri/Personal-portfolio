@@ -146,7 +146,7 @@ export function Contact() {
           gap: 0.55rem;
           max-width: 100%;
           font-family: var(--font-sans);
-          font-size: clamp(1rem, 2vw, 1.125rem);
+          font-size: clamp(0.875rem, 1.5vw, 0.97rem);
           font-weight: 600;
           letter-spacing: -0.02em;
           line-height: 1.35;

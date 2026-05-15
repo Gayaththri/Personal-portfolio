@@ -136,7 +136,8 @@ export function AboutIntro() {
         }
         @media (min-width: 768px) {
           .about-intro__layout {
-            grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+            grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+            width: 100%;
             column-gap: clamp(1.75rem, 4vw, 3rem);
           }
         }
@@ -152,7 +153,13 @@ export function AboutIntro() {
         }
         .about-intro__copy {
           min-width: 0;
-          max-width: 40rem;
+          width: 100%;
+        }
+        @media (min-width: 768px) {
+          .about-intro__copy {
+            justify-self: stretch;
+            max-width: none;
+          }
         }
         .about-intro__body {
           display: flex;

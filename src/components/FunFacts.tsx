@@ -1,14 +1,18 @@
 import type { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { FunFactDoodle, type FunFactDoodleId } from "./FunFactDoodles";
 
-const FACTS = [
-  { emoji: "📚", text: "probably lost in a book again" },
-  { emoji: "📌", text: "pinterest is basically my second home" },
-  { emoji: "✈️", text: "always planning the next trip somewhere new" },
-  { emoji: "🎧", text: "there's always music in the background" },
-  { emoji: "🩺", text: "thought I'd become a doctor. now I diagnose UX problems" },
-  { emoji: "✨", text: "turning chaos into organized systems is oddly satisfying" },
-] as const;
+const FACTS: { doodle: FunFactDoodleId; text: string }[] = [
+  { doodle: "books", text: "probably lost in a book again" },
+  { doodle: "pin", text: "pinterest is basically my second home" },
+  { doodle: "plane", text: "always planning the next trip somewhere new" },
+  { doodle: "headphones", text: "there's always music in the background" },
+  {
+    doodle: "stethoscope",
+    text: "thought I'd become a doctor. now I diagnose UX problems",
+  },
+  { doodle: "sparkles", text: "turning chaos into organized systems is oddly satisfying" },
+];
 
 const CARD_ROTATIONS = ["-2deg", "1.5deg", "-1deg", "2deg", "-1.5deg", "1deg"] as const;
 const CARD_BACKGROUNDS = [
@@ -49,9 +53,7 @@ export function FunFacts() {
               viewport={{ once: true, margin: "-6%" }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.04 * i }}
             >
-              <span className="funfacts__emoji" aria-hidden>
-                {fact.emoji}
-              </span>
+              <FunFactDoodle id={fact.doodle} className="funfacts__doodle" />
               <p className="funfacts__text">{fact.text}</p>
             </motion.li>
           ))}
@@ -124,9 +126,12 @@ export function FunFacts() {
             transform: rotate(var(--card-rotate));
           }
         }
-        .funfacts__emoji {
-          font-size: 28px;
-          line-height: 1;
+        .funfacts__doodle {
+          display: block;
+          width: 36px;
+          height: 36px;
+          flex-shrink: 0;
+          color: #1e293b;
         }
         .funfacts__text {
           margin: 0;

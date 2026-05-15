@@ -274,19 +274,25 @@ export function Testimonials() {
           width: 100%;
         }
         .tsay__head {
-          text-align: left;
+          text-align: center;
+          max-width: 36rem;
+          margin-inline: auto;
+        }
+        .tsay__head .section-head__eyebrow::before {
+          display: none;
         }
         .tsay__grid {
           display: grid;
           gap: var(--section-grid-gap);
           align-items: start;
           justify-items: center;
+          width: 100%;
         }
         @media (min-width: 768px) {
           .tsay__grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: var(--section-grid-gap);
-            justify-items: stretch;
+            grid-template-columns: repeat(2, minmax(0, 460px));
+            justify-content: center;
+            gap: clamp(1.25rem, 3vw, 2rem);
           }
         }
         .tsay__card-scope {
@@ -295,11 +301,6 @@ export function Testimonials() {
           justify-self: center;
           perspective: 800px;
           perspective-origin: 50% 50%;
-        }
-        @media (min-width: 768px) {
-          .tsay__card-scope {
-            justify-self: stretch;
-          }
         }
         .tsay__card-anim {
           width: 100%;

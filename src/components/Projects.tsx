@@ -25,13 +25,13 @@ const WORK_ROWS: WorkRow[] = [
     flipped: true,
   },
   {
-    id: "prose-meet",
+    id: "pickme",
     number: "02",
-    title: "PROSE–MEET",
-    tags: ["AI & governance", "Final-year capstone"],
+    title: "PickMe",
+    tags: ["Mobility", "Ride tracking", "UX case study"],
     description:
-      "AI-assisted meeting workflow tool designed to help teams capture decisions and move faster.",
-    accent: "#4f46e5",
+      "UX redesign of ride tracking—improving transparency and rebuilding trust during the most stressful moments of a trip.",
+    accent: "#ff6b2b",
     flipped: false,
   },
 ];

@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PickMe — Ride Tracking Case Study · Srigayaththri Tharmasoruban</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+
+:root{
+  --ink:#0D0F12;
+  --ink-80:rgba(13,15,18,0.8);
+  --ink-50:rgba(13,15,18,0.5);
+  --ink-20:rgba(13,15,18,0.2);
+  --surface:#F5F6F7;
+  --white:#FFFFFF;
+  --pm-orange:#FF6B2B;
+  --pm-orange-lt:#FF8F5C;
+  --pm-orange-bg:rgba(255,107,43,0.08);
+  --pm-orange-border:rgba(255,107,43,0.2);
+  --pm-teal:#0AB3A8;
+  --pm-teal-bg:rgba(10,179,168,0.08);
+  --pm-yellow:#F5C518;
+  --pm-red:#E84040;
+  --pm-green:#22C55E;
+  --border:rgba(13,15,18,0.08);
+  --border-strong:rgba(13,15,18,0.15);
+  --font-display:'Instrument Serif',Georgia,serif;
+  --font-ui:'Space Grotesk',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+
+body{font-family:var(--font-ui);background:var(--white);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--pm-orange);border-radius:2px}
+
+/* ── PROGRESS ── */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--pm-orange);width:0;z-index:300;transition:width .1s}
+
+/* ── NAV ── */
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 4rem;height:60px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--pm-orange)}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-tag{font-size:.7rem;font-weight:500;letter-spacing:.08em;background:var(--pm-orange-bg);color:var(--pm-orange);border:1px solid var(--pm-orange-border);padding:.3rem .8rem;border-radius:100px}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-50);text-decoration:none;padding:.35rem .9rem;border-radius:6px;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--pm-orange);background:var(--pm-orange-bg)}
+.nav-cta{background:var(--pm-orange)!important;color:#fff!important;margin-left:.5rem}
+.nav-cta:hover{background:#e85a1a!important;color:#fff!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  padding-top:60px;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 4rem;background:var(--ink);
+  position:relative;overflow:hidden;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,107,43,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,43,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--pm-orange);background:rgba(255,107,43,.12);
+  border:1px solid var(--pm-orange-border);border-radius:100px;
+  padding:.35rem 1rem;margin-bottom:2.5rem;width:fit-content;
+  position:relative;z-index:1;
+  animation:chipIn .6s cubic-bezier(.16,1,.3,1) both;
+}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--pm-orange);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes chipIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(3.2rem,5vw,5.8rem);
+  font-weight:400;line-height:1.02;
+  color:var(--white);margin-bottom:1.8rem;
+  position:relative;z-index:1;
+  animation:titleIn .8s .1s cubic-bezier(.16,1,.3,1) both;
+}
+.hero-title em{font-style:italic;color:var(--pm-orange)}
+@keyframes titleIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-subtitle{
+  font-size:1rem;color:rgba(255,255,255,.55);line-height:1.85;
+  max-width:460px;margin-bottom:3rem;
+  position:relative;z-index:1;
+  animation:titleIn .8s .2s cubic-bezier(.16,1,.3,1) both;
+}
+
+.hero-meta-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:rgba(255,255,255,.08);border-radius:16px;overflow:hidden;
+  position:relative;z-index:1;
+  animation:titleIn .8s .3s cubic-bezier(.16,1,.3,1) both;
+}
+.hm-cell{background:rgba(255,255,255,.04);padding:1.2rem 1.4rem;transition:background .2s}
+.hm-cell:hover{background:rgba(255,107,43,.1)}
+.hm-cell label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pm-orange);margin-bottom:.25rem}
+.hm-cell span{font-size:.88rem;color:rgba(255,255,255,.8)}
+
+.hero-right{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);position:relative;overflow:hidden;
+  animation:fadeIn 1s .2s both;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.hero-phone-wrap{position:relative;z-index:2}
+/* ── PHONE MOCKUP ── */
+.phone-mockup{
+  width:240px;background:var(--ink);border-radius:36px;
+  padding:10px;box-shadow:0 40px 80px rgba(0,0,0,.25),0 0 0 8px rgba(13,15,18,.06);
+  position:relative;
+}
+.phone-mockup-inner{
+  background:#13171E;border-radius:28px;overflow:hidden;
+  min-height:480px;position:relative;
+}
+.phone-notch{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:80px;height:26px;background:var(--ink);border-radius:0 0 16px 16px;z-index:10;
+}
+
+/* TRACKING SCREEN */
+.track-screen{padding:0;overflow:hidden}
+.track-map{
+  height:220px;background:linear-gradient(180deg,#1a2332 0%,#1e2d3d 100%);
+  position:relative;overflow:hidden;
+}
+.map-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(10,179,168,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(10,179,168,.06) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.map-road-h{position:absolute;height:3px;background:rgba(255,255,255,.12);border-radius:2px}
+.map-road-v{position:absolute;width:3px;background:rgba(255,255,255,.12);border-radius:2px}
+.map-route{
+  position:absolute;height:3px;background:linear-gradient(90deg,var(--pm-orange),var(--pm-teal));
+  border-radius:2px;animation:routePulse 2s ease-in-out infinite;
+}
+@keyframes routePulse{0%,100%{opacity:1}50%{opacity:.6}}
+.map-car{
+  position:absolute;width:28px;height:28px;
+  background:var(--pm-orange);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;box-shadow:0 0 0 6px rgba(255,107,43,.2);
+  animation:carMove 3s ease-in-out infinite alternate;
+}
+@keyframes carMove{0%{transform:translateX(0)}100%{transform:translateX(12px)}}
+.map-dest{
+  position:absolute;width:24px;height:24px;
+  background:var(--pm-teal);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;
+  box-shadow:0 0 0 6px rgba(10,179,168,.2);
+}
+.map-you{
+  position:absolute;width:20px;height:20px;
+  background:var(--pm-yellow);border-radius:50%;
+  box-shadow:0 0 0 4px rgba(245,197,24,.2);
+}
+.track-info{padding:16px}
+.track-eta-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.track-eta-big{font-family:var(--font-display);font-size:2rem;font-weight:400;color:var(--white);line-height:1}
+.track-eta-label{font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px}
+.track-status-pill{
+  font-size:.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:.3rem .8rem;border-radius:100px;
+  background:rgba(34,197,94,.12);color:var(--pm-green);
+  border:1px solid rgba(34,197,94,.25);
+}
+.track-driver-row{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.04);border-radius:12px;padding:10px 12px;
+  margin-bottom:10px;
+}
+.driver-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#FF6B2B,#FF8F5C);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;flex-shrink:0;
+}
+.driver-info{flex:1}
+.driver-name{font-size:.78rem;font-weight:600;color:var(--white)}
+.driver-sub{font-size:.65rem;color:rgba(255,255,255,.4)}
+.driver-rating{font-size:.72rem;color:var(--pm-yellow);font-weight:600}
+.track-steps{display:flex;gap:6px;margin-top:10px}
+.step-dot{
+  flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.1);
+  transition:background .3s;
+}
+.step-dot.done{background:var(--pm-orange)}
+.step-dot.active{background:var(--pm-teal);animation:stepPulse 1.5s infinite}
+@keyframes stepPulse{0%,100%{opacity:1}50%{opacity:.5}}
+.track-actions{display:flex;gap:8px;margin-top:12px}
+.ta-btn{
+  flex:1;padding:10px;border-radius:12px;border:none;
+  font-family:var(--font-ui);font-size:.72rem;font-weight:600;
+  cursor:pointer;transition:opacity .2s;
+}
+.ta-btn.primary{background:var(--pm-orange);color:white}
+.ta-btn.secondary{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7)}
+
+/* ── CONTENT ── */
+.wrap{max-width:1160px;margin:0 auto;padding:0 4rem}
+section{padding:7rem 0}
+
+/* eyebrow */
+.eyebrow{
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--pm-orange);margin-bottom:1.6rem;
+}
+.eyebrow::before{content:'';display:block;width:20px;height:2px;background:var(--pm-orange)}
+
+/* headings */
+.dh{font-family:var(--font-display);font-size:clamp(2rem,3vw,3rem);font-weight:400;line-height:1.15;color:var(--ink)}
+.dh em{font-style:italic;color:var(--pm-orange)}
+
+/* reveal */
+.r{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.r.in{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.06s}.rd2{transition-delay:.12s}.rd3{transition-delay:.18s}.rd4{transition-delay:.24s}
+
+/* ── OVERVIEW ── */
+.overview-bg{background:var(--surface)}
+.ov-grid{display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:start}
+.ov-body{font-size:.97rem;color:var(--ink-50);line-height:1.9;margin-top:1.6rem}
+.ov-body+.ov-body{margin-top:1rem}
+.ov-body strong{color:var(--ink);font-weight:600}
+
+.stat-bar{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.stat-row{background:var(--white);padding:1.6rem 1.8rem;display:flex;align-items:center;gap:1.4rem;transition:background .2s}
+.stat-row:hover{background:var(--pm-orange-bg)}
+.stat-n{font-family:var(--font-display);font-size:2.4rem;font-weight:400;color:var(--pm-orange);line-height:1;min-width:72px}
+.stat-t label{display:block;font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pm-orange);margin-bottom:.2rem}
+.stat-t span{font-size:.84rem;color:var(--ink-50)}
+
+.context-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem}
+.ctx-tag{font-size:.7rem;font-weight:500;padding:.3rem .8rem;border-radius:100px;border:1px solid var(--border);color:var(--ink-50)}
+.ctx-tag.hi{background:var(--pm-orange);color:white;border-color:var(--pm-orange)}
+
+/* ── PROBLEM SECTION ── */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3.5rem}
+.problem-card{
+  background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2.5rem;
+  transition:box-shadow .3s,border-color .3s;position:relative;overflow:hidden;
+}
+.problem-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--pm-orange);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.problem-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:var(--pm-orange-border)}
+.problem-card:hover::after{transform:scaleX(1)}
+.pc-icon{font-size:1.8rem;margin-bottom:1rem}
+.pc-title{font-size:.92rem;font-weight:700;color:var(--ink);margin-bottom:.7rem}
+.pc-body{font-size:.85rem;color:var(--ink-50);line-height:1.8}
+.pc-quote{
+  margin-top:1rem;padding:1rem;background:var(--surface);border-radius:10px;
+  border-left:2px solid var(--pm-orange);
+  font-size:.83rem;color:var(--ink-80);font-style:italic;line-height:1.7;
+}
+
+/* ── PERSONA ── */
+.personas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.persona-card{
+  background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2rem;
+  transition:transform .3s,box-shadow .3s;
+}
+.persona-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.persona-avatar{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:1.2rem;
+}
+.pa-orange{background:var(--pm-orange-bg);border:2px solid var(--pm-orange-border)}
+.pa-teal{background:var(--pm-teal-bg);border:2px solid rgba(10,179,168,.25)}
+.pa-yellow{background:rgba(245,197,24,.1);border:2px solid rgba(245,197,24,.25)}
+.persona-name{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+.persona-role{font-size:.75rem;color:var(--pm-orange);font-weight:600;margin-bottom:1rem}
+.persona-body{font-size:.82rem;color:var(--ink-50);line-height:1.75;margin-bottom:1rem}
+.persona-pain{
+  background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);
+  border-radius:10px;padding:.9rem;
+  font-size:.8rem;color:#c0392b;line-height:1.6;
+}
+.persona-pain::before{content:'"';font-size:1.2rem;font-weight:700;display:block;margin-bottom:.2rem}
+
+/* ── JOURNEY MAP ── */
+.journey-wrap{margin-top:3rem;overflow-x:auto}
+.journey-table{min-width:900px;border-collapse:collapse;width:100%}
+.jt-header{background:var(--ink);color:white}
+.jt-header th{
+  padding:1rem 1.2rem;text-align:left;
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.jt-header th:first-child{border-radius:16px 0 0 0}
+.jt-header th:last-child{border-radius:0 16px 0 0;border-right:none}
+.jt-phase{background:var(--surface);padding:1rem 1.2rem;font-size:.82rem;font-weight:700;color:var(--ink);border-bottom:1px solid var(--border);vertical-align:top;border-right:1px solid var(--border)}
+.jt-cell{padding:1rem 1.2rem;font-size:.8rem;color:var(--ink-50);line-height:1.7;border-bottom:1px solid var(--border);vertical-align:top;border-right:1px solid var(--border);background:var(--white)}
+.jt-cell:last-child{border-right:none}
+.jt-emotion{padding:1rem 1.2rem;border-bottom:1px solid var(--border);vertical-align:middle;border-right:none;background:var(--white)}
+.emotion-bar{display:flex;flex-direction:column;align-items:center;gap:4px}
+.emotion-emoji{font-size:1.4rem}
+.emotion-label{font-size:.65rem;color:var(--ink-50);text-align:center}
+.pain-tag{display:inline-block;background:rgba(232,64,64,.08);color:var(--pm-red);border:1px solid rgba(232,64,64,.2);border-radius:100px;padding:.15rem .6rem;font-size:.65rem;font-weight:600;margin-top:.3rem}
+.good-tag{display:inline-block;background:rgba(34,197,94,.08);color:var(--pm-green);border:1px solid rgba(34,197,94,.2);border-radius:100px;padding:.15rem .6rem;font-size:.65rem;font-weight:600;margin-top:.3rem}
+tr:last-child .jt-phase{border-radius:0 0 0 16px}
+tr:last-child .jt-cell:last-child{border-radius:0}
+
+/* ── WORKFLOW DIAGRAM ── */
+.workflow-diagram{
+  background:var(--ink);border-radius:24px;padding:3rem;margin-top:3rem;
+  position:relative;overflow:hidden;
+}
+.wf-grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,107,43,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,43,.04) 1px,transparent 1px);
+  background-size:32px 32px;pointer-events:none;
+}
+.wf-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:2rem;position:relative}
+.wf-row{display:flex;align-items:center;gap:0;position:relative;margin-bottom:0}
+.wf-node{
+  display:flex;flex-direction:column;align-items:center;flex:1;position:relative;
+}
+.wf-box{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:1rem .8rem;text-align:center;width:100%;
+  transition:border-color .2s,background .2s;position:relative;z-index:1;
+}
+.wf-box:hover{background:rgba(255,107,43,.1);border-color:var(--pm-orange-border)}
+.wf-box.pain{border-color:rgba(232,64,64,.35);background:rgba(232,64,64,.07)}
+.wf-box.highlight{border-color:var(--pm-orange-border);background:rgba(255,107,43,.12)}
+.wf-icon{font-size:1.2rem;margin-bottom:.4rem;display:block}
+.wf-label{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3}
+.wf-sub{font-size:.62rem;color:rgba(255,255,255,.35);margin-top:.25rem;line-height:1.4}
+.wf-pain-dot{
+  position:absolute;top:-6px;right:-6px;width:14px;height:14px;
+  background:var(--pm-red);border-radius:50%;border:2px solid var(--ink);
+  font-size:.55rem;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+}
+.wf-arrow{
+  color:rgba(255,255,255,.2);font-size:1rem;flex-shrink:0;margin:0 .3rem;
+  padding-bottom:2rem;
+}
+.wf-connector{
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;color:rgba(255,255,255,.15);padding:0 .5rem;
+  padding-bottom:1.5rem;flex-shrink:0;
+}
+
+/* pain zones */
+.pain-zone{
+  background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);
+  border-radius:16px;padding:1.5rem;margin-top:2rem;
+  display:flex;gap:1rem;align-items:flex-start;position:relative;
+}
+.pz-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pm-red);margin-bottom:.5rem}
+.pz-body{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7}
+
+/* ── BUSINESS IMPACT ── */
+.bi-section{background:var(--surface)}
+.bi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-top:3rem}
+.bi-cell{background:var(--white);padding:2rem 1.6rem;transition:background .2s}
+.bi-cell:hover{background:var(--pm-orange-bg)}
+.bi-icon{font-size:1.6rem;margin-bottom:1rem}
+.bi-title{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.bi-body{font-size:.8rem;color:var(--ink-50);line-height:1.75}
+.bi-metric{
+  display:inline-block;margin-top:.8rem;
+  font-family:var(--font-mono);font-size:.72rem;font-weight:500;
+  background:var(--pm-orange-bg);color:var(--pm-orange);
+  border:1px solid var(--pm-orange-border);border-radius:6px;
+  padding:.2rem .6rem;
+}
+
+/* chain of trust */
+.trust-chain{
+  display:flex;align-items:center;gap:0;
+  background:var(--ink);border-radius:20px;padding:2.5rem 3rem;
+  margin-top:3rem;overflow-x:auto;
+}
+.tc-node{display:flex;flex-direction:column;align-items:center;gap:.5rem;flex:1;min-width:100px}
+.tc-circle{
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;border:2px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+}
+.tc-circle.active{background:rgba(255,107,43,.15);border-color:var(--pm-orange)}
+.tc-label{font-size:.7rem;color:rgba(255,255,255,.5);text-align:center;line-height:1.4}
+.tc-label strong{display:block;font-size:.75rem;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:.1rem}
+.tc-arrow{font-size:1rem;color:rgba(255,255,255,.15);flex-shrink:0;padding:0 .5rem}
+
+/* ── SOLUTION SECTION ── */
+.solution-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:4rem}
+.solution-intro p{font-size:.95rem;color:var(--ink-50);line-height:1.9;margin-top:1rem}
+
+/* screens grid */
+.screens-area{display:flex;flex-direction:column;gap:4rem}
+.screen-block{display:grid;gap:2rem}
+.sb-2{grid-template-columns:1fr 1fr}
+.sb-3{grid-template-columns:1fr 1fr 1fr}
+.sb-1-2{grid-template-columns:1fr 1.8fr}
+
+.screen-card{
+  background:var(--white);border:1px solid var(--border);border-radius:20px;overflow:hidden;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;
+}
+.screen-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.1)}
+
+/* UI Screen components */
+.ui-screen{
+  background:#13171E;padding:20px;min-height:300px;
+  font-family:var(--font-ui);position:relative;
+}
+
+/* Status bar */
+.status-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.sb-time{font-size:.68rem;font-weight:600;color:rgba(255,255,255,.6)}
+.sb-icons{font-size:.65rem;color:rgba(255,255,255,.4)}
+
+/* Redesigned tracking */
+.new-track{padding:0}
+.new-map-area{
+  height:200px;background:linear-gradient(180deg,#1a2535,#1e2d40);
+  position:relative;overflow:hidden;
+}
+.nm-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(10,179,168,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,179,168,.05) 1px,transparent 1px);background-size:20px 20px}
+.nm-route-line{
+  position:absolute;width:60%;height:2px;
+  background:linear-gradient(90deg,var(--pm-orange),var(--pm-teal));
+  top:55%;left:15%;border-radius:2px;
+}
+.nm-car{position:absolute;top:calc(55% - 14px);left:55%;width:28px;height:28px;background:var(--pm-orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 0 0 8px rgba(255,107,43,.15),0 0 0 16px rgba(255,107,43,.06)}
+.nm-dest{position:absolute;top:calc(55% - 10px);left:72%;width:20px;height:20px;background:var(--pm-teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;box-shadow:0 0 0 6px rgba(10,179,168,.15)}
+.nm-you{position:absolute;top:calc(55% - 8px);left:12%;width:16px;height:16px;background:var(--pm-yellow);border-radius:50%;box-shadow:0 0 0 4px rgba(245,197,24,.2)}
+.nm-eta-bubble{
+  position:absolute;top:12px;left:12px;
+  background:rgba(13,15,18,.85);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:8px 12px;
+}
+.nm-eta-big{font-family:var(--font-display);font-size:1.4rem;color:var(--white);line-height:1}
+.nm-eta-sub{font-size:.6rem;color:rgba(255,255,255,.4);margin-top:2px}
+.nm-confidence{
+  position:absolute;top:12px;right:12px;
+  background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);
+  border-radius:8px;padding:4px 8px;
+  font-size:.6rem;font-weight:700;color:var(--pm-green);
+}
+
+.new-bottom{padding:16px}
+/* Progress timeline */
+.progress-timeline{display:flex;align-items:center;gap:0;margin-bottom:14px}
+.pt-step{display:flex;flex-direction:column;align-items:center;flex:1;position:relative}
+.pt-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);z-index:1;position:relative}
+.pt-dot.done{background:var(--pm-orange)}
+.pt-dot.active{background:var(--pm-teal);box-shadow:0 0 0 4px rgba(10,179,168,.2)}
+.pt-line{position:absolute;height:2px;background:rgba(255,255,255,.08);top:4px;left:50%;right:-50%;z-index:0}
+.pt-line.done{background:var(--pm-orange)}
+.pt-label{font-size:.55rem;color:rgba(255,255,255,.35);margin-top:4px;text-align:center;line-height:1.2}
+.pt-label.active{color:var(--pm-teal)}
+.pt-label.done{color:var(--pm-orange)}
+
+/* Driver status */
+.driver-status-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:12px;
+}
+.dsc-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#FF6B2B,#FF8F5C);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.dsc-info{flex:1}
+.dsc-name{font-size:.78rem;font-weight:600;color:white}
+.dsc-sub{font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px}
+.dsc-status{display:flex;align-items:center;gap:4px;margin-top:3px}
+.dsc-status-dot{width:6px;height:6px;border-radius:50%;background:var(--pm-green);animation:blink 1.5s infinite}
+.dsc-status-text{font-size:.6rem;color:var(--pm-green);font-weight:600}
+
+/* Status states display */
+.status-states{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.ss-row{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-radius:10px;border:1px solid transparent;
+  transition:all .2s;
+}
+.ss-row.active-state{background:rgba(255,107,43,.1);border-color:var(--pm-orange-border)}
+.ss-row.inactive-state{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
+.ss-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+.ss-icon.orange{background:rgba(255,107,43,.15)}
+.ss-icon.green{background:rgba(34,197,94,.12)}
+.ss-icon.teal{background:rgba(10,179,168,.12)}
+.ss-icon.yellow{background:rgba(245,197,24,.12)}
+.ss-text{flex:1}
+.ss-title{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.8)}
+.ss-sub{font-size:.6rem;color:rgba(255,255,255,.35);margin-top:1px}
+
+/* notif system */
+.notif-stream{display:flex;flex-direction:column;gap:8px;padding:16px}
+.notif-item{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:12px;display:flex;gap:10px;align-items:flex-start;
+}
+.notif-item.important{background:rgba(255,107,43,.08);border-color:var(--pm-orange-border)}
+.notif-icon-wrap{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.ni-orange{background:rgba(255,107,43,.15)}
+.ni-green{background:rgba(34,197,94,.12)}
+.ni-teal{background:rgba(10,179,168,.12)}
+.notif-body{flex:1}
+.notif-title{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3}
+.notif-sub{font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px}
+.notif-time{font-size:.6rem;color:rgba(255,255,255,.25);flex-shrink:0;margin-top:2px}
+
+/* screen footer label */
+.sc-footer{padding:.8rem 1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.sc-footer-name{font-size:.75rem;color:var(--ink-50)}
+.sc-badge{font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:100px}
+.badge-new{background:var(--pm-orange);color:white}
+.badge-before{background:var(--surface);color:var(--ink-50);border:1px solid var(--border)}
+
+/* annotation */
+.annotation{
+  background:var(--surface);border:1px solid var(--border);
+  border-left:3px solid var(--pm-orange);border-radius:12px;padding:1.3rem 1.5rem;margin-top:1.5rem;
+}
+.ann-title{font-size:.72rem;font-weight:700;color:var(--pm-orange);letter-spacing:.06em;margin-bottom:.35rem}
+.ann-body{font-size:.83rem;color:var(--ink-50);line-height:1.75}
+
+/* screen group header */
+.sg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.sg-title{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.sg-badges{display:flex;gap:.5rem}
+
+/* ── DECISIONS ── */
+.dec-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3.5rem}
+.dec-card{
+  background:var(--white);border:1px solid var(--border);border-radius:20px;padding:2.4rem;
+  display:flex;flex-direction:column;gap:1rem;transition:box-shadow .3s,border-color .3s;
+}
+.dec-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:var(--pm-orange-border)}
+.dec-icon{width:44px;height:44px;border-radius:12px;background:var(--pm-orange-bg);border:1px solid var(--pm-orange-border);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.dec-title{font-size:.95rem;font-weight:700;color:var(--ink)}
+.dec-body{font-size:.86rem;color:var(--ink-50);line-height:1.8;flex:1}
+.dec-result{font-size:.78rem;color:var(--pm-orange);font-weight:500;background:var(--pm-orange-bg);border:1px solid var(--pm-orange-border);border-radius:8px;padding:.6rem .9rem;line-height:1.6}
+.dec-result::before{content:'→  ';font-weight:700}
+
+/* ── OUTCOMES ── */
+.outcomes-bg{background:var(--ink)}
+.outcomes-bg .eyebrow{color:var(--pm-orange-lt)}
+.outcomes-bg .eyebrow::before{background:var(--pm-orange-lt)}
+.outcomes-bg .dh{color:var(--white)}
+.outcomes-bg .dh em{color:var(--pm-orange-lt)}
+
+.oc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:20px;overflow:hidden;margin-top:3rem}
+.oc-cell{background:rgba(255,255,255,.03);padding:2.4rem;transition:background .3s}
+.oc-cell:hover{background:rgba(255,107,43,.08)}
+.oc-emoji{font-size:1.8rem;margin-bottom:1.2rem;display:block}
+.oc-title{font-size:.88rem;font-weight:700;color:white;margin-bottom:.6rem}
+.oc-body{font-size:.83rem;color:rgba(255,255,255,.45);line-height:1.8}
+
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:20px;overflow:hidden;margin-top:1.5rem}
+.ms-cell{background:rgba(255,255,255,.03);padding:1.8rem;text-align:center;transition:background .3s}
+.ms-cell:hover{background:rgba(255,107,43,.08)}
+.ms-num{font-family:var(--font-display);font-size:2.4rem;font-weight:400;color:var(--pm-orange-lt);line-height:1}
+.ms-label{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.4rem;line-height:1.4}
+
+/* ── LEARNINGS ── */
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.learn-card{
+  padding:2rem;background:var(--white);border:1px solid var(--border);
+  border-radius:16px;border-top:2px solid var(--pm-orange);
+  transition:transform .3s,box-shadow .3s;
+}
+.learn-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.07)}
+.learn-n{font-family:var(--font-display);font-size:1.3rem;font-style:italic;color:rgba(255,107,43,.3);margin-bottom:.7rem}
+.learn-title{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:.6rem}
+.learn-body{font-size:.82rem;color:var(--ink-50);line-height:1.8}
+
+/* ── COMPARE STRIP ── */
+.compare-strip{
+  background:var(--ink);border-radius:24px;padding:3rem;margin-top:3rem;
+  display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:start;
+}
+.cs-col h4{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem}
+.cs-col.before h4{color:var(--pm-red)}
+.cs-col.after h4{color:var(--pm-green)}
+.cs-item{font-size:.83rem;color:rgba(255,255,255,.5);padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem}
+.cs-item::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.before .cs-item::before{background:var(--pm-red)}
+.after .cs-item::before{background:var(--pm-green)}
+.cs-vs{font-family:var(--font-display);font-size:2.5rem;font-style:italic;color:rgba(255,255,255,.1);align-self:center;text-align:center}
+
+/* ── NEXT/FOOTER ── */
+.next-bar{padding:5rem 0;background:var(--surface);border-top:1px solid var(--border)}
+.next-inner{display:flex;justify-content:space-between;align-items:center}
+.next-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pm-orange);margin-bottom:.4rem}
+.next-prev-link{text-decoration:none;color:inherit;display:block}
+.next-prev-link:hover .next-title{color:var(--pm-orange)}
+.next-title{font-family:var(--font-display);font-size:2rem;font-weight:400;color:var(--ink);transition:color .2s}
+.next-title em{font-style:italic;color:var(--pm-orange)}
+.next-btn{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:var(--ink);color:white;text-decoration:none;
+  font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:1rem 2rem;border-radius:100px;transition:background .2s,transform .2s;
+}
+.next-btn:hover{background:var(--pm-orange);transform:translateX(4px)}
+
+footer{background:var(--ink);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06)}
+.footer-name{font-family:var(--font-display);font-size:1.1rem;font-weight:400;color:white}
+.footer-sub{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:.2rem}
+.footer-r{font-size:.7rem;color:rgba(255,255,255,.25);letter-spacing:.06em}
+
+/* back top */
+#backTop{position:fixed;bottom:2.5rem;right:2.5rem;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--pm-orange);color:white;border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(255,107,43,.35);opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
+#backTop.show{opacity:1;transform:translateY(0)}
+
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="/" target="_parent"><span>Sri</span>gaya</a>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#solution">Solution</a></li>
+    <li><a href="#decisions">Decisions</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="/#projects" target="_parent" class="nav-cta">Portfolio ↗</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-tag">Case Study 02</span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-chip"><span class="chip-dot"></span>Case Study 02 · Mobility UX · Sri Lanka</div>
+    <h1 class="hero-title">Designing<br><em>Trust</em> in<br>Ride Tracking</h1>
+    <p class="hero-subtitle">A workflow-focused UX redesign of PickMe's ride tracking experience — reducing rider anxiety, improving transparency, and rebuilding trust during the most emotionally charged 4 minutes of a ride.</p>
+    <div class="hero-meta-grid">
+      <div class="hm-cell"><label>My Role</label><span>UX Designer + Business Analyst</span></div>
+      <div class="hm-cell"><label>Type</label><span>Conceptual Redesign</span></div>
+      <div class="hm-cell"><label>Platform</label><span>iOS / Android Mobile</span></div>
+      <div class="hm-cell"><label>Focus Area</label><span>Ride Tracking &amp; Trust</span></div>
+      <div class="hm-cell"><label>Timeline</label><span>6-Week Concept</span></div>
+      <div class="hm-cell"><label>Methods</label><span>UX Research · Workflow Analysis · BA</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-phone-wrap">
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-mockup-inner">
+          <div class="track-screen">
+            <div class="track-map">
+              <div class="map-grid"></div>
+              <div class="map-road-h" style="top:40%;left:0;right:0"></div>
+              <div class="map-road-h" style="top:65%;left:0;right:0"></div>
+              <div class="map-road-v" style="left:30%;top:0;bottom:0"></div>
+              <div class="map-road-v" style="left:65%;top:0;bottom:0"></div>
+              <div class="map-route" style="top:calc(40% - 1.5px);left:15%;width:55%"></div>
+              <div class="map-car" style="top:calc(40% - 14px);left:50%">🚗</div>
+              <div class="map-dest" style="top:calc(40% - 12px);left:68%">📍</div>
+              <div class="map-you" style="top:calc(40% - 10px);left:13%"></div>
+            </div>
+            <div class="track-info">
+              <div class="track-eta-row">
+                <div><div class="track-eta-big">4 min</div><div class="track-eta-label">Estimated arrival</div></div>
+                <div class="track-status-pill">Moving</div>
+              </div>
+              <div class="track-driver-row">
+                <div class="driver-avatar">👨</div>
+                <div class="driver-info">
+                  <div class="driver-name">Kasun P.</div>
+                  <div class="driver-sub">Toyota Prius · CBB-7782</div>
+                </div>
+                <div class="driver-rating">★ 4.9</div>
+              </div>
+              <div class="track-steps">
+                <div class="step-dot done"></div>
+                <div class="step-dot done"></div>
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+              </div>
+              <div class="track-actions">
+                <button class="ta-btn primary">📞 Call Driver</button>
+                <button class="ta-btn secondary">✕ Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW ══ -->
+<section class="overview-bg" id="overview">
+  <div class="wrap">
+    <div class="ov-grid">
+      <div class="r">
+        <div class="eyebrow">Project Overview</div>
+        <h2 class="dh">A real-world mobility<br>workflow with a <em>trust problem</em></h2>
+        <p class="ov-body"><strong>PickMe</strong> is Sri Lanka's leading ride-hailing platform, used by millions of daily commuters across Colombo and beyond. The service connects riders with tuk-tuks, cars, bikes, and delivery services — embedded into the daily lives of office workers, students, and late-night commuters.</p>
+        <p class="ov-body">But there's a problem that no amount of map smoothness or faster matching solves: the <strong>anxiety gap</strong> — the 2–6 minute window between driver acceptance and arrival, where users feel uncertain, impatient, and disconnected from what's actually happening.</p>
+        <p class="ov-body">This case study focuses on that specific experience. Not a full app redesign. A targeted, workflow-grounded UX intervention to rebuild trust where it's most fragile — during the ride tracking experience itself.</p>
+        <div class="context-tags">
+          <span class="ctx-tag hi">UX Research</span>
+          <span class="ctx-tag hi">Workflow Analysis</span>
+          <span class="ctx-tag hi">Business Analysis</span>
+          <span class="ctx-tag hi">Mobile UX</span>
+          <span class="ctx-tag">App Reviews Analysis</span>
+          <span class="ctx-tag">Heuristic Evaluation</span>
+          <span class="ctx-tag">Journey Mapping</span>
+          <span class="ctx-tag">Conceptual Redesign</span>
+        </div>
+      </div>
+      <div class="r rd2">
+        <div class="stat-bar">
+          <div class="stat-row"><div class="stat-n">#1</div><div class="stat-t"><label>Market Position</label><span>Sri Lanka's leading ride-hailing platform</span></div></div>
+          <div class="stat-row"><div class="stat-n">4min</div><div class="stat-t"><label>The Anxiety Gap</label><span>Average wait between acceptance and arrival</span></div></div>
+          <div class="stat-row"><div class="stat-n">68%</div><div class="stat-t"><label>Cancellations</label><span>Of ride cancellations happen during the tracking phase*</span></div></div>
+          <div class="stat-row"><div class="stat-n">3.2★</div><div class="stat-t"><label>App Store</label><span>Common complaints cite tracking uncertainty*</span></div></div>
+        </div>
+        <p style="font-size:.68rem;color:var(--ink-50);margin-top:.8rem;line-height:1.6;">* Estimated figures based on industry benchmarks and public app review analysis. This is a conceptual case study.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROBLEM DISCOVERY ══ -->
+<section id="problem">
+  <div class="wrap">
+    <div class="eyebrow r">Problem Discovery</div>
+    <h2 class="dh r rd1">What users actually<br>feel during a <em>ride wait</em></h2>
+    <p class="r rd2" style="font-size:.95rem;color:var(--ink-50);max-width:560px;margin-top:1rem;line-height:1.85;">I analysed publicly available app reviews, observed real-world usage patterns, and applied UX heuristics to diagnose the specific breakdowns in the ride tracking experience.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card r">
+        <div class="pc-icon">📍</div>
+        <div class="pc-title">Opaque driver status</div>
+        <div class="pc-body">Users cannot tell whether a driver has accepted and is moving, has accepted but is stationary, is stuck in traffic, or has simply not started the route. The current UI shows a dot on a map — nothing more.</div>
+        <div class="pc-quote">"I never know if my driver is actually coming. The dot just sits there."</div>
+      </div>
+      <div class="problem-card r rd1">
+        <div class="pc-icon">⏱️</div>
+        <div class="pc-title">ETA feels unreliable</div>
+        <div class="pc-body">The estimated time of arrival updates inconsistently — sometimes jumping from 3 minutes to 8 minutes without explanation. This single UX failure destroys trust more than any other element in the experience.</div>
+        <div class="pc-quote">"ETA said 2 min. It's been 9. No explanation."</div>
+      </div>
+      <div class="problem-card r rd2">
+        <div class="pc-icon">🔔</div>
+        <div class="pc-title">Notification overload or silence</div>
+        <div class="pc-body">Users either receive too many generic push notifications ("Your driver is on the way") or go completely silent after booking — creating anxiety in both directions. There is no contextual, state-based communication system.</div>
+        <div class="pc-quote">"I got 4 notifications saying the same thing. Nothing useful."</div>
+      </div>
+      <div class="problem-card r rd3">
+        <div class="pc-icon">🔇</div>
+        <div class="pc-title">Breakdown in rider-driver communication</div>
+        <div class="pc-body">When delays happen, riders have no way to understand why, and calling the driver is the only option — which creates friction, especially for users in public or those who prefer not to call. There's no lightweight communication layer for status updates.</div>
+        <div class="pc-quote">"Had to call to find out he was stuck. Just tell me that."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PERSONAS ══ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow r">User Personas</div>
+    <h2 class="dh r rd1">Three users, one <em>shared anxiety</em></h2>
+    <div class="personas">
+      <div class="persona-card r">
+        <div class="persona-avatar pa-orange">👩‍💼</div>
+        <div class="persona-name">Kavya, 26</div>
+        <div class="persona-role">Office worker, Colombo 3</div>
+        <div class="persona-body">Uses PickMe twice daily — morning commute and evening return. Highly time-sensitive. Books rides to match meeting schedules. Any ETA uncertainty causes disproportionate stress because she is always measuring against a deadline.</div>
+        <div class="persona-pain">I don't know if my driver is actually moving. I just stare at the map and hope.</div>
+      </div>
+      <div class="persona-card r rd1">
+        <div class="persona-avatar pa-teal">🎓</div>
+        <div class="persona-name">Dilshan, 21</div>
+        <div class="persona-role">University student, Moratuwa</div>
+        <div class="persona-body">Books rides for evening classes and late-night trips home. Budget-conscious, cancels rides more easily than most. The opacity of the tracking experience is a primary trigger for cancellation — "if I can't see it, I cancel and try again."</div>
+        <div class="persona-pain">If the ETA changes even once, I cancel and rebook. It feels more reliable that way.</div>
+      </div>
+      <div class="persona-card r rd2">
+        <div class="persona-avatar pa-yellow">🌙</div>
+        <div class="persona-name">Priya, 34</div>
+        <div class="persona-role">Late-night commuter, Nugegoda</div>
+        <div class="persona-body">Safety-first mindset. Uses PickMe primarily after 9pm. For Priya, the ride tracking screen is not just about convenience — it's about security. Knowing exactly where her driver is, their name, plate, and movement status matters deeply.</div>
+        <div class="persona-pain">At night I need to know exactly where he is. The map alone isn't enough to feel safe.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JOURNEY MAP ══ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow r">User Journey Map</div>
+    <h2 class="dh r rd1">Where the experience <em>breaks down</em></h2>
+    <p class="r rd2" style="font-size:.9rem;color:var(--ink-50);margin-top:.8rem;max-width:560px;">Mapping the ride experience from booking to arrival reveals that the middle phases — matching through tracking — are where emotional experience plummets and frustration peaks.</p>
+    <div class="journey-wrap r">
+      <table class="journey-table">
+        <thead>
+          <tr class="jt-header">
+            <th>Phase</th>
+            <th>User Action</th>
+            <th>System State</th>
+            <th>User Thought</th>
+            <th>Pain Points</th>
+            <th>Emotion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="jt-phase">1. Booking</td>
+            <td class="jt-cell">Opens app, enters destination, selects ride type, taps Book</td>
+            <td class="jt-cell">Location detected, fare estimated, booking initiated</td>
+            <td class="jt-cell">"This feels fast and clear. The fare makes sense."</td>
+            <td class="jt-cell">Minor confusion on fare breakdown <span class="pain-tag">Minor</span></td>
+            <td class="jt-emotion"><div class="emotion-bar"><span class="emotion-emoji">😊</span><span class="emotion-label">Confident</span></div></td>
+          </tr>
+          <tr>
+            <td class="jt-phase">2. Matching</td>
+            <td class="jt-cell">Waits for driver to accept, watches spinner animation</td>
+            <td class="jt-cell">System searching for nearby drivers, queuing requests</td>
+            <td class="jt-cell">"How long will this take? Are there even drivers nearby?"</td>
+            <td class="jt-cell">No visibility into matching logic <span class="pain-tag">Moderate</span></td>
+            <td class="jt-emotion"><div class="emotion-bar"><span class="emotion-emoji">😐</span><span class="emotion-label">Neutral</span></div></td>
+          </tr>
+          <tr>
+            <td class="jt-phase">3. Accepted</td>
+            <td class="jt-cell">Sees driver name, plate, rating. Map loads with driver dot.</td>
+            <td class="jt-cell">Driver confirmed, route calculated, ETA generated</td>
+            <td class="jt-cell">"OK, someone's coming. But is he moving toward me?"</td>
+            <td class="jt-cell">No movement confirmation <span class="pain-tag">High</span></td>
+            <td class="jt-emotion"><div class="emotion-bar"><span class="emotion-emoji">😟</span><span class="emotion-label">Uncertain</span></div></td>
+          </tr>
+          <tr>
+            <td class="jt-phase">4. Waiting <span class="pain-tag">⚠ Peak Anxiety</span></td>
+            <td class="jt-cell">Watches map. Refreshes mentally. Checks time repeatedly.</td>
+            <td class="jt-cell">Driver en route. ETA recalculates silently in background.</td>
+            <td class="jt-cell">"The dot hasn't moved. ETA just jumped from 3min to 7min. What's happening?"</td>
+            <td class="jt-cell">ETA inconsistency. Silent driver. No status context. <span class="pain-tag">Critical</span></td>
+            <td class="jt-emotion"><div class="emotion-bar"><span class="emotion-emoji">😰</span><span class="emotion-label">Anxious</span></div></td>
+          </tr>
+          <tr>
+            <td class="jt-phase">5. Arrival</td>
+            <td class="jt-cell">Gets notification. Walks to pickup. Gets in.</td>
+            <td class="jt-cell">Driver arrives. Ride begins.</td>
+            <td class="jt-cell">"Finally. That took forever / was fine."</td>
+            <td class="jt-cell">No handoff confirmation screen <span class="pain-tag">Minor</span></td>
+            <td class="jt-emotion"><div class="emotion-bar"><span class="emotion-emoji">😌</span><span class="emotion-label">Relieved</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORKFLOW ANALYSIS ══ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow r">Workflow Analysis</div>
+    <h2 class="dh r rd1">The system behind <em>the anxiety</em></h2>
+    <p class="r rd2" style="font-size:.9rem;color:var(--ink-50);margin-top:.8rem;max-width:580px;">Mapping the ride workflow as a system — with states, transitions, and user touchpoints — reveals exactly where transparency breaks down and anxiety is manufactured.</p>
+    <div class="workflow-diagram r">
+      <div class="wf-grid-bg"></div>
+      <div class="wf-title">RIDE LIFECYCLE — SYSTEM STATES & USER EXPERIENCE</div>
+      <div class="wf-row">
+        <div class="wf-node">
+          <div class="wf-box">
+            <span class="wf-icon">📱</span>
+            <div class="wf-label">App Open</div>
+            <div class="wf-sub">User initiates booking</div>
+          </div>
+        </div>
+        <div class="wf-connector">→</div>
+        <div class="wf-node">
+          <div class="wf-box">
+            <span class="wf-icon">🔍</span>
+            <div class="wf-label">Driver Search</div>
+            <div class="wf-sub">System queues request</div>
+          </div>
+        </div>
+        <div class="wf-connector">→</div>
+        <div class="wf-node">
+          <div class="wf-box highlight" style="position:relative">
+            <div class="wf-pain-dot">!</div>
+            <span class="wf-icon">✅</span>
+            <div class="wf-label">Driver Accepts</div>
+            <div class="wf-sub">ETA calculated once</div>
+          </div>
+        </div>
+        <div class="wf-connector">→</div>
+        <div class="wf-node">
+          <div class="wf-box pain" style="position:relative">
+            <div class="wf-pain-dot">⚠</div>
+            <span class="wf-icon">🗺️</span>
+            <div class="wf-label">En Route</div>
+            <div class="wf-sub">ETA recalculates silently</div>
+          </div>
+        </div>
+        <div class="wf-connector">→</div>
+        <div class="wf-node">
+          <div class="wf-box pain" style="position:relative">
+            <div class="wf-pain-dot">⚠</div>
+            <span class="wf-icon">⏳</span>
+            <div class="wf-label">Waiting Period</div>
+            <div class="wf-sub">User has no status signal</div>
+          </div>
+        </div>
+        <div class="wf-connector">→</div>
+        <div class="wf-node">
+          <div class="wf-box">
+            <span class="wf-icon">🚗</span>
+            <div class="wf-label">Driver Arrives</div>
+            <div class="wf-sub">Push notification fired</div>
+          </div>
+        </div>
+        <div class="wf-connector">→</div>
+        <div class="wf-node">
+          <div class="wf-box">
+            <span class="wf-icon">🏁</span>
+            <div class="wf-label">Ride Begins</div>
+            <div class="wf-sub">In-trip tracking starts</div>
+          </div>
+        </div>
+      </div>
+      <div class="pain-zone" style="margin-top:2rem;">
+        <div>
+          <div class="pz-label">🔴 Critical Gap: Steps 3–5</div>
+          <div class="pz-body">Between driver acceptance and arrival, the user receives no meaningful status updates. The ETA recalculates silently — users see the number change but never understand why. Driver movement is shown on a map but without contextual status labels. This 2–6 minute window is where most cancellations happen and where trust is permanently damaged.</div>
+        </div>
+      </div>
+      <div class="pain-zone" style="background:rgba(245,197,24,.05);border-color:rgba(245,197,24,.2);">
+        <div>
+          <div class="pz-label" style="color:var(--pm-yellow);">🟡 Secondary Gap: Notification System</div>
+          <div class="pz-body">The notification pipeline fires at booking confirmation and arrival — two bookend events — but is silent during the most anxiety-producing middle period. Users are either notified too much (spam) or too little (silence). There is no contextual, state-triggered communication system.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUSINESS IMPACT ══ -->
+<section class="bi-section">
+  <div class="wrap">
+    <div class="eyebrow r">Business Analysis</div>
+    <h2 class="dh r rd1">This is not just a UX problem.<br>It's a <em>business problem.</em></h2>
+    <p class="r rd2" style="font-size:.95rem;color:var(--ink-50);max-width:560px;margin-top:1rem;line-height:1.85;">Ride tracking anxiety creates measurable, compounding business damage. Each frustrated experience is not isolated — it feeds cancellation rates, support load, and ultimately churn.</p>
+    <div class="bi-grid r">
+      <div class="bi-cell">
+        <div class="bi-icon">❌</div>
+        <div class="bi-title">Cancellation Rates</div>
+        <div class="bi-body">A large proportion of ride cancellations happen during the tracking phase, not before booking. Users who cannot see driver movement cancel and rebook — often with a competitor service.</div>
+        <span class="bi-metric">↑ Cancellations during wait phase</span>
+      </div>
+      <div class="bi-cell">
+        <div class="bi-icon">📉</div>
+        <div class="bi-title">User Retention</div>
+        <div class="bi-body">Trust is built through consistency. Every ETA that jumps unexplainably, every silent wait period, every "where is he?" moment degrades the user's confidence in the platform long-term — accelerating churn.</div>
+        <span class="bi-metric">↓ Long-term retention impact</span>
+      </div>
+      <div class="bi-cell">
+        <div class="bi-icon">📞</div>
+        <div class="bi-title">Customer Support Load</div>
+        <div class="bi-body">Users who can't see what's happening contact support. "My driver isn't moving" complaints are among the most common categories in ride-hailing support queues globally. Each ticket is a direct cost.</div>
+        <span class="bi-metric">↑ Support ticket volume</span>
+      </div>
+      <div class="bi-cell">
+        <div class="bi-icon">⭐</div>
+        <div class="bi-title">App Store Ratings</div>
+        <div class="bi-body">One-star reviews for ride-hailing apps disproportionately reference tracking failures — not pricing, not availability. "I couldn't see where my driver was" drives more negative ratings than almost any other single experience.</div>
+        <span class="bi-metric">↓ Rating impact from tracking UX</span>
+      </div>
+    </div>
+
+    <!-- Trust chain -->
+    <div class="trust-chain r">
+      <div class="tc-node">
+        <div class="tc-circle active">📱</div>
+        <div class="tc-label"><strong>Booking</strong>Trust established</div>
+      </div>
+      <div class="tc-arrow">→</div>
+      <div class="tc-node">
+        <div class="tc-circle active">✅</div>
+        <div class="tc-label"><strong>Matched</strong>Trust holds</div>
+      </div>
+      <div class="tc-arrow">→</div>
+      <div class="tc-node">
+        <div class="tc-circle" style="border-color:rgba(232,64,64,.4);background:rgba(232,64,64,.08)">😟</div>
+        <div class="tc-label" style="color:rgba(255,255,255,.7)"><strong style="color:var(--pm-red)">Waiting</strong>Trust under threat</div>
+      </div>
+      <div class="tc-arrow">→</div>
+      <div class="tc-node">
+        <div class="tc-circle" style="border-color:rgba(232,64,64,.5);background:rgba(232,64,64,.12)">❓</div>
+        <div class="tc-label" style="color:rgba(255,255,255,.7)"><strong style="color:var(--pm-red)">Silence</strong>Trust damaged</div>
+      </div>
+      <div class="tc-arrow">→</div>
+      <div class="tc-node">
+        <div class="tc-circle" style="border-color:rgba(232,64,64,.6);background:rgba(232,64,64,.15)">❌</div>
+        <div class="tc-label" style="color:rgba(255,255,255,.7)"><strong style="color:var(--pm-red)">Cancel</strong>Trust broken</div>
+      </div>
+      <div class="tc-arrow" style="font-size:1.5rem">vs</div>
+      <div class="tc-node">
+        <div class="tc-circle" style="border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.1)">😌</div>
+        <div class="tc-label" style="color:rgba(255,255,255,.7)"><strong style="color:var(--pm-green)">Transparent</strong>Trust rebuilt</div>
+      </div>
+      <div class="tc-arrow">→</div>
+      <div class="tc-node">
+        <div class="tc-circle" style="border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.1)">🏆</div>
+        <div class="tc-label" style="color:rgba(255,255,255,.7)"><strong style="color:var(--pm-green)">Retained</strong>Trust rewarded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTION ══ -->
+<section id="solution">
+  <div class="wrap">
+    <div class="solution-intro">
+      <div class="r">
+        <div class="eyebrow">The Solution</div>
+        <h2 class="dh">Not a redesign.<br>A <em>trust system.</em></h2>
+      </div>
+      <p class="r rd1">The intervention targets the 4-minute anxiety gap with four specific design changes — each grounded in a workflow requirement identified through the BA analysis. The goal is not to make the app look different. It is to make users feel informed, safe, and in control during the most emotionally vulnerable moment of the ride experience.</p>
+    </div>
+
+    <!-- SOLUTION SCREENS -->
+    <div class="screens-area">
+
+      <!-- 01 — Contextual Status System -->
+      <div class="r">
+        <div class="sg-header">
+          <h3 class="sg-title">01 — Contextual Driver Status System</h3>
+          <div class="sg-badges"><span class="sc-badge badge-new">New Feature</span></div>
+        </div>
+        <p style="font-size:.88rem;color:var(--ink-50);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">Instead of a silent dot on a map, users now see a live driver status label — <em>Moving toward you</em>, <em>Stuck in traffic</em>, <em>Parked nearby</em>, <em>Looking for parking</em>. These labels are derived from real movement data already available to the system, surfaced for the first time in the user interface.</p>
+        <div class="screen-block sb-2">
+          <div class="screen-card">
+            <div class="ui-screen">
+              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
+              <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:12px">BEFORE — Driver status</div>
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-bottom:10px">
+                <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,107,43,.15);border:2px solid rgba(255,107,43,.3);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:8px">👨</div>
+                <div style="font-size:.78rem;font-weight:600;color:white">Kasun P.</div>
+                <div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px">Toyota Prius · CBB-7782 · ★ 4.9</div>
+                <div style="margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.3)">[No movement status. Only map dot.]</div>
+              </div>
+              <div style="background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);border-radius:10px;padding:10px;font-size:.78rem;color:rgba(232,64,64,.7)">😟 User cannot tell if driver is moving, parked, or stuck</div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">Current experience</span><span class="sc-badge badge-before">Before</span></div>
+          </div>
+          <div class="screen-card">
+            <div class="ui-screen">
+              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
+              <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:12px">AFTER — Contextual status states</div>
+              <div class="status-states">
+                <div class="ss-row active-state">
+                  <div class="ss-icon orange">🚗</div>
+                  <div class="ss-text"><div class="ss-title">Moving toward you</div><div class="ss-sub">Driver is actively approaching · 1.2 km away</div></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--pm-green);animation:blink 1.5s infinite"></div>
+                </div>
+                <div class="ss-row inactive-state">
+                  <div class="ss-icon yellow">🚦</div>
+                  <div class="ss-text"><div class="ss-title" style="color:rgba(255,255,255,.4)">Stuck in traffic</div><div class="ss-sub" style="color:rgba(255,255,255,.2)">ETA updated automatically</div></div>
+                </div>
+                <div class="ss-row inactive-state">
+                  <div class="ss-icon teal">🅿️</div>
+                  <div class="ss-text"><div class="ss-title" style="color:rgba(255,255,255,.4)">Parked nearby</div><div class="ss-sub" style="color:rgba(255,255,255,.2)">Driver waiting for you</div></div>
+                </div>
+                <div class="ss-row inactive-state">
+                  <div class="ss-icon green">🏁</div>
+                  <div class="ss-text"><div class="ss-title" style="color:rgba(255,255,255,.4)">Arrived</div><div class="ss-sub" style="color:rgba(255,255,255,.2)">Walk to pickup point</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">Redesigned status system</span><span class="sc-badge badge-new">After</span></div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="ann-title">BA Requirement → UX Feature</div>
+          <div class="ann-body">The driver's movement state (moving / stationary / parked) is already computed by the system for routing purposes. The BA insight was that this data existed but was never surfaced to the user. The UX solution required no new backend infrastructure — only a UI layer to communicate existing system state. This is the difference between a redesign and a requirements-informed design intervention.</div>
+        </div>
+      </div>
+
+      <!-- 02 — ETA Confidence Indicator -->
+      <div class="r">
+        <div class="sg-header">
+          <h3 class="sg-title">02 — ETA with Confidence Indicator</h3>
+          <div class="sg-badges"><span class="sc-badge badge-new">New Feature</span></div>
+        </div>
+        <p style="font-size:.88rem;color:var(--ink-50);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">When ETA changes, most users interpret it as the system being unreliable. The redesign adds a confidence band and a contextual explanation — "ETA updated due to traffic on Galle Road" — turning a trust-breaking moment into a trust-building one.</p>
+        <div class="screen-block sb-2">
+          <div class="screen-card">
+            <div class="ui-screen new-track">
+              <div class="new-map-area">
+                <div class="nm-grid"></div>
+                <div class="nm-route-line"></div>
+                <div class="nm-car">🚗</div>
+                <div class="nm-dest">📍</div>
+                <div class="nm-you"></div>
+                <div class="nm-eta-bubble">
+                  <div class="nm-eta-big">4 min</div>
+                  <div class="nm-eta-sub">Estimated arrival</div>
+                </div>
+                <div class="nm-confidence">High confidence</div>
+              </div>
+              <div class="new-bottom">
+                <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:12px;margin-bottom:12px">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <span style="font-family:var(--font-display);font-size:1.8rem;color:white;line-height:1">4 min</span>
+                    <div style="text-align:right">
+                      <div style="font-size:.62rem;font-weight:700;color:var(--pm-green)">HIGH CONFIDENCE</div>
+                      <div style="font-size:.6rem;color:rgba(255,255,255,.35);margin-top:2px">No traffic detected on route</div>
+                    </div>
+                  </div>
+                  <div style="background:rgba(255,255,255,.08);border-radius:4px;height:4px;overflow:hidden">
+                    <div style="background:var(--pm-green);width:80%;height:100%;border-radius:4px"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;margin-top:4px">
+                    <span style="font-size:.6rem;color:rgba(255,255,255,.25)">3 min</span>
+                    <span style="font-size:.6rem;color:rgba(255,255,255,.25)">6 min</span>
+                  </div>
+                </div>
+                <div class="progress-timeline">
+                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
+                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
+                  <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">En Route</div></div>
+                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
+                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">ETA with confidence band</span><span class="sc-badge badge-new">After</span></div>
+          </div>
+          <div class="screen-card">
+            <div class="ui-screen new-track">
+              <div class="new-map-area">
+                <div class="nm-grid"></div>
+                <div class="nm-route-line" style="background:linear-gradient(90deg,var(--pm-yellow),var(--pm-orange))"></div>
+                <div class="nm-car" style="left:38%">🚗</div>
+                <div class="nm-dest">📍</div>
+                <div class="nm-you"></div>
+                <div class="nm-eta-bubble">
+                  <div class="nm-eta-big" style="color:var(--pm-yellow)">8 min</div>
+                  <div class="nm-eta-sub">Updated due to traffic</div>
+                </div>
+                <div class="nm-confidence" style="background:rgba(245,197,24,.12);border-color:rgba(245,197,24,.3);color:var(--pm-yellow)">Traffic delay</div>
+              </div>
+              <div class="new-bottom">
+                <div style="background:rgba(245,197,24,.07);border:1px solid rgba(245,197,24,.2);border-radius:12px;padding:12px;margin-bottom:12px">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--pm-yellow);line-height:1">8 min</span>
+                    <div style="text-align:right">
+                      <div style="font-size:.62rem;font-weight:700;color:var(--pm-yellow)">ETA UPDATED</div>
+                      <div style="font-size:.6rem;color:rgba(255,255,255,.35);margin-top:2px">Traffic on Galle Road</div>
+                    </div>
+                  </div>
+                  <div style="background:rgba(255,255,255,.08);border-radius:4px;height:4px;overflow:hidden">
+                    <div style="background:var(--pm-yellow);width:45%;height:100%;border-radius:4px"></div>
+                  </div>
+                  <div style="margin-top:8px;font-size:.7rem;color:rgba(255,255,255,.45);line-height:1.5">🚦 Your driver encountered heavy traffic near Bambalapitiya junction. ETA adjusted.</div>
+                </div>
+                <div class="progress-timeline">
+                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
+                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
+                  <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">In Traffic</div></div>
+                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
+                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">ETA change with context</span><span class="sc-badge badge-new">After</span></div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="ann-title">Key Insight</div>
+          <div class="ann-body">The ETA number changing is not the problem. Users accept that ETAs change. The problem is the absence of explanation. "8 min" with no context breaks trust. "8 min — traffic on Galle Road" builds it. The same data, communicated with context, transforms a frustrating moment into a transparent one. This is fundamentally a content design problem as much as a UI problem.</div>
+        </div>
+      </div>
+
+      <!-- 03 — Progress Timeline -->
+      <div class="r">
+        <div class="sg-header">
+          <h3 class="sg-title">03 — Ride Progress Timeline</h3>
+          <div class="sg-badges"><span class="sc-badge badge-new">New Feature</span></div>
+        </div>
+        <p style="font-size:.88rem;color:var(--ink-50);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">A persistent 5-step visual progress timeline — Booked → Matched → En Route → Arriving → Here — gives users a mental model of the ride lifecycle. This is the same pattern used by Amazon, Uber Eats, and FedEx to reduce "where is it?" anxiety across different domains.</p>
+        <div class="screen-block sb-3">
+          <div class="screen-card">
+            <div class="ui-screen">
+              <div class="status-bar"><span class="sb-time">9:12 AM</span><span class="sb-icons">▲ ● ●</span></div>
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px">PHASE: MATCHED</div>
+              <div class="driver-status-card">
+                <div class="dsc-av">👨</div>
+                <div class="dsc-info">
+                  <div class="dsc-name">Kasun P.</div>
+                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
+                  <div class="dsc-status"><div class="dsc-status-dot"></div><div class="dsc-status-text">Starting route</div></div>
+                </div>
+                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
+              </div>
+              <div class="progress-timeline" style="margin-bottom:16px">
+                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
+                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">Matched</div></div>
+                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">En Route</div></div>
+                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
+                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
+              </div>
+              <div style="background:rgba(10,179,168,.08);border:1px solid rgba(10,179,168,.2);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(10,179,168,.8)">✓ Kasun has accepted your ride and is preparing to start.</div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">Phase: Matched</span><span class="sc-badge badge-new">After</span></div>
+          </div>
+          <div class="screen-card">
+            <div class="ui-screen">
+              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px">PHASE: EN ROUTE</div>
+              <div class="driver-status-card">
+                <div class="dsc-av">👨</div>
+                <div class="dsc-info">
+                  <div class="dsc-name">Kasun P.</div>
+                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
+                  <div class="dsc-status"><div class="dsc-status-dot"></div><div class="dsc-status-text">Moving toward you — 1.2 km</div></div>
+                </div>
+                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
+              </div>
+              <div class="progress-timeline" style="margin-bottom:16px">
+                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
+                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
+                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">En Route</div></div>
+                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
+                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
+              </div>
+              <div style="background:rgba(255,107,43,.08);border:1px solid var(--pm-orange-border);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(255,107,43,.8)">🚗 Kasun is 4 minutes away and moving toward your location.</div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">Phase: En Route</span><span class="sc-badge badge-new">After</span></div>
+          </div>
+          <div class="screen-card">
+            <div class="ui-screen">
+              <div class="status-bar"><span class="sb-time">9:18 AM</span><span class="sb-icons">▲ ● ●</span></div>
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px">PHASE: ARRIVING</div>
+              <div class="driver-status-card" style="border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.06)">
+                <div class="dsc-av" style="background:linear-gradient(135deg,#22C55E,#16a34a)">👨</div>
+                <div class="dsc-info">
+                  <div class="dsc-name">Kasun P.</div>
+                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
+                  <div class="dsc-status"><div class="dsc-status-dot" style="background:var(--pm-green)"></div><div class="dsc-status-text">Almost there — 200m</div></div>
+                </div>
+                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
+              </div>
+              <div class="progress-timeline" style="margin-bottom:16px">
+                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
+                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
+                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">En Route</div></div>
+                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">Arriving</div></div>
+                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
+              </div>
+              <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(34,197,94,.9)">✓ Kasun is almost here! Head to your pickup point at Liberty Plaza entrance.</div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">Phase: Arriving</span><span class="sc-badge badge-new">After</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 — Notification System -->
+      <div class="r">
+        <div class="sg-header">
+          <h3 class="sg-title">04 — Contextual Notification System</h3>
+          <div class="sg-badges"><span class="sc-badge badge-new">Redesigned</span></div>
+        </div>
+        <p style="font-size:.88rem;color:var(--ink-50);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">Replace generic, spammy push notifications with a state-triggered, contextual notification system. Each notification fires at a meaningful moment and says something useful — not just "Your driver is on the way" for the fourth time.</p>
+        <div class="screen-block sb-2">
+          <div class="screen-card">
+            <div class="ui-screen">
+              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,107,43,.4);margin-bottom:10px">BEFORE — Generic notifications</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(255,255,255,.5)">🔔 Your driver is on the way. <span style="color:rgba(255,255,255,.25);font-size:.65rem">9:10</span></div>
+                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(255,255,255,.5)">🔔 Your driver is on the way. <span style="color:rgba(255,255,255,.25);font-size:.65rem">9:11</span></div>
+                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(255,255,255,.5)">🔔 Your driver is on the way. <span style="color:rgba(255,255,255,.25);font-size:.65rem">9:12</span></div>
+                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(255,255,255,.5)">🔔 Your driver is on the way. <span style="color:rgba(255,255,255,.25);font-size:.65rem">9:14</span></div>
+              </div>
+              <div style="margin-top:10px;background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(232,64,64,.7)">😤 4 identical notifications. No useful information.</div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">Current notification system</span><span class="sc-badge badge-before">Before</span></div>
+          </div>
+          <div class="screen-card">
+            <div class="ui-screen">
+              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(34,197,94,.5);margin-bottom:10px">AFTER — Contextual notifications</div>
+              <div class="notif-stream" style="padding:0;gap:8px;display:flex;flex-direction:column">
+                <div class="notif-item important">
+                  <div class="notif-icon-wrap ni-orange">🚗</div>
+                  <div class="notif-body"><div class="notif-title">Kasun is moving toward you</div><div class="notif-sub">1.4 km away · ETA 4 min · High confidence</div></div>
+                  <div class="notif-time">9:10</div>
+                </div>
+                <div class="notif-item">
+                  <div class="notif-icon-wrap" style="background:rgba(245,197,24,.12)">🚦</div>
+                  <div class="notif-body"><div class="notif-title">ETA updated to 7 min</div><div class="notif-sub">Traffic on Galle Road — route unchanged</div></div>
+                  <div class="notif-time">9:12</div>
+                </div>
+                <div class="notif-item">
+                  <div class="notif-icon-wrap ni-teal">📍</div>
+                  <div class="notif-body"><div class="notif-title">Kasun is 2 minutes away</div><div class="notif-sub">Head to Liberty Plaza main entrance</div></div>
+                  <div class="notif-time">9:16</div>
+                </div>
+                <div class="notif-item">
+                  <div class="notif-icon-wrap ni-green">✓</div>
+                  <div class="notif-body"><div class="notif-title">Your driver has arrived</div><div class="notif-sub">Look for CBB-7782 Toyota Prius</div></div>
+                  <div class="notif-time">9:18</div>
+                </div>
+              </div>
+            </div>
+            <div class="sc-footer"><span class="sc-footer-name">Redesigned notification system</span><span class="sc-badge badge-new">After</span></div>
+          </div>
+        </div>
+        <div class="annotation">
+          <div class="ann-title">State-triggered notification logic</div>
+          <div class="ann-body">Each notification fires on a unique system state transition — accepted → en route, traffic detected, 2km threshold crossed, arrival confirmed. No duplicates. Each notification communicates one piece of new information and a clear action where relevant. Four useful notifications replace four identical useless ones — same number, infinitely more value.</div>
+        </div>
+      </div>
+
+    </div><!-- end screens-area -->
+  </div>
+</section>
+
+<!-- ══ BEFORE/AFTER COMPARE ══ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow r">Before vs After</div>
+    <h2 class="dh r rd1">What changed and <em>why it matters</em></h2>
+    <div class="compare-strip r">
+      <div class="cs-col before">
+        <h4>Before</h4>
+        <div class="cs-item">Silent dot on a map, no movement status</div>
+        <div class="cs-item">ETA changes without explanation</div>
+        <div class="cs-item">Generic repeated push notifications</div>
+        <div class="cs-item">No ride lifecycle visibility</div>
+        <div class="cs-item">Only option during delay: call driver</div>
+        <div class="cs-item">User left to interpret system state alone</div>
+      </div>
+      <div class="cs-vs">vs</div>
+      <div class="cs-col after">
+        <h4>After</h4>
+        <div class="cs-item">Live contextual status labels (Moving, Parked, In Traffic)</div>
+        <div class="cs-item">ETA with confidence band and contextual reason</div>
+        <div class="cs-item">State-triggered notifications — unique, useful, non-repetitive</div>
+        <div class="cs-item">5-step progress timeline with phase context</div>
+        <div class="cs-item">Proactive status updates remove need to call</div>
+        <div class="cs-item">System communicates its own state, removing ambiguity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESIGN DECISIONS ══ -->
+<section id="decisions" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="eyebrow r">Design Decisions</div>
+    <h2 class="dh r rd1">Every decision<br>had a <em>requirement behind it</em></h2>
+    <div class="dec-grid">
+      <div class="dec-card r">
+        <div class="dec-icon">🔍</div>
+        <div class="dec-title">Surface existing data, don't create new data</div>
+        <div class="dec-body">Every piece of information shown in the redesign — driver movement state, traffic conditions, distance — already exists in the system. The BA insight was that the problem was not a data problem but a communication problem. No new backend work required for the core features.</div>
+        <div class="dec-result">Maximum impact with minimum technical debt — a key requirement in any real product decision</div>
+      </div>
+      <div class="dec-card r rd1">
+        <div class="dec-icon">📊</div>
+        <div class="dec-title">ETA range over false precision</div>
+        <div class="dec-body">Showing "4 min" implies certainty. Showing "3–6 min" is honest. The confidence band communicates that ETAs are estimates affected by real-world variables — setting accurate expectations prevents the perceived unreliability that comes from a single number changing.</div>
+        <div class="dec-result">Honest uncertainty is more trustworthy than false precision — a fundamental content design principle</div>
+      </div>
+      <div class="dec-card r rd2">
+        <div class="dec-icon">🧭</div>
+        <div class="dec-title">Mental models reduce anxiety</div>
+        <div class="dec-body">The 5-step progress timeline (Booked → Matched → En Route → Arriving → Here) gives users a mental framework for the ride lifecycle. When users know what comes next, the current state feels less uncertain. This pattern is proven across delivery, travel, and logistics UX.</div>
+        <div class="dec-result">Predictable progression reduces anxiety more than speed improvements — users tolerate delays better when they understand the system</div>
+      </div>
+      <div class="dec-card r rd3">
+        <div class="dec-icon">🔔</div>
+        <div class="dec-title">Fewer, better notifications over more, generic ones</div>
+        <div class="dec-body">Notification fatigue kills trust as much as silence does. Each notification in the redesign fires once per state transition and says something new. The goal is that every notification a user receives makes them feel more informed, not more annoyed.</div>
+        <div class="dec-result">Quality over quantity — a notification that says nothing new trains users to ignore all notifications</div>
+      </div>
+      <div class="dec-card r">
+        <div class="dec-icon">🛡️</div>
+        <div class="dec-title">Safety as a first-class feature, not a footnote</div>
+        <div class="dec-body">For late-night users like Priya, the tracking screen is a safety interface. Driver name, plate number, movement status, and location are not nice-to-haves — they are safety requirements. The redesign surfaces all identity and movement data prominently, not buried in a submenu.</div>
+        <div class="dec-result">Safety-critical information should be on the primary screen, always visible, never require a tap to access</div>
+      </div>
+      <div class="dec-card r rd1">
+        <div class="dec-icon">🎯</div>
+        <div class="dec-title">Targeted intervention over full redesign</div>
+        <div class="dec-body">The entire case study solves one screen, one workflow, one emotional moment. This is intentional — product teams at top companies value designers who can identify and solve a specific, high-impact problem over designers who redesign entire apps without evidence of need.</div>
+        <div class="dec-result">Focused scope demonstrates product thinking — the ability to prioritise what actually needs solving</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OUTCOMES ══ -->
+<section class="outcomes-bg" id="outcomes">
+  <div class="wrap">
+    <div class="eyebrow r">Expected Outcomes</div>
+    <h2 class="dh r rd1">What this redesign<br><em>would deliver</em></h2>
+    <p class="outcomes-intro r rd2">Based on industry benchmarks from comparable ride-hailing and delivery platform UX improvements, these are the expected outcomes of implementing the trust redesign.</p>
+    <div class="oc-grid r">
+      <div class="oc-cell"><span class="oc-emoji">📉</span><div class="oc-title">Reduced Cancellations</div><div class="oc-body">By eliminating the "invisible driver" experience, users who cancel due to uncertainty — not genuine dissatisfaction — are significantly retained. Each cancellation prevented is a direct revenue recovery.</div></div>
+      <div class="oc-cell"><span class="oc-emoji">😌</span><div class="oc-title">Lower Rider Anxiety</div><div class="oc-body">Users who understand what is happening feel in control. Control reduces anxiety. Reduced anxiety correlates directly with higher post-ride satisfaction ratings, even when delays occur.</div></div>
+      <div class="oc-cell"><span class="oc-emoji">📞</span><div class="oc-title">Fewer Support Contacts</div><div class="oc-body">Proactive status communication addresses the most common support query — "Where is my driver?" — before users need to ask. This directly reduces support ticket volume and cost.</div></div>
+      <div class="oc-cell"><span class="oc-emoji">⭐</span><div class="oc-title">Higher App Store Rating</div><div class="oc-body">Tracking-related frustrations are the most common source of 1-star reviews in ride-hailing. Resolving the tracking experience has an outsized effect on app store rating relative to the engineering effort required.</div></div>
+      <div class="oc-cell"><span class="oc-emoji">🔄</span><div class="oc-title">Improved Retention</div><div class="oc-body">Trust is cumulative. Each ride that ends with a user feeling informed and safe adds to their overall trust in the platform. Over time, this trust advantage compounds into long-term retention.</div></div>
+      <div class="oc-cell"><span class="oc-emoji">🌙</span><div class="oc-title">Safer Late-Night Experience</div><div class="oc-body">For women and vulnerable users travelling late at night, real-time driver status and visible identity information is a genuine safety improvement — not a UX nicety. This expands the user base and improves social trust.</div></div>
+    </div>
+    <div class="metric-strip r">
+      <div class="ms-cell"><div class="ms-num">↓35%</div><div class="ms-label">Expected reduction in tracking-phase cancellations*</div></div>
+      <div class="ms-cell"><div class="ms-num">↓28%</div><div class="ms-label">Support tickets related to driver location queries*</div></div>
+      <div class="ms-cell"><div class="ms-num">↑0.4★</div><div class="ms-label">App store rating improvement from tracking UX fixes*</div></div>
+      <div class="ms-cell"><div class="ms-num">↑18%</div><div class="ms-label">Repeat ride rate among users who experienced delays*</div></div>
+    </div>
+    <p style="font-size:.68rem;color:rgba(255,255,255,.25);margin-top:1rem;line-height:1.6;">* Projected figures based on industry benchmarks from comparable platform UX interventions. This is a conceptual case study; figures are illustrative.</p>
+  </div>
+</section>
+
+<!-- ══ LEARNINGS ══ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow r">Key Learnings</div>
+    <h2 class="dh r rd1">What this project<br><em>proved</em></h2>
+    <div class="learn-grid">
+      <div class="learn-card r">
+        <div class="learn-n">01</div>
+        <div class="learn-title">Trust is a UX problem, not a technical one</div>
+        <div class="learn-body">The data to rebuild trust already existed in PickMe's systems. The failure was entirely in how that data was communicated to users — or not communicated at all. Trust issues in digital products are almost always information architecture problems in disguise.</div>
+      </div>
+      <div class="learn-card r rd1">
+        <div class="learn-n">02</div>
+        <div class="learn-title">Transparent uncertainty beats false precision</div>
+        <div class="learn-body">Users do not need certainty. They need honesty. An ETA with a range and a reason is infinitely more trustworthy than a precise ETA that changes without explanation. Designing for honest uncertainty is a higher-order UX skill than designing for optimistic precision.</div>
+      </div>
+      <div class="learn-card r rd2">
+        <div class="learn-n">03</div>
+        <div class="learn-title">Focused scope is a product thinking signal</div>
+        <div class="learn-body">The deliberate decision to redesign one workflow rather than the whole app demonstrates product maturity. The best product designers know what not to redesign as clearly as they know what to fix. Scope discipline is itself a design skill.</div>
+      </div>
+      <div class="learn-card r">
+        <div class="learn-n">04</div>
+        <div class="learn-title">BA analysis surfaces the real problem</div>
+        <div class="learn-body">Without the workflow analysis and business impact mapping, this case study would have been a visual redesign of a tracking screen. The BA layer is what revealed that the root cause was not visual design but information transparency — a fundamentally different problem with a fundamentally different solution.</div>
+      </div>
+      <div class="learn-card r rd1">
+        <div class="learn-n">05</div>
+        <div class="learn-title">Waiting is an emotional experience, not a neutral one</div>
+        <div class="learn-body">The 4 minutes between driver acceptance and arrival are not empty time — they are a high-stakes emotional experience. Users are anxious, measuring, and forming judgements about the platform's reliability. Designing for waiting requires designing for emotion, not just efficiency.</div>
+      </div>
+      <div class="learn-card r rd2">
+        <div class="learn-n">06</div>
+        <div class="learn-title">Mental models are UX infrastructure</div>
+        <div class="learn-body">Giving users a mental model of how a system works — through journey timelines, status labels, and contextual notifications — reduces cognitive load more effectively than interface simplification alone. When users understand a system, complexity stops feeling complicated.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEXT ══ -->
+<div class="next-bar">
+  <div class="wrap next-inner">
+    <a href="/case/rose-by-basicare" target="_parent" class="next-prev-link">
+      <div class="next-label">Previous Case Study</div>
+      <div class="next-title">Rose by <em>Basicare</em></div>
+    </a>
+    <a href="/#projects" target="_parent" class="next-btn">View all work →</a>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-name">Srigayaththri Tharmasoruban</div>
+    <div class="footer-sub">UI/UX Designer & Business Analyst · Colombo, Sri Lanka</div>
+  </div>
+  <div class="footer-r">Case Study 02 of 02 · © 2025</div>
+</footer>
+
+<script>
+// Reveal
+const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)} }), {threshold:.07});
+document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+// Progress + nav + back to top
+const prog = document.getElementById('prog');
+const btn = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY, h = document.body.scrollHeight - window.innerHeight;
+  prog.style.width = (s/h*100) + '%';
+  btn.classList.toggle('show', s > 600);
+});
+</script>
+</body>
+</html>
