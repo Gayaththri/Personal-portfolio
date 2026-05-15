@@ -190,38 +190,37 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(79, 70, 229,0.08); }
 
 .hero-right {
   display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(145deg, rgba(79, 70, 229, 0.09) 0%, rgba(99, 102, 241, 0.05) 50%, var(--bg) 100%);
-  position: relative; overflow: hidden;
+  background: transparent;
+  position: relative; overflow: visible;
   animation: fadeIn 1s 0.2s both;
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.hero-right-bg-circle {
-  position: absolute; border-radius: 50%;
-  background: radial-gradient(circle, rgba(79, 70, 229, 0.14), transparent 70%);
-  width: 700px; height: 700px; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  animation: breathe 6s ease-in-out infinite;
-}
-@keyframes breathe {
-  0%,100% { transform: translate(-50%,-50%) scale(1); }
-  50% { transform: translate(-50%,-50%) scale(1.08); }
-}
-.phone-stack {
+.hero-shots {
   position: relative; z-index: 2;
-  display: flex; align-items: flex-end; gap: -20px;
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: 0;
+  padding: 0 1rem;
 }
-.phone {
-  border-radius: 28px; overflow: hidden;
-  box-shadow: 0 32px 64px rgba(15, 23, 42, 0.14), 0 0 0 6px rgba(255,255,255,0.65);
-  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+.hero-shot {
+  display: block;
+  width: auto;
+  max-width: min(220px, 42vw);
+  height: auto;
+  border-radius: 12px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
 }
-.phone:hover { transform: translateY(-8px) scale(1.02); }
-.phone-main { width: 200px; }
-.phone-sub {
-  width: 160px; margin-left: -30px; margin-bottom: 20px;
-  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.1), 0 0 0 6px rgba(255,255,255,0.65);
+.hero-shot--back {
+  max-width: min(168px, 34vw);
+  margin-right: -2.5rem;
+  margin-bottom: 1.25rem;
+  opacity: 0.92;
 }
-.phone img { width: 100%; display: block; }
+.hero-shot--front {
+  position: relative;
+  z-index: 1;
+}
 
 /* ─── CONTENT WRAPPER ─── */
 .wrap { max-width: min(var(--max), 100%); margin: 0 auto; padding: 0 var(--section-pad-x); }
@@ -643,6 +642,17 @@ footer {
   .hero-right {
     padding-bottom: 1.5rem;
   }
+  .hero-shots {
+    padding: 0.5rem 0 0;
+  }
+  .hero-shot {
+    max-width: min(200px, 46vw);
+  }
+  .hero-shot--back {
+    max-width: min(150px, 38vw);
+    margin-right: -1.75rem;
+    margin-bottom: 0.75rem;
+  }
   .hero-meta {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -709,14 +719,9 @@ footer {
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-right-bg-circle"></div>
-    <div class="phone-stack">
-      <div class="phone phone-sub">
-        <img src="/case-studies/rose-assets/My_Bag.png" alt="Cart screen" onerror="this.style.background='#e0e7ff';this.style.height='320px'">
-      </div>
-      <div class="phone phone-main">
-        <img src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#c7d2fe';this.style.height='420px'">
-      </div>
+    <div class="hero-shots">
+      <img class="hero-shot hero-shot--back" src="/case-studies/rose-assets/My_Bag.png" alt="Cart screen" onerror="this.style.background='#e0e7ff';this.style.height='320px'">
+      <img class="hero-shot hero-shot--front" src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#c7d2fe';this.style.height='420px'">
     </div>
   </div>
 </section>
