@@ -1,0 +1,79 @@
+/* Shared tokens — matches src/index.css (slate navy, no purple) */
+:root {
+  --bg: #f8f9fc;
+  --bg-elevated: #ffffff;
+  --text: #0f172a;
+  --text-dark-hover: #1e293b;
+  --text-muted: #475569;
+  --text-soft: #64748b;
+  --border: rgba(15, 23, 42, 0.08);
+  --accent: #0f172a;
+  --accent-2: #334155;
+  --accent-light: #64748b;
+  --accent-hover: #1e293b;
+  --accent-tint: rgba(15, 23, 42, 0.06);
+  --accent-tint-md: rgba(15, 23, 42, 0.1);
+  --accent-tint-strong: rgba(15, 23, 42, 0.12);
+  --accent-border: rgba(15, 23, 42, 0.15);
+  --accent-border-strong: rgba(15, 23, 42, 0.22);
+  --shadow-neutral: rgba(15, 23, 42, 0.12);
+  --shadow-neutral-md: rgba(15, 23, 42, 0.18);
+  --gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #334155 100%);
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+
+  /* Rose by Basicare aliases */
+  --rose: var(--accent);
+  --rose-lt: var(--accent-light);
+  --blush: #94a3b8;
+  --petal: var(--accent-tint);
+  --cream: var(--bg);
+  --ink: var(--text);
+  --ink-60: rgba(71, 85, 105, 0.92);
+  --ink-30: rgba(15, 23, 42, 0.28);
+  --ink-10: rgba(15, 23, 42, 0.07);
+  --white: var(--bg-elevated);
+  --font-display: var(--font-serif);
+  --font-ui: var(--font-sans);
+  --font-body: var(--font-sans);
+
+  /* PickMe aliases */
+  --pm-orange: var(--accent);
+  --pm-orange-lt: var(--accent-light);
+  --pm-orange-bg: var(--accent-tint);
+  --pm-orange-border: var(--accent-border);
+  --pm-teal: var(--accent-2);
+  --pm-teal-bg: rgba(51, 65, 85, 0.08);
+  --surface: var(--bg);
+  --ink-80: rgba(15, 23, 42, 0.8);
+  --ink-50: rgba(15, 23, 42, 0.5);
+  --ink-20: rgba(15, 23, 42, 0.2);
+}
+
+/* Embedded in portfolio iframe — parent renders TopNav */
+#mainNav,
+#nav {
+  display: none !important;
+}
+
+/* Scroll-to-top — matches portfolio dark buttons */
+.back-top,
+#backTop {
+  background: var(--text) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28) !important;
+}
+.back-top:hover,
+#backTop:hover {
+  background: var(--text-dark-hover) !important;
+}
+
+/* Case study nav CTA — dark pill like portfolio resume */
+.nav-cta {
+  background: var(--text) !important;
+  color: #fff !important;
+}
+.nav-cta:hover {
+  background: var(--text-dark-hover) !important;
+  color: #fff !important;
+}

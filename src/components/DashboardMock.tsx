@@ -43,12 +43,12 @@ export function DashboardMock() {
           <svg viewBox="0 0 320 120" className="dash__svg" aria-hidden>
             <defs>
               <linearGradient id={fillId} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="rgba(79,70,229,0.35)" />
-                <stop offset="100%" stopColor="rgba(79,70,229,0)" />
+                <stop offset="0%" stopColor="rgba(15,23,42,0.35)" />
+                <stop offset="100%" stopColor="rgba(15,23,42,0)" />
               </linearGradient>
               <linearGradient id={strokeId} x1="0" y1="0" x2="1" y2="0">
-                <stop stopColor="#4f46e5" />
-                <stop offset="1" stopColor="#7c3aed" />
+                <stop stopColor="#0f172a" />
+                <stop offset="1" stopColor="#334155" />
               </linearGradient>
             </defs>
             <path
@@ -147,7 +147,7 @@ export function DashboardMock() {
           color: #059669;
         }
         .dash__kpi-delta--down {
-          color: #4f46e5;
+          color: #0f172a;
         }
         .dash__kpi-delta--flat {
           color: var(--text-soft);
@@ -176,8 +176,8 @@ export function DashboardMock() {
           font-size: 10px;
           padding: 2px 8px;
           border-radius: 999px;
-          background: rgba(79, 70, 229, 0.08);
-          color: #4338ca;
+          background: rgba(15, 23, 42, 0.06);
+          color: #0f172a;
         }
       `}</style>
     </motion.div>

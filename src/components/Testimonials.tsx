@@ -274,12 +274,7 @@ export function Testimonials() {
           width: 100%;
         }
         .tsay__head {
-          text-align: center;
-          max-width: 36rem;
-          margin-inline: auto;
-        }
-        .tsay__head .section-head__eyebrow::before {
-          display: none;
+          text-align: left;
         }
         .tsay__grid {
           display: grid;

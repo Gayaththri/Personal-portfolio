@@ -7,14 +7,21 @@
   --border: rgba(15, 23, 42, 0.08);
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
   --shadow-md: 0 12px 40px -24px rgba(15, 23, 42, 0.35);
-  --shadow-lg: 0 24px 80px -32px rgba(79, 70, 229, 0.35);
+  --shadow-lg: 0 24px 80px -32px rgba(15, 23, 42, 0.2);
   --radius: 16px;
   --radius-sm: 12px;
-  --accent: #4f46e5;
+  --accent: #0f172a;
   /** Alias for interactive UI (e.g. custom cursor hover) */
   --color-primary: var(--accent);
-  --accent-2: #7c3aed;
-  --gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #6366f1 100%);
+  --accent-2: #334155;
+  --accent-light: #64748b;
+  --accent-hover: #1e293b;
+  --accent-tint: rgba(15, 23, 42, 0.06);
+  --accent-tint-md: rgba(15, 23, 42, 0.1);
+  --accent-tint-strong: rgba(15, 23, 42, 0.12);
+  --accent-border: rgba(15, 23, 42, 0.15);
+  --accent-border-strong: rgba(15, 23, 42, 0.22);
+  --gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #334155 100%);
   --glass: rgba(255, 255, 255, 0.72);
   --glass-border: rgba(255, 255, 255, 0.55);
   --max: 1120px;
@@ -209,7 +216,7 @@ video {
   color: var(--text);
 }
 .topnav__link:focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -237,7 +244,7 @@ video {
   background: rgba(15, 23, 42, 0.06);
 }
 .topnav__icon:focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 .topnav__resume {
@@ -263,11 +270,11 @@ video {
   box-shadow: 0 6px 18px -8px rgba(15, 23, 42, 0.35);
 }
 .topnav__resume:focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 .topnav__brand:focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 12px;
 }
@@ -496,7 +503,7 @@ main [role="region"][id] {
 }
 
 .btn--ghost:hover {
-  border-color: rgba(79, 70, 229, 0.25);
+  border-color: var(--accent-border-strong);
   box-shadow: var(--shadow-sm);
 }
 
@@ -556,8 +563,8 @@ main [role="region"][id] {
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 999px;
-  background: rgba(79, 70, 229, 0.08);
-  color: #4338ca;
+  background: var(--accent-tint);
+  color: var(--accent);
 }
 
 .list-check {
@@ -652,11 +659,11 @@ main [role="region"][id] {
 }
 
 .wf-svg .wf-t--accent {
-  fill: #4338ca;
+  fill: #334155;
 }
 
 .wf-svg .wf-t--accent-deep {
-  fill: #5b21b6;
+  fill: #0f172a;
 }
 
 .wf-svg .wf-s {
