@@ -1,5 +1,6 @@
 import { useCaseStudyEffects } from "./useCaseStudyEffects";
 import "./case-theme.css";
+import "./case-study-responsive.css";
 
 type EmbeddedCaseStudyProps = {
   bodyHtml: string;
