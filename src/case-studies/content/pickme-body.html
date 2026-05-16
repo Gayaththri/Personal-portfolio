@@ -22,14 +22,47 @@
   <div class="hero-right">
     <div class="hero-phone-wrap">
       <div class="phone-mockup">
-        <img
-          src="/case-studies/pickme-assets/hero-tracking.png"
-          alt="PickMe ride tracking screen — driver ETA, map, and trip status"
-          width="280"
-          height="560"
-          loading="eager"
-          decoding="async"
-        />
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-mockup-inner">
+          <div class="track-screen">
+            <div class="track-map">
+              <div class="map-grid"></div>
+              <div class="map-road-h" style="top:40%;left:0;right:0"></div>
+              <div class="map-road-h" style="top:65%;left:0;right:0"></div>
+              <div class="map-road-v" style="left:30%;top:0;bottom:0"></div>
+              <div class="map-road-v" style="left:65%;top:0;bottom:0"></div>
+              <div class="map-route" style="top:calc(40% - 1.5px);left:15%;width:55%"></div>
+              <div class="map-car" style="top:calc(40% - 14px);left:50%">🚗</div>
+              <div class="map-dest" style="top:calc(40% - 12px);left:68%">📍</div>
+              <div class="map-you" style="top:calc(40% - 10px);left:13%"></div>
+            </div>
+            <div class="track-info">
+              <div class="track-eta-row">
+                <div><div class="track-eta-big">4 min</div><div class="track-eta-label">Estimated arrival</div></div>
+                <div class="track-status-pill">Moving</div>
+              </div>
+              <div class="track-driver-row">
+                <div class="driver-avatar">👨</div>
+                <div class="driver-info">
+                  <div class="driver-name">Kasun P.</div>
+                  <div class="driver-sub">Toyota Prius · CBB-7782</div>
+                </div>
+                <div class="driver-rating">★ 4.9</div>
+              </div>
+              <div class="track-steps">
+                <div class="step-dot done"></div>
+                <div class="step-dot done"></div>
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+              </div>
+              <div class="track-actions">
+                <button type="button" class="ta-btn primary">📞 Call Driver</button>
+                <button type="button" class="ta-btn secondary">✕ Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

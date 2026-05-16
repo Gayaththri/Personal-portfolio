@@ -168,6 +168,19 @@ export function CaseStudyPage() {
           .case-study-content section {
             scroll-margin-top: calc(var(--topnav-stack) + 3rem);
           }
+          @media (max-width: 768px) {
+            .case-page__embed-bar {
+              position: sticky;
+              top: var(--topnav-stack);
+              z-index: 50;
+            }
+            .case-study-content > section.hero:first-child {
+              padding-top: 0.5rem;
+            }
+            .case-study-content section {
+              scroll-margin-top: calc(var(--topnav-stack) + 2.75rem);
+            }
+          }
           @media (max-width: 640px) {
             .case-page__embed-bar-inner {
               height: auto;

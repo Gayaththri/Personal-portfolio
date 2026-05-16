@@ -71,7 +71,7 @@
 
 .case-study-content.case-study--pickme .hero-left {
   display:flex;flex-direction:column;justify-content:center;
-  background:var(--accent);
+  background:var(--pm-primary);
   position:relative;overflow:hidden;
 }
 
@@ -103,7 +103,7 @@
   animation:titleIn .8s .1s cubic-bezier(.16,1,.3,1) both;
 }
 
-.case-study-content.case-study--pickme .hero-title em {font-style:italic;color:var(--pm-orange)}
+.case-study-content.case-study--pickme .hero-title em {font-style:italic;color:color-mix(in srgb, var(--bg-elevated) 92%, var(--pm-yellow))}
 
 @keyframes titleIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
@@ -122,9 +122,9 @@
 
 .case-study-content.case-study--pickme .hm-cell {padding:1.2rem 1.4rem}
 
-.case-study-content.case-study--pickme .hm-cell label {display:block;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pm-orange);margin-bottom:.25rem}
+.case-study-content.case-study--pickme .hero-left .hm-cell label {display:block;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pm-primary);margin-bottom:.25rem}
 
-.case-study-content.case-study--pickme .hm-cell span {font-size:.88rem;color:color-mix(in srgb, var(--bg-elevated) 80%, transparent)}
+.case-study-content.case-study--pickme .hero-left .hm-cell span {font-size:.88rem;color:var(--text-muted)}
 
 .case-study-content.case-study--pickme .hero-right {
   display:flex;align-items:center;justify-content:center;
@@ -139,21 +139,258 @@
 .case-study-content.case-study--pickme .phone-mockup {
   width: 280px;
   height: 560px;
-  background: var(--pm-surface);
+  background: var(--bg-elevated);
   border-radius: 44px;
-  border: 8px solid var(--pm-card);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+  border: 8px solid color-mix(in srgb, var(--text) 12%, transparent);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
 }
 
-.case-study-content.case-study--pickme .phone-mockup img {
-  display: block;
-  width: 100%;
+.case-study-content.case-study--pickme .phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 26px;
+  background: var(--bg-elevated);
+  border-radius: 0 0 16px 16px;
+  z-index: 10;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+.case-study-content.case-study--pickme .phone-mockup-inner {
   height: 100%;
-  object-fit: cover;
-  object-position: top;
+  background: var(--bg-elevated);
+}
+
+.case-study-content.case-study--pickme .track-screen {
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: var(--bg-elevated);
+}
+
+.case-study-content.case-study--pickme .track-map {
+  height: 220px;
+  background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.case-study-content.case-study--pickme .map-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--text) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--text) 6%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.case-study-content.case-study--pickme .map-road-h {
+  position: absolute;
+  height: 3px;
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: 2px;
+}
+
+.case-study-content.case-study--pickme .map-road-v {
+  position: absolute;
+  width: 3px;
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: 2px;
+}
+
+.case-study-content.case-study--pickme .map-route {
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pm-primary), var(--pm-green));
+  border-radius: 2px;
+  animation: routePulse 2s ease-in-out infinite;
+}
+
+@keyframes routePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.case-study-content.case-study--pickme .map-car {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background: var(--pm-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: 0 0 0 6px var(--pm-primary-soft);
+  animation: carMove 3s ease-in-out infinite alternate;
+}
+
+@keyframes carMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(12px); }
+}
+
+.case-study-content.case-study--pickme .map-dest {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: var(--pm-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  box-shadow: 0 0 0 6px var(--pm-green-soft);
+}
+
+.case-study-content.case-study--pickme .map-you {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--pm-yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--pm-yellow-soft);
+}
+
+.case-study-content.case-study--pickme .track-info {
+  padding: 16px;
+  background: var(--bg-elevated);
+}
+
+.case-study-content.case-study--pickme .track-eta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.case-study-content.case-study--pickme .track-eta-big {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1;
+}
+
+.case-study-content.case-study--pickme .track-eta-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.case-study-content.case-study--pickme .track-status-pill {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  background: var(--pm-green-soft);
+  color: var(--pm-green);
+  border: 1px solid var(--pm-green-border);
+}
+
+.case-study-content.case-study--pickme .track-driver-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.case-study-content.case-study--pickme .driver-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pm-primary), color-mix(in srgb, var(--pm-primary) 65%, var(--pm-yellow)));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.case-study-content.case-study--pickme .driver-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.case-study-content.case-study--pickme .driver-sub {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.case-study-content.case-study--pickme .driver-rating {
+  font-size: 0.72rem;
+  color: var(--pm-yellow);
+  font-weight: 600;
+}
+
+.case-study-content.case-study--pickme .track-steps {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.case-study-content.case-study--pickme .step-dot {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--text) 12%, transparent);
+  transition: background 0.3s;
+}
+
+.case-study-content.case-study--pickme .step-dot.done {
+  background: var(--pm-primary);
+}
+
+.case-study-content.case-study--pickme .step-dot.active {
+  background: var(--pm-green);
+  animation: stepPulse 1.5s infinite;
+}
+
+@keyframes stepPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.case-study-content.case-study--pickme .track-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.case-study-content.case-study--pickme .ta-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: default;
+}
+
+.case-study-content.case-study--pickme .ta-btn.primary {
+  background: var(--pm-primary);
+  color: var(--bg-elevated);
+}
+
+.case-study-content.case-study--pickme .ta-btn.secondary {
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
 }
 
 .case-study-content.case-study--pickme .r {opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
@@ -172,7 +409,10 @@
 
 .case-study-content.case-study--pickme .ov-grid {display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:start}
 
-.case-study-content.case-study--pickme .ov-body {font-size:.97rem;color:var(--text-muted);line-height:1.9;margin-top:1.6rem}
+.case-study-content.case-study--pickme .ov-body {
+  font-size:.97rem;color:var(--text-muted);line-height:1.9;margin-top:1.6rem;
+  text-align:justify;text-justify:inter-word;
+}
 
 .case-study-content.case-study--pickme .ov-body+.ov-body {margin-top:1rem}
 

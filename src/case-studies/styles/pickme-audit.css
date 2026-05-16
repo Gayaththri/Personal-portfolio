@@ -35,7 +35,7 @@
 }
 
 .case-study-content.case-study--pickme .hero-right {
-  background: var(--bg-elevated);
+  background: var(--bg);
 }
 
 .case-study-content.case-study--pickme .hero-title {
@@ -44,9 +44,9 @@
 }
 
 .case-study-content.case-study--pickme .hero-title em {
-  font-style: normal;
+  font-style: italic;
   font-weight: 700;
-  color: var(--accent-light);
+  color: color-mix(in srgb, var(--bg-elevated) 92%, var(--pm-yellow));
 }
 
 .case-study-content.case-study--pickme .section-head__title em {
@@ -70,7 +70,7 @@
 }
 
 .case-study-content.case-study--pickme .hero-left .hm-cell label {
-  color: var(--accent-light);
+  color: var(--pm-primary);
 }
 
 .case-study-content.case-study--pickme .stat-n,
