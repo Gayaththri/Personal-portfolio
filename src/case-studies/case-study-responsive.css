@@ -1,0 +1,322 @@
+/**
+ * Shared responsive rules for embedded case studies (Rose + PickMe).
+ */
+
+.case-study-content {
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.case-study-content .wrap {
+  min-width: 0;
+}
+
+.case-study-content img,
+.case-study-content video {
+  max-width: 100%;
+}
+
+/* ── Navigation ── */
+@media (max-width: 900px) {
+  .case-study-content nav {
+    height: 56px;
+  }
+
+  .case-study-content .nav-links {
+    display: none;
+  }
+
+  .case-study-content .nav-right {
+    gap: 0.75rem;
+  }
+
+  .case-study-content .nav-cta {
+    padding: 0.4rem 0.9rem !important;
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ── Hero ── */
+@media (max-width: 960px) {
+  .case-study-content .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-content .hero-left::after {
+    display: none;
+  }
+
+  .case-study-content .hero-left {
+    padding-block: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .case-study-content .hero-right {
+    padding-block: clamp(2rem, 6vw, 3rem);
+    min-height: auto;
+  }
+
+  .case-study-content .hero-title {
+    font-size: clamp(2.25rem, 9vw, 3.75rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .case-study-content .hero-desc,
+  .case-study-content .hero-subtitle {
+    font-size: clamp(0.9375rem, 2.5vw, 1.05rem);
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .case-study-content .hero-meta,
+  .case-study-content .hero-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .case-study-content .phone-stack {
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .case-study-content .case-screen-desktop--hero {
+    width: 100%;
+    max-width: min(420px, 100%);
+    margin-inline: auto;
+  }
+
+  .case-study-content.case-study--pickme .phone-mockup {
+    width: min(280px, 78vw);
+    height: calc(min(280px, 78vw) * 2);
+    border-width: clamp(6px, 1.5vw, 8px);
+  }
+}
+
+/* ── Section intros (two-column headers) ── */
+@media (max-width: 960px) {
+  .case-study-content .screens-header,
+  .case-study-content .solution-intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .case-study-content .overview-grid,
+  .case-study-content .ov-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ── Grids: tablet ── */
+@media (max-width: 1024px) {
+  .case-study-content .process-grid,
+  .case-study-content .bi-grid,
+  .case-study-content .metric-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-study-content .outcomes-grid,
+  .case-study-content .learnings-grid,
+  .case-study-content .learn-grid,
+  .case-study-content .personas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-study-content .decisions-grid,
+  .case-study-content .problem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-content .grid-3,
+  .case-study-content .sb-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-study-content .ba-callout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  .case-study-content .compare-strip {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  .case-study-content .compare-strip .cs-vs {
+    display: none;
+  }
+}
+
+/* ── Grids: mobile ── */
+@media (max-width: 640px) {
+  .case-study-content section {
+    padding-block: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .case-study-content .process-grid,
+  .case-study-content .outcomes-grid,
+  .case-study-content .learnings-grid,
+  .case-study-content .learn-grid,
+  .case-study-content .bi-grid,
+  .case-study-content .metric-strip,
+  .case-study-content .personas,
+  .case-study-content .grid-2,
+  .case-study-content .grid-3,
+  .case-study-content .grid-1-2,
+  .case-study-content .grid-2-1,
+  .case-study-content .sb-2,
+  .case-study-content .sb-3,
+  .case-study-content .sb-1-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-content .screen-block--compare {
+    grid-template-columns: 1fr;
+    row-gap: 1.25rem;
+  }
+
+  .case-study-content .screen-compare-divider {
+    justify-self: center;
+    margin-block: 0.25rem;
+  }
+
+  .case-study-content .palette-strip {
+    flex-direction: column;
+  }
+
+  .case-study-content .type-row {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .case-study-content .type-item {
+    min-width: 0;
+  }
+
+  .case-study-content .challenge {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+
+  .case-study-content .challenge-n {
+    font-size: 2.5rem;
+  }
+
+  .case-study-content .decision,
+  .case-study-content .process-card,
+  .case-study-content .kpi-cell,
+  .case-study-content .outcome-cell,
+  .case-study-content .learning-card {
+    padding: 1.5rem;
+  }
+
+  .case-study-content .screen-group-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .case-study-content .screen-group > p[style],
+  .case-study-content .screen-block > p[style] {
+    max-width: 100% !important;
+  }
+
+  .case-study-content .next-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .case-study-content .next-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .case-study-content footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .case-study-content .back-top,
+  .case-study-content #backTop {
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+    right: max(1rem, env(safe-area-inset-right, 0px));
+  }
+
+  .case-study-content .workflow-diagram {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .case-study-content .wf-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .case-study-content .wf-arrow,
+  .case-study-content .wf-connector {
+    transform: rotate(90deg);
+    padding: 0.25rem 0;
+    margin: 0 auto;
+  }
+
+  .case-study-content .trust-chain {
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .case-study-content .tc-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+}
+
+/* ── Screen layouts (Rose) — extend existing 767px rules ── */
+@media (max-width: 767px) {
+  .case-study-content .screen-layout--a {
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .case-study-content .screen-layout--b {
+    gap: 1.25rem;
+  }
+
+  .case-study-content .case-phone {
+    max-width: min(280px, 100%);
+  }
+
+  .case-study-content .screen-layout--c .screen-layout__col {
+    flex: 0 0 min(260px, 78vw);
+  }
+}
+
+@media (max-width: 480px) {
+  .case-study-content .hero-chip {
+    margin-bottom: 1.5rem;
+    font-size: 0.7rem;
+  }
+
+  .case-study-content .meta-cell,
+  .case-study-content .hm-cell {
+    padding: 1rem 1.1rem;
+  }
+
+  .case-study-content .case-screen-label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding-bottom: 1rem;
+  }
+
+  .case-study-content .annotation {
+    margin-top: 1rem;
+  }
+}

@@ -22,47 +22,14 @@
   <div class="hero-right">
     <div class="hero-phone-wrap">
       <div class="phone-mockup">
-        <div class="phone-notch"></div>
-        <div class="phone-mockup-inner">
-          <div class="track-screen">
-            <div class="track-map">
-              <div class="map-grid"></div>
-              <div class="map-road-h" style="top:40%;left:0;right:0"></div>
-              <div class="map-road-h" style="top:65%;left:0;right:0"></div>
-              <div class="map-road-v" style="left:30%;top:0;bottom:0"></div>
-              <div class="map-road-v" style="left:65%;top:0;bottom:0"></div>
-              <div class="map-route" style="top:calc(40% - 1.5px);left:15%;width:55%"></div>
-              <div class="map-car" style="top:calc(40% - 14px);left:50%">🚗</div>
-              <div class="map-dest" style="top:calc(40% - 12px);left:68%">📍</div>
-              <div class="map-you" style="top:calc(40% - 10px);left:13%"></div>
-            </div>
-            <div class="track-info">
-              <div class="track-eta-row">
-                <div><div class="track-eta-big">4 min</div><div class="track-eta-label">Estimated arrival</div></div>
-                <div class="track-status-pill">Moving</div>
-              </div>
-              <div class="track-driver-row">
-                <div class="driver-avatar">👨</div>
-                <div class="driver-info">
-                  <div class="driver-name">Kasun P.</div>
-                  <div class="driver-sub">Toyota Prius · CBB-7782</div>
-                </div>
-                <div class="driver-rating">★ 4.9</div>
-              </div>
-              <div class="track-steps">
-                <div class="step-dot done"></div>
-                <div class="step-dot done"></div>
-                <div class="step-dot active"></div>
-                <div class="step-dot"></div>
-                <div class="step-dot"></div>
-              </div>
-              <div class="track-actions">
-                <button class="ta-btn primary">📞 Call Driver</button>
-                <button class="ta-btn secondary">✕ Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img
+          src="/case-studies/pickme-assets/hero-tracking.png"
+          alt="PickMe ride tracking screen — driver ETA, map, and trip status"
+          width="280"
+          height="560"
+          loading="eager"
+          decoding="async"
+        />
       </div>
     </div>
   </div>
@@ -427,44 +394,30 @@
           <div class="sg-badges"><span class="tag">New Feature</span></div>
         </div>
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">Instead of a silent dot on a map, users now see a live driver status label — <em>Moving toward you</em>, <em>Stuck in traffic</em>, <em>Parked nearby</em>, <em>Looking for parking</em>. These labels are derived from real movement data already available to the system, surfaced for the first time in the user interface.</p>
-        <div class="screen-block sb-2">
+        <div class="screen-block sb-2 screen-block--compare">
           <div class="screen-card card">
             <div class="ui-screen">
               <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:12px">BEFORE — Driver status</div>
-              <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:12px;padding:14px;margin-bottom:10px">
-                <div style="width:40px;height:40px;border-radius:50%;background:rgba(15, 23, 42, 0.15);border:2px solid rgba(15, 23, 42, 0.3);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:8px">👨</div>
-                <div style="font-size:.78rem;font-weight:600;color:var(--bg-elevated)">Kasun P.</div>
-                <div style="font-size:.65rem;color:color-mix(in srgb, var(--bg-elevated) 40%, transparent);margin-top:2px">Toyota Prius · CBB-7782 · ★ 4.9</div>
-                <div style="margin-top:10px;font-size:.72rem;color:color-mix(in srgb, var(--bg-elevated) 30%, transparent)">[No movement status. Only map dot.]</div>
+              <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pm-muted);margin-bottom:12px">BEFORE — Driver status</div>
+              <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:12px;padding:14px;margin-bottom:10px">
+                <div style="width:40px;height:40px;border-radius:50%;background:var(--pm-primary-soft);border:2px solid var(--pm-primary-border);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:8px">👨</div>
+                <div style="font-size:.78rem;font-weight:600;color:var(--pm-text)">Kasun P.</div>
+                <div style="font-size:.65rem;color:var(--pm-muted);margin-top:2px">Toyota Prius · CBB-7782 · ★ 4.9</div>
+                <div style="margin-top:10px;font-size:.72rem;color:color-mix(in srgb, var(--pm-muted) 85%, transparent)">[No movement status. Only map dot.]</div>
               </div>
               <div style="background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);border-radius:10px;padding:10px;font-size:.78rem;color:rgba(232,64,64,.7)">😟 User cannot tell if driver is moving, parked, or stuck</div>
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Current experience</span><span class="tag">Before</span></div>
           </div>
+          <div class="screen-compare-divider" aria-hidden="true">→</div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:12px">AFTER — Contextual status states</div>
-              <div class="status-states">
-                <div class="ss-row active-state">
-                  <div class="ss-icon orange">🚗</div>
-                  <div class="ss-text"><div class="ss-title">Moving toward you</div><div class="ss-sub">Driver is actively approaching · 1.2 km away</div></div>
-                  <div style="width:8px;height:8px;border-radius:50%;background:var(--pm-green);animation:blink 1.5s infinite"></div>
-                </div>
-                <div class="ss-row inactive-state">
-                  <div class="ss-icon yellow">🚦</div>
-                  <div class="ss-text"><div class="ss-title" style="color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)">Stuck in traffic</div><div class="ss-sub" style="color:color-mix(in srgb, var(--bg-elevated) 20%, transparent)">ETA updated automatically</div></div>
-                </div>
-                <div class="ss-row inactive-state">
-                  <div class="ss-icon teal">🅿️</div>
-                  <div class="ss-text"><div class="ss-title" style="color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)">Parked nearby</div><div class="ss-sub" style="color:color-mix(in srgb, var(--bg-elevated) 20%, transparent)">Driver waiting for you</div></div>
-                </div>
-                <div class="ss-row inactive-state">
-                  <div class="ss-icon green">🏁</div>
-                  <div class="ss-text"><div class="ss-title" style="color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)">Arrived</div><div class="ss-sub" style="color:color-mix(in srgb, var(--bg-elevated) 20%, transparent)">Walk to pickup point</div></div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/redesigned-status-system.png"
+                alt="PickMe Redesigned status system — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Redesigned status system</span><span class="tag">After</span></div>
           </div>
@@ -484,83 +437,24 @@
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">When ETA changes, most users interpret it as the system being unreliable. The redesign adds a confidence band and a contextual explanation — "ETA updated due to traffic on Galle Road" — turning a trust-breaking moment into a trust-building one.</p>
         <div class="screen-block sb-2">
           <div class="screen-card card">
-            <div class="ui-screen new-track">
-              <div class="new-map-area">
-                <div class="nm-grid"></div>
-                <div class="nm-route-line"></div>
-                <div class="nm-car">🚗</div>
-                <div class="nm-dest">📍</div>
-                <div class="nm-you"></div>
-                <div class="nm-eta-bubble">
-                  <div class="nm-eta-big">4 min</div>
-                  <div class="nm-eta-sub">Estimated arrival</div>
-                </div>
-                <div class="nm-confidence">High confidence</div>
-              </div>
-              <div class="new-bottom">
-                <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:12px;margin-bottom:12px">
-                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                    <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--bg-elevated);line-height:1">4 min</span>
-                    <div style="text-align:right">
-                      <div style="font-size:.62rem;font-weight:700;color:var(--pm-green)">HIGH CONFIDENCE</div>
-                      <div style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 35%, transparent);margin-top:2px">No traffic detected on route</div>
-                    </div>
-                  </div>
-                  <div style="background:var(--accent-tint-md);border-radius:4px;height:4px;overflow:hidden">
-                    <div style="background:var(--pm-green);width:80%;height:100%;border-radius:4px"></div>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-top:4px">
-                    <span style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent)">3 min</span>
-                    <span style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent)">6 min</span>
-                  </div>
-                </div>
-                <div class="progress-timeline">
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                  <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">En Route</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/eta-with-confidence-band.png"
+                alt="PickMe ETA with confidence band — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">ETA with confidence band</span><span class="tag">After</span></div>
           </div>
           <div class="screen-card card">
-            <div class="ui-screen new-track">
-              <div class="new-map-area">
-                <div class="nm-grid"></div>
-                <div class="nm-route-line" style="background:linear-gradient(90deg,var(--pm-yellow),var(--pm-orange))"></div>
-                <div class="nm-car" style="left:38%">🚗</div>
-                <div class="nm-dest">📍</div>
-                <div class="nm-you"></div>
-                <div class="nm-eta-bubble">
-                  <div class="nm-eta-big" style="color:var(--pm-yellow)">8 min</div>
-                  <div class="nm-eta-sub">Updated due to traffic</div>
-                </div>
-                <div class="nm-confidence" style="background:rgba(245,197,24,.12);border-color:rgba(245,197,24,.3);color:var(--pm-yellow)">Traffic delay</div>
-              </div>
-              <div class="new-bottom">
-                <div style="background:rgba(245,197,24,.07);border:1px solid rgba(245,197,24,.2);border-radius:12px;padding:12px;margin-bottom:12px">
-                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                    <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--pm-yellow);line-height:1">8 min</span>
-                    <div style="text-align:right">
-                      <div style="font-size:.62rem;font-weight:700;color:var(--pm-yellow)">ETA UPDATED</div>
-                      <div style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 35%, transparent);margin-top:2px">Traffic on Galle Road</div>
-                    </div>
-                  </div>
-                  <div style="background:var(--accent-tint-md);border-radius:4px;height:4px;overflow:hidden">
-                    <div style="background:var(--pm-yellow);width:45%;height:100%;border-radius:4px"></div>
-                  </div>
-                  <div style="margin-top:8px;font-size:.7rem;color:color-mix(in srgb, var(--bg-elevated) 45%, transparent);line-height:1.5">🚦 Your driver encountered heavy traffic near Bambalapitiya junction. ETA adjusted.</div>
-                </div>
-                <div class="progress-timeline">
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                  <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">In Traffic</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/eta-change-with-context.png"
+                alt="PickMe ETA change with context — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">ETA change with context</span><span class="tag">After</span></div>
           </div>
@@ -580,74 +474,35 @@
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">A persistent 5-step visual progress timeline — Booked → Matched → En Route → Arriving → Here — gives users a mental model of the ride lifecycle. This is the same pattern used by Amazon, Uber Eats, and FedEx to reduce "where is it?" anxiety across different domains.</p>
         <div class="screen-block sb-3">
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:12 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:14px">PHASE: MATCHED</div>
-              <div class="driver-status-card">
-                <div class="dsc-av">👨</div>
-                <div class="dsc-info">
-                  <div class="dsc-name">Kasun P.</div>
-                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
-                  <div class="dsc-status"><div class="dsc-status-dot"></div><div class="dsc-status-text">Starting route</div></div>
-                </div>
-                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
-              </div>
-              <div class="progress-timeline">
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">Matched</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">En Route</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-              </div>
-              <div style="background:rgba(10,179,168,.08);border:1px solid rgba(10,179,168,.2);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(10,179,168,.8)">✓ Kasun has accepted your ride and is preparing to start.</div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/phase-matched.png"
+                alt="PickMe Phase: Matched — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Phase: Matched</span><span class="tag">After</span></div>
           </div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:14px">PHASE: EN ROUTE</div>
-              <div class="driver-status-card">
-                <div class="dsc-av">👨</div>
-                <div class="dsc-info">
-                  <div class="dsc-name">Kasun P.</div>
-                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
-                  <div class="dsc-status"><div class="dsc-status-dot"></div><div class="dsc-status-text">Moving toward you — 1.2 km</div></div>
-                </div>
-                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
-              </div>
-              <div class="progress-timeline">
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">En Route</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-              </div>
-              <div style="background:var(--accent-tint);border:1px solid var(--pm-orange-border);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(15, 23, 42, 0.85)">🚗 Kasun is 4 minutes away and moving toward your location.</div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/phase-en-route.png"
+                alt="PickMe Phase: En Route — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Phase: En Route</span><span class="tag">After</span></div>
           </div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:18 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:14px">PHASE: ARRIVING</div>
-              <div class="driver-status-card" style="border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.06)">
-                <div class="dsc-av" style="background:linear-gradient(135deg,#22C55E,#16a34a)">👨</div>
-                <div class="dsc-info">
-                  <div class="dsc-name">Kasun P.</div>
-                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
-                  <div class="dsc-status"><div class="dsc-status-dot" style="background:var(--pm-green)"></div><div class="dsc-status-text">Almost there — 200m</div></div>
-                </div>
-                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
-              </div>
-              <div class="progress-timeline">
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">En Route</div></div>
-                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">Arriving</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-              </div>
-              <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(34,197,94,.9)">✓ Kasun is almost here! Head to your pickup point at Liberty Plaza entrance.</div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/phase-arriving.png"
+                alt="PickMe Phase: Arriving — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Phase: Arriving</span><span class="tag">After</span></div>
           </div>
@@ -661,47 +516,30 @@
           <div class="sg-badges"><span class="tag">Redesigned</span></div>
         </div>
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">Replace generic, spammy push notifications with a state-triggered, contextual notification system. Each notification fires at a meaningful moment and says something useful — not just "Your driver is on the way" for the fourth time.</p>
-        <div class="screen-block sb-2">
+        <div class="screen-block sb-2 screen-block--compare">
           <div class="screen-card card">
             <div class="ui-screen">
               <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(15, 23, 42, 0.4);margin-bottom:10px">BEFORE — Generic notifications</div>
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pm-muted);margin-bottom:10px">BEFORE — Generic notifications</div>
               <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:10</span></div>
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:11</span></div>
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:12</span></div>
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:14</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:10</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:11</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:12</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:14</span></div>
               </div>
               <div style="margin-top:10px;background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(232,64,64,.7)">😤 4 identical notifications. No useful information.</div>
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Current notification system</span><span class="tag">Before</span></div>
           </div>
+          <div class="screen-compare-divider" aria-hidden="true">→</div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(34,197,94,.5);margin-bottom:10px">AFTER — Contextual notifications</div>
-              <div class="notif-stream" style="padding:0;gap:8px;display:flex;flex-direction:column">
-                <div class="notif-item important">
-                  <div class="notif-icon-wrap ni-orange">🚗</div>
-                  <div class="notif-body"><div class="notif-title">Kasun is moving toward you</div><div class="notif-sub">1.4 km away · ETA 4 min · High confidence</div></div>
-                  <div class="notif-time">9:10</div>
-                </div>
-                <div class="notif-item">
-                  <div class="notif-icon-wrap" style="background:rgba(245,197,24,.12)">🚦</div>
-                  <div class="notif-body"><div class="notif-title">ETA updated to 7 min</div><div class="notif-sub">Traffic on Galle Road — route unchanged</div></div>
-                  <div class="notif-time">9:12</div>
-                </div>
-                <div class="notif-item">
-                  <div class="notif-icon-wrap ni-teal">📍</div>
-                  <div class="notif-body"><div class="notif-title">Kasun is 2 minutes away</div><div class="notif-sub">Head to Liberty Plaza main entrance</div></div>
-                  <div class="notif-time">9:16</div>
-                </div>
-                <div class="notif-item">
-                  <div class="notif-icon-wrap ni-green">✓</div>
-                  <div class="notif-body"><div class="notif-title">Your driver has arrived</div><div class="notif-sub">Look for CBB-7782 Toyota Prius</div></div>
-                  <div class="notif-time">9:18</div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/redesigned-notification-system.png"
+                alt="PickMe Redesigned notification system — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Redesigned notification system</span><span class="tag">After</span></div>
           </div>
@@ -748,7 +586,7 @@
 </section>
 
 <!-- ══ DESIGN DECISIONS ══ -->
-<section id="decisions" style="background:var(--bg)">
+<section id="decisions">
   <div class="wrap">
     <header class="section-head r">
   <p class="section-head__eyebrow r">Design Decisions</p>
@@ -866,10 +704,10 @@
 <!-- ══ NEXT ══ -->
 <section class="next-section">
   <div class="wrap next-inner">
-    <a href="/case/rose-by-basicare" target="_parent" class="next-prev-link">
+    <a href="/case/rose-by-basicare" class="next-prev-link">
       <div class="next-label">Previous Case Study</div>
       <div class="next-title">Rose by <em>Basicare</em></div>
     </a>
-    <a href="/#projects" target="_parent" class="next-btn">View all work →</a>
+    <a href="/#projects" class="next-btn">View all work →</a>
   </div>
 </section>

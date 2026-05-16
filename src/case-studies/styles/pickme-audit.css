@@ -1,0 +1,104 @@
+/**
+ * PickMe — alignment with site index.css (fonts, tokens, spacing, max-width).
+ */
+
+.case-study-content.case-study--pickme {
+  background: var(--bg);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.case-study-content.case-study--pickme h1,
+.case-study-content.case-study--pickme h2,
+.case-study-content.case-study--pickme h3,
+.case-study-content.case-study--pickme h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.case-study-content.case-study--pickme section {
+  background: var(--bg);
+}
+
+.case-study-content.case-study--pickme .overview-bg,
+.case-study-content.case-study--pickme .bi-section,
+.case-study-content.case-study--pickme #decisions,
+.case-study-content.case-study--pickme .next-section {
+  background: var(--bg);
+}
+
+.case-study-content.case-study--pickme #problem,
+.case-study-content.case-study--pickme #solution {
+  background: var(--bg-elevated);
+}
+
+.case-study-content.case-study--pickme .hero-right {
+  background: var(--bg-elevated);
+}
+
+.case-study-content.case-study--pickme .hero-title {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.case-study-content.case-study--pickme .hero-title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.case-study-content.case-study--pickme .section-head__title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.case-study-content.case-study--pickme ::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+.case-study-content.case-study--pickme ::-webkit-scrollbar-thumb {
+  background: var(--accent-border);
+}
+
+.case-study-content.case-study--pickme .stat-t label,
+.case-study-content.case-study--pickme .persona-role,
+.case-study-content.case-study--pickme .next-label {
+  color: var(--text-muted);
+}
+
+.case-study-content.case-study--pickme .hero-left .hm-cell label {
+  color: var(--accent-light);
+}
+
+.case-study-content.case-study--pickme .stat-n,
+.case-study-content.case-study--pickme .ms-num {
+  color: var(--accent);
+}
+
+.case-study-content.case-study--pickme .learn-n {
+  color: var(--text-soft);
+}
+
+.case-study-content.case-study--pickme .ann-title,
+.case-study-content.case-study--pickme .dec-result {
+  color: var(--accent);
+}
+
+.case-study-content.case-study--pickme .next-title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.case-study-content.case-study--pickme .next-btn:hover {
+  background: var(--accent-hover);
+}
+
+.case-study-content.case-study--pickme nav,
+.case-study-content.case-study--pickme #prog,
+.case-study-content.case-study--pickme #backTop {
+  display: none !important;
+}

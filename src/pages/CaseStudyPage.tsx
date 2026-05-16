@@ -108,6 +108,9 @@ export function CaseStudyPage() {
             box-sizing: border-box;
             display: block;
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow-x: clip;
             padding: 0;
             background: var(--bg);
             color: var(--text);
@@ -164,6 +167,20 @@ export function CaseStudyPage() {
           }
           .case-study-content section {
             scroll-margin-top: calc(var(--topnav-stack) + 3rem);
+          }
+          @media (max-width: 640px) {
+            .case-page__embed-bar-inner {
+              height: auto;
+              min-height: 44px;
+              max-height: none;
+              padding-block: 0.35rem;
+              flex-wrap: wrap;
+            }
+            .case-page__embed-crumb {
+              white-space: normal;
+              text-align: left;
+              font-size: 0.7rem;
+            }
           }
         `}</style>
       </main>

@@ -13,9 +13,25 @@
 html{scroll-behavior:smooth;font-size:16px}
 
 :root{
-  --pm-yellow:#F5C518;
+  --pm-primary:#ff6b35;
+  --pm-surface:#0f172a;
+  --pm-card:#1e293b;
+  --pm-text:#f8fafc;
+  --pm-muted:#94a3b8;
+  --pm-green:#22c55e;
+  --pm-yellow:#f5c518;
   --pm-red:#E84040;
-  --pm-green:#22C55E;
+  --pm-border:color-mix(in srgb, var(--pm-text) 12%, transparent);
+  --pm-card-raised:color-mix(in srgb, var(--pm-card) 72%, var(--pm-surface));
+  --pm-primary-soft:color-mix(in srgb, var(--pm-primary) 15%, transparent);
+  --pm-primary-border:color-mix(in srgb, var(--pm-primary) 35%, transparent);
+  --pm-green-soft:color-mix(in srgb, var(--pm-green) 12%, transparent);
+  --pm-green-border:color-mix(in srgb, var(--pm-green) 25%, transparent);
+  --pm-yellow-soft:color-mix(in srgb, var(--pm-yellow) 12%, transparent);
+  --pm-yellow-border:color-mix(in srgb, var(--pm-yellow) 22%, transparent);
+  --pm-map-top:color-mix(in srgb, var(--pm-surface) 88%, #000);
+  --pm-map-bottom:color-mix(in srgb, var(--pm-card) 90%, var(--pm-surface));
+  --pm-grid-line:color-mix(in srgb, var(--pm-primary) 6%, transparent);
   --border-strong:var(--accent-border);
 }
 
@@ -43,8 +59,8 @@ nav{
 .nav-links{display:flex;gap:0;list-style:none}
 .nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;padding:.35rem .9rem;border-radius:6px;transition:color .2s,background .2s}
 .nav-links a:hover{color:var(--pm-orange);background:var(--pm-orange-bg)}
-.nav-cta{background:var(--pm-orange)!important;color:var(--bg-elevated)!important;margin-left:.5rem}
-.nav-cta:hover{background:var(--accent-hover)!important;color:var(--bg-elevated)!important}
+.nav-cta{background:var(--pm-orange)!important;color:var(--pm-text)!important;margin-left:.5rem}
+.nav-cta:hover{background:var(--accent-hover)!important;color:var(--pm-text)!important}
 
 /* ── HERO ── */
 .hero-layout{
@@ -74,7 +90,7 @@ nav{
   font-family:var(--font-display);
   font-size:clamp(3.2rem,5vw,5.8rem);
   font-weight:400;line-height:1.02;
-  color:var(--bg-elevated);margin-bottom:1.8rem;
+  color:var(--pm-text);margin-bottom:1.8rem;
   position:relative;z-index:1;
   animation:titleIn .8s .1s cubic-bezier(.16,1,.3,1) both;
 }
@@ -106,13 +122,15 @@ nav{
 .hero-phone-wrap{position:relative;z-index:2}
 /* ── PHONE MOCKUP ── */
 .phone-mockup{
-  width:240px;background:var(--accent);border-radius:36px;
-  padding:10px;box-shadow:0 40px 80px rgba(0,0,0,.25),0 0 0 8px rgba(13,15,18,.06);
-  position:relative;
+  width:280px;height:560px;
+  background:var(--pm-surface);border-radius:44px;
+  border:8px solid var(--pm-card);
+  box-shadow:0 32px 80px rgba(0,0,0,.4);
+  overflow:hidden;position:relative;flex-shrink:0;
 }
-.phone-mockup-inner{
-  background:#13171E;border-radius:28px;overflow:hidden;
-  min-height:480px;position:relative;
+.phone-mockup img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:top;
 }
 .phone-notch{
   position:absolute;top:0;left:50%;transform:translateX(-50%);
@@ -158,8 +176,8 @@ nav{
 }
 .track-info{padding:16px}
 .track-eta-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.track-eta-big{font-family:var(--font-display);font-size:2rem;font-weight:400;color:var(--bg-elevated);line-height:1}
-.track-eta-label{font-size:.65rem;color:color-mix(in srgb, var(--bg-elevated) 40%, transparent);margin-top:2px}
+.track-eta-big{font-family:var(--font-display);font-size:2rem;font-weight:400;color:var(--pm-text);line-height:1}
+.track-eta-label{font-size:.65rem;color:var(--pm-muted);margin-top:2px}
 .track-status-pill{
   font-size:.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   padding:.3rem .8rem;border-radius:100px;
@@ -178,8 +196,8 @@ nav{
   font-size:.9rem;flex-shrink:0;
 }
 .driver-info{flex:1}
-.driver-name{font-size:.78rem;font-weight:600;color:var(--bg-elevated)}
-.driver-sub{font-size:.65rem;color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)}
+.driver-name{font-size:.78rem;font-weight:600;color:var(--pm-text)}
+.driver-sub{font-size:.65rem;color:var(--pm-muted)}
 .driver-rating{font-size:.72rem;color:var(--pm-yellow);font-weight:600}
 .track-steps{display:flex;gap:6px;margin-top:10px}
 .step-dot{
@@ -195,7 +213,7 @@ nav{
   font-family:var(--font-ui);font-size:.72rem;font-weight:600;
   cursor:pointer;transition:opacity .2s;
 }
-.ta-btn.primary{background:var(--pm-orange);color:var(--bg-elevated)}
+.ta-btn.primary{background:var(--pm-orange);color:var(--pm-text)}
 .ta-btn.secondary{background:var(--accent-tint-md);color:color-mix(in srgb, var(--bg-elevated) 70%, transparent)}
 
 /* ── CONTENT ── */
@@ -253,7 +271,7 @@ nav{
 /* ── JOURNEY MAP ── */
 .journey-wrap{margin-top:3rem;overflow-x:auto}
 .journey-table{min-width:900px;border-collapse:collapse;width:100%}
-.jt-header{background:var(--accent);color:var(--bg-elevated)}
+.jt-header{background:var(--accent);color:var(--pm-text)}
 .jt-header th{
   padding:1rem 1.2rem;text-align:left;
   font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
@@ -301,7 +319,7 @@ tr:last-child .jt-cell:last-child{border-radius:0}
 .wf-pain-dot{
   position:absolute;top:-6px;right:-6px;width:14px;height:14px;
   background:var(--pm-red);border-radius:50%;border:2px solid var(--ink);
-  font-size:.55rem;display:flex;align-items:center;justify-content:center;color:var(--bg-elevated);font-weight:700;
+  font-size:.55rem;display:flex;align-items:center;justify-content:center;color:var(--pm-text);font-weight:700;
 }
 .wf-arrow{
   color:color-mix(in srgb, var(--bg-elevated) 20%, transparent);font-size:1rem;flex-shrink:0;margin:0 .3rem;
@@ -347,7 +365,7 @@ tr:last-child .jt-cell:last-child{border-radius:0}
   background:var(--accent-tint);
 }
 .tc-circle.active{background:rgba(15, 23, 42, 0.15);border-color:var(--pm-orange)}
-.tc-label{font-size:.7rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent);text-align:center;line-height:1.4}
+.tc-label{font-size:.7rem;color:var(--pm-text);text-align:center;line-height:1.4}
 .tc-label strong{display:block;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 85%, transparent);font-weight:600;margin-bottom:.1rem}
 .tc-arrow{font-size:1rem;color:color-mix(in srgb, var(--bg-elevated) 15%, transparent);flex-shrink:0;padding:0 .5rem}
 
@@ -357,6 +375,17 @@ tr:last-child .jt-cell:last-child{border-radius:0}
 .screens-area{display:flex;flex-direction:column;gap:4rem}
 .screen-block{display:grid;gap:2rem}
 .sb-2{grid-template-columns:1fr 1fr}
+.screen-block--compare{
+  grid-template-columns:1fr auto 1fr;
+  align-items:stretch;
+  column-gap:1.25rem;
+}
+.screen-compare-divider{
+  display:flex;align-items:center;justify-content:center;align-self:center;
+  flex-shrink:0;
+  background:var(--bg-elevated);border:1px solid var(--border);border-radius:999px;
+  padding:4px 10px;font-size:11px;font-weight:600;color:var(--text-muted);line-height:1;
+}
 .sb-3{grid-template-columns:1fr 1fr 1fr}
 .sb-1-2{grid-template-columns:1fr 1.8fr}
 
@@ -365,40 +394,48 @@ tr:last-child .jt-cell:last-child{border-radius:0}
 
 /* UI Screen components */
 .ui-screen{
-  background:#13171E;padding:20px;min-height:300px;
+  background:var(--pm-surface);color:var(--pm-text);
+  padding:20px;min-height:300px;
   font-family:var(--font-ui);position:relative;
+}
+.ui-screen--after{
+  padding:0;min-height:320px;display:flex;flex-direction:column;
+}
+.ui-screen--after img{
+  width:100%;height:100%;object-fit:cover;object-position:top;
+  display:block;flex:1;min-height:280px;
 }
 
 /* Status bar */
 .status-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.sb-time{font-size:.68rem;font-weight:600;color:color-mix(in srgb, var(--bg-elevated) 60%, transparent)}
-.sb-icons{font-size:.65rem;color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)}
+.sb-time{font-size:.68rem;font-weight:600;color:var(--pm-muted)}
+.sb-icons{font-size:.65rem;color:color-mix(in srgb, var(--pm-muted) 75%, transparent)}
 
 /* Redesigned tracking */
 .new-track{padding:0}
 .new-map-area{
-  height:200px;background:linear-gradient(180deg,#1a2535,#1e2d40);
+  height:200px;background:linear-gradient(180deg,var(--pm-map-top),var(--pm-map-bottom));
   position:relative;overflow:hidden;
 }
-.nm-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(10,179,168,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,179,168,.05) 1px,transparent 1px);background-size:20px 20px}
+.nm-grid{position:absolute;inset:0;background-image:linear-gradient(var(--pm-grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--pm-grid-line) 1px,transparent 1px);background-size:20px 20px}
 .nm-route-line{
   position:absolute;width:60%;height:2px;
-  background:linear-gradient(90deg,var(--pm-orange),var(--pm-teal));
+  background:linear-gradient(90deg,var(--pm-primary),var(--pm-green));
   top:55%;left:15%;border-radius:2px;
 }
-.nm-car{position:absolute;top:calc(55% - 14px);left:55%;width:28px;height:28px;background:var(--pm-orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 0 0 8px rgba(15, 23, 42, 0.15),0 0 0 16px rgba(15, 23, 42, 0.06)}
-.nm-dest{position:absolute;top:calc(55% - 10px);left:72%;width:20px;height:20px;background:var(--pm-teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;box-shadow:0 0 0 6px rgba(10,179,168,.15)}
-.nm-you{position:absolute;top:calc(55% - 8px);left:12%;width:16px;height:16px;background:var(--pm-yellow);border-radius:50%;box-shadow:0 0 0 4px rgba(245,197,24,.2)}
+.nm-car{position:absolute;top:calc(55% - 14px);left:55%;width:28px;height:28px;background:var(--pm-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 0 0 8px var(--pm-primary-soft),0 0 0 16px color-mix(in srgb, var(--pm-primary) 6%, transparent)}
+.nm-dest{position:absolute;top:calc(55% - 10px);left:72%;width:20px;height:20px;background:var(--pm-green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;box-shadow:0 0 0 6px var(--pm-green-soft)}
+.nm-you{position:absolute;top:calc(55% - 8px);left:12%;width:16px;height:16px;background:var(--pm-yellow);border-radius:50%;box-shadow:0 0 0 4px var(--pm-yellow-soft)}
 .nm-eta-bubble{
   position:absolute;top:12px;left:12px;
-  background:rgba(13,15,18,.85);backdrop-filter:blur(8px);
-  border:1px solid var(--accent-border);border-radius:12px;padding:8px 12px;
+  background:color-mix(in srgb, var(--pm-surface) 88%, transparent);backdrop-filter:blur(8px);
+  border:1px solid var(--pm-border);border-radius:12px;padding:8px 12px;
 }
-.nm-eta-big{font-family:var(--font-display);font-size:1.4rem;color:var(--bg-elevated);line-height:1}
-.nm-eta-sub{font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 40%, transparent);margin-top:2px}
+.nm-eta-big{font-family:var(--font-display);font-size:1.4rem;color:var(--pm-text);line-height:1}
+.nm-eta-sub{font-size:.6rem;color:var(--pm-muted);margin-top:2px}
 .nm-confidence{
   position:absolute;top:12px;right:12px;
-  background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);
+  background:var(--pm-green-soft);border:1px solid var(--pm-green-border);
   border-radius:8px;padding:4px 8px;
   font-size:.6rem;font-weight:700;color:var(--pm-green);
 }
@@ -407,24 +444,24 @@ tr:last-child .jt-cell:last-child{border-radius:0}
 /* Progress timeline */
 .progress-timeline{display:flex;align-items:center;gap:0;margin-bottom:14px}
 .pt-step{display:flex;flex-direction:column;align-items:center;flex:1;position:relative}
-.pt-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);z-index:1;position:relative}
-.pt-dot.done{background:var(--pm-orange)}
-.pt-dot.active{background:var(--pm-teal);box-shadow:0 0 0 4px rgba(10,179,168,.2)}
-.pt-line{position:absolute;height:2px;background:var(--accent-tint-md);top:4px;left:50%;right:-50%;z-index:0}
-.pt-line.done{background:var(--pm-orange)}
-.pt-label{font-size:.55rem;color:color-mix(in srgb, var(--bg-elevated) 35%, transparent);margin-top:4px;text-align:center;line-height:1.2}
-.pt-label.active{color:var(--pm-teal)}
-.pt-label.done{color:var(--pm-orange)}
+.pt-dot{width:10px;height:10px;border-radius:50%;background:color-mix(in srgb, var(--pm-text) 15%, transparent);z-index:1;position:relative}
+.pt-dot.done{background:var(--pm-primary)}
+.pt-dot.active{background:var(--pm-primary);box-shadow:0 0 0 4px var(--pm-primary-soft)}
+.pt-line{position:absolute;height:2px;background:var(--pm-card);top:4px;left:50%;right:-50%;z-index:0}
+.pt-line.done{background:var(--pm-primary)}
+.pt-label{font-size:.55rem;color:var(--pm-muted);margin-top:4px;text-align:center;line-height:1.2}
+.pt-label.active{color:var(--pm-primary)}
+.pt-label.done{color:var(--pm-primary)}
 
 /* Driver status */
 .driver-status-card{
-  background:var(--accent-tint);border:1px solid var(--accent-border);
+  background:var(--pm-card-raised);border:1px solid var(--pm-border);
   border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:12px;
 }
-.dsc-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.dsc-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pm-primary),color-mix(in srgb, var(--pm-primary) 65%, var(--pm-yellow)));display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
 .dsc-info{flex:1}
-.dsc-name{font-size:.78rem;font-weight:600;color:var(--bg-elevated)}
-.dsc-sub{font-size:.62rem;color:color-mix(in srgb, var(--bg-elevated) 40%, transparent);margin-top:1px}
+.dsc-name{font-size:.78rem;font-weight:600;color:var(--pm-text)}
+.dsc-sub{font-size:.62rem;color:var(--pm-muted);margin-top:1px}
 .dsc-status{display:flex;align-items:center;gap:4px;margin-top:3px}
 .dsc-status-dot{width:6px;height:6px;border-radius:50%;background:var(--pm-green);animation:blink 1.5s infinite}
 .dsc-status-text{font-size:.6rem;color:var(--pm-green);font-weight:600}
@@ -436,32 +473,32 @@ tr:last-child .jt-cell:last-child{border-radius:0}
   border-radius:10px;border:1px solid transparent;
   transition:all .2s;
 }
-.ss-row.active-state{background:var(--accent-tint-md);border-color:var(--pm-orange-border)}
-.ss-row.inactive-state{background:var(--accent-tint);border-color:var(--accent-border)}
+.ss-row.active-state{background:var(--pm-card);border-color:var(--pm-primary-border)}
+.ss-row.inactive-state{background:var(--pm-card-raised);border-color:var(--pm-border)}
 .ss-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
-.ss-icon.orange{background:rgba(15, 23, 42, 0.15)}
-.ss-icon.green{background:rgba(34,197,94,.12)}
-.ss-icon.teal{background:rgba(10,179,168,.12)}
-.ss-icon.yellow{background:rgba(245,197,24,.12)}
+.ss-icon.orange{background:var(--pm-primary-soft)}
+.ss-icon.green{background:var(--pm-green-soft)}
+.ss-icon.teal{background:var(--pm-primary-soft)}
+.ss-icon.yellow{background:var(--pm-yellow-soft)}
 .ss-text{flex:1}
-.ss-title{font-size:.72rem;font-weight:600;color:color-mix(in srgb, var(--bg-elevated) 80%, transparent)}
-.ss-sub{font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 35%, transparent);margin-top:1px}
+.ss-title{font-size:.72rem;font-weight:600;color:var(--pm-text)}
+.ss-sub{font-size:.6rem;color:var(--pm-muted);margin-top:1px}
 
 /* notif system */
 .notif-stream{display:flex;flex-direction:column;gap:8px;padding:16px}
 .notif-item{
-  background:var(--accent-tint);border:1px solid var(--accent-border);
+  background:var(--pm-card-raised);border:1px solid var(--pm-border);
   border-radius:12px;padding:12px;display:flex;gap:10px;align-items:flex-start;
 }
-.notif-item.important{background:var(--accent-tint);border-color:var(--pm-orange-border)}
+.notif-item.important{background:var(--pm-card);border-color:var(--pm-primary-border)}
 .notif-icon-wrap{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
-.ni-orange{background:rgba(15, 23, 42, 0.15)}
-.ni-green{background:rgba(34,197,94,.12)}
-.ni-teal{background:rgba(10,179,168,.12)}
+.ni-orange{background:var(--pm-primary-soft)}
+.ni-green{background:var(--pm-green-soft)}
+.ni-teal{background:var(--pm-primary-soft)}
 .notif-body{flex:1}
-.notif-title{font-size:.72rem;font-weight:600;color:color-mix(in srgb, var(--bg-elevated) 85%, transparent);line-height:1.3}
-.notif-sub{font-size:.62rem;color:color-mix(in srgb, var(--bg-elevated) 35%, transparent);margin-top:2px}
-.notif-time{font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);flex-shrink:0;margin-top:2px}
+.notif-title{font-size:.72rem;font-weight:600;color:var(--pm-text);line-height:1.3}
+.notif-sub{font-size:.62rem;color:var(--pm-muted);margin-top:2px}
+.notif-time{font-size:.6rem;color:color-mix(in srgb, var(--pm-muted) 80%, transparent);flex-shrink:0;margin-top:2px}
 
 /* screen footer label */
 .sc-footer{padding:.8rem 1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
@@ -517,7 +554,7 @@ tr:last-child .jt-cell:last-child{border-radius:0}
 .cs-col h4{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem}
 .cs-col.before h4{color:var(--pm-red)}
 .cs-col.after h4{color:var(--pm-green)}
-.cs-item{font-size:.83rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent);padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem}
+.cs-item{font-size:.83rem;color:var(--pm-text);padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem}
 .cs-item::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .before .cs-item::before{background:var(--pm-red)}
 .after .cs-item::before{background:var(--pm-green)}
@@ -533,19 +570,19 @@ tr:last-child .jt-cell:last-child{border-radius:0}
 .next-title em{font-style:italic;color:var(--pm-orange)}
 .next-btn{
   display:inline-flex;align-items:center;gap:.8rem;
-  background:var(--accent);color:var(--bg-elevated);text-decoration:none;
+  background:var(--accent);color:var(--pm-text);text-decoration:none;
   font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   padding:1rem 2rem;border-radius:100px;transition:background .2s,transform .2s;
 }
 .next-btn:hover{background:var(--pm-orange);transform:translateX(4px)}
 
 footer{background:var(--accent);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--accent-border)}
-.footer-name{font-family:var(--font-display);font-size:1.1rem;font-weight:400;color:var(--bg-elevated)}
-.footer-sub{font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 30%, transparent);margin-top:.2rem}
+.footer-name{font-family:var(--font-display);font-size:1.1rem;font-weight:400;color:var(--pm-text)}
+.footer-sub{font-size:.75rem;color:color-mix(in srgb, var(--pm-muted) 85%, transparent);margin-top:.2rem}
 .footer-r{font-size:.7rem;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);letter-spacing:.06em}
 
 /* back top */
-#backTop{position:fixed;bottom:2.5rem;right:2.5rem;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--text);color:var(--bg-elevated);border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(15,23,42,.28);opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,background .2s}
+#backTop{position:fixed;bottom:2.5rem;right:2.5rem;z-index:200;width:44px;height:44px;border-radius:50%;background:var(--text);color:var(--pm-text);border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(15,23,42,.28);opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s,background .2s}
 #backTop.show{opacity:1;transform:translateY(0)}
 #backTop:hover{background:var(--text-dark-hover)}
 
@@ -597,47 +634,14 @@ footer{background:var(--accent);display:flex;justify-content:space-between;align
   <div class="hero-right">
     <div class="hero-phone-wrap">
       <div class="phone-mockup">
-        <div class="phone-notch"></div>
-        <div class="phone-mockup-inner">
-          <div class="track-screen">
-            <div class="track-map">
-              <div class="map-grid"></div>
-              <div class="map-road-h" style="top:40%;left:0;right:0"></div>
-              <div class="map-road-h" style="top:65%;left:0;right:0"></div>
-              <div class="map-road-v" style="left:30%;top:0;bottom:0"></div>
-              <div class="map-road-v" style="left:65%;top:0;bottom:0"></div>
-              <div class="map-route" style="top:calc(40% - 1.5px);left:15%;width:55%"></div>
-              <div class="map-car" style="top:calc(40% - 14px);left:50%">🚗</div>
-              <div class="map-dest" style="top:calc(40% - 12px);left:68%">📍</div>
-              <div class="map-you" style="top:calc(40% - 10px);left:13%"></div>
-            </div>
-            <div class="track-info">
-              <div class="track-eta-row">
-                <div><div class="track-eta-big">4 min</div><div class="track-eta-label">Estimated arrival</div></div>
-                <div class="track-status-pill">Moving</div>
-              </div>
-              <div class="track-driver-row">
-                <div class="driver-avatar">👨</div>
-                <div class="driver-info">
-                  <div class="driver-name">Kasun P.</div>
-                  <div class="driver-sub">Toyota Prius · CBB-7782</div>
-                </div>
-                <div class="driver-rating">★ 4.9</div>
-              </div>
-              <div class="track-steps">
-                <div class="step-dot done"></div>
-                <div class="step-dot done"></div>
-                <div class="step-dot active"></div>
-                <div class="step-dot"></div>
-                <div class="step-dot"></div>
-              </div>
-              <div class="track-actions">
-                <button class="ta-btn primary">📞 Call Driver</button>
-                <button class="ta-btn secondary">✕ Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img
+          src="/case-studies/pickme-assets/hero-tracking.png"
+          alt="PickMe ride tracking screen — driver ETA, map, and trip status"
+          width="280"
+          height="560"
+          loading="eager"
+          decoding="async"
+        />
       </div>
     </div>
   </div>
@@ -1002,44 +1006,30 @@ footer{background:var(--accent);display:flex;justify-content:space-between;align
           <div class="sg-badges"><span class="tag">New Feature</span></div>
         </div>
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">Instead of a silent dot on a map, users now see a live driver status label — <em>Moving toward you</em>, <em>Stuck in traffic</em>, <em>Parked nearby</em>, <em>Looking for parking</em>. These labels are derived from real movement data already available to the system, surfaced for the first time in the user interface.</p>
-        <div class="screen-block sb-2">
+        <div class="screen-block sb-2 screen-block--compare">
           <div class="screen-card card">
             <div class="ui-screen">
               <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
               <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:12px">BEFORE — Driver status</div>
-              <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:12px;padding:14px;margin-bottom:10px">
-                <div style="width:40px;height:40px;border-radius:50%;background:rgba(15, 23, 42, 0.15);border:2px solid rgba(15, 23, 42, 0.3);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:8px">👨</div>
-                <div style="font-size:.78rem;font-weight:600;color:var(--bg-elevated)">Kasun P.</div>
-                <div style="font-size:.65rem;color:color-mix(in srgb, var(--bg-elevated) 40%, transparent);margin-top:2px">Toyota Prius · CBB-7782 · ★ 4.9</div>
-                <div style="margin-top:10px;font-size:.72rem;color:color-mix(in srgb, var(--bg-elevated) 30%, transparent)">[No movement status. Only map dot.]</div>
+              <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:12px;padding:14px;margin-bottom:10px">
+                <div style="width:40px;height:40px;border-radius:50%;background:var(--pm-primary-soft);border:2px solid var(--pm-primary-border);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:8px">👨</div>
+                <div style="font-size:.78rem;font-weight:600;color:var(--pm-text)">Kasun P.</div>
+                <div style="font-size:.65rem;color:var(--pm-muted);margin-top:2px">Toyota Prius · CBB-7782 · ★ 4.9</div>
+                <div style="margin-top:10px;font-size:.72rem;color:color-mix(in srgb, var(--pm-muted) 85%, transparent)">[No movement status. Only map dot.]</div>
               </div>
               <div style="background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);border-radius:10px;padding:10px;font-size:.78rem;color:rgba(232,64,64,.7)">😟 User cannot tell if driver is moving, parked, or stuck</div>
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Current experience</span><span class="tag">Before</span></div>
           </div>
+          <div class="screen-compare-divider" aria-hidden="true">→</div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:12px">AFTER — Contextual status states</div>
-              <div class="status-states">
-                <div class="ss-row active-state">
-                  <div class="ss-icon orange">🚗</div>
-                  <div class="ss-text"><div class="ss-title">Moving toward you</div><div class="ss-sub">Driver is actively approaching · 1.2 km away</div></div>
-                  <div style="width:8px;height:8px;border-radius:50%;background:var(--pm-green);animation:blink 1.5s infinite"></div>
-                </div>
-                <div class="ss-row inactive-state">
-                  <div class="ss-icon yellow">🚦</div>
-                  <div class="ss-text"><div class="ss-title" style="color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)">Stuck in traffic</div><div class="ss-sub" style="color:color-mix(in srgb, var(--bg-elevated) 20%, transparent)">ETA updated automatically</div></div>
-                </div>
-                <div class="ss-row inactive-state">
-                  <div class="ss-icon teal">🅿️</div>
-                  <div class="ss-text"><div class="ss-title" style="color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)">Parked nearby</div><div class="ss-sub" style="color:color-mix(in srgb, var(--bg-elevated) 20%, transparent)">Driver waiting for you</div></div>
-                </div>
-                <div class="ss-row inactive-state">
-                  <div class="ss-icon green">🏁</div>
-                  <div class="ss-text"><div class="ss-title" style="color:color-mix(in srgb, var(--bg-elevated) 40%, transparent)">Arrived</div><div class="ss-sub" style="color:color-mix(in srgb, var(--bg-elevated) 20%, transparent)">Walk to pickup point</div></div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/redesigned-status-system.png"
+                alt="PickMe Redesigned status system — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Redesigned status system</span><span class="tag">After</span></div>
           </div>
@@ -1059,83 +1049,24 @@ footer{background:var(--accent);display:flex;justify-content:space-between;align
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">When ETA changes, most users interpret it as the system being unreliable. The redesign adds a confidence band and a contextual explanation — "ETA updated due to traffic on Galle Road" — turning a trust-breaking moment into a trust-building one.</p>
         <div class="screen-block sb-2">
           <div class="screen-card card">
-            <div class="ui-screen new-track">
-              <div class="new-map-area">
-                <div class="nm-grid"></div>
-                <div class="nm-route-line"></div>
-                <div class="nm-car">🚗</div>
-                <div class="nm-dest">📍</div>
-                <div class="nm-you"></div>
-                <div class="nm-eta-bubble">
-                  <div class="nm-eta-big">4 min</div>
-                  <div class="nm-eta-sub">Estimated arrival</div>
-                </div>
-                <div class="nm-confidence">High confidence</div>
-              </div>
-              <div class="new-bottom">
-                <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:12px;margin-bottom:12px">
-                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                    <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--bg-elevated);line-height:1">4 min</span>
-                    <div style="text-align:right">
-                      <div style="font-size:.62rem;font-weight:700;color:var(--pm-green)">HIGH CONFIDENCE</div>
-                      <div style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 35%, transparent);margin-top:2px">No traffic detected on route</div>
-                    </div>
-                  </div>
-                  <div style="background:var(--accent-tint-md);border-radius:4px;height:4px;overflow:hidden">
-                    <div style="background:var(--pm-green);width:80%;height:100%;border-radius:4px"></div>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-top:4px">
-                    <span style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent)">3 min</span>
-                    <span style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent)">6 min</span>
-                  </div>
-                </div>
-                <div class="progress-timeline">
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                  <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">En Route</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/eta-with-confidence-band.png"
+                alt="PickMe ETA with confidence band — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">ETA with confidence band</span><span class="tag">After</span></div>
           </div>
           <div class="screen-card card">
-            <div class="ui-screen new-track">
-              <div class="new-map-area">
-                <div class="nm-grid"></div>
-                <div class="nm-route-line" style="background:linear-gradient(90deg,var(--pm-yellow),var(--pm-orange))"></div>
-                <div class="nm-car" style="left:38%">🚗</div>
-                <div class="nm-dest">📍</div>
-                <div class="nm-you"></div>
-                <div class="nm-eta-bubble">
-                  <div class="nm-eta-big" style="color:var(--pm-yellow)">8 min</div>
-                  <div class="nm-eta-sub">Updated due to traffic</div>
-                </div>
-                <div class="nm-confidence" style="background:rgba(245,197,24,.12);border-color:rgba(245,197,24,.3);color:var(--pm-yellow)">Traffic delay</div>
-              </div>
-              <div class="new-bottom">
-                <div style="background:rgba(245,197,24,.07);border:1px solid rgba(245,197,24,.2);border-radius:12px;padding:12px;margin-bottom:12px">
-                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                    <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--pm-yellow);line-height:1">8 min</span>
-                    <div style="text-align:right">
-                      <div style="font-size:.62rem;font-weight:700;color:var(--pm-yellow)">ETA UPDATED</div>
-                      <div style="font-size:.6rem;color:color-mix(in srgb, var(--bg-elevated) 35%, transparent);margin-top:2px">Traffic on Galle Road</div>
-                    </div>
-                  </div>
-                  <div style="background:var(--accent-tint-md);border-radius:4px;height:4px;overflow:hidden">
-                    <div style="background:var(--pm-yellow);width:45%;height:100%;border-radius:4px"></div>
-                  </div>
-                  <div style="margin-top:8px;font-size:.7rem;color:color-mix(in srgb, var(--bg-elevated) 45%, transparent);line-height:1.5">🚦 Your driver encountered heavy traffic near Bambalapitiya junction. ETA adjusted.</div>
-                </div>
-                <div class="progress-timeline">
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                  <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                  <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">In Traffic</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                  <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/eta-change-with-context.png"
+                alt="PickMe ETA change with context — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">ETA change with context</span><span class="tag">After</span></div>
           </div>
@@ -1155,74 +1086,35 @@ footer{background:var(--accent);display:flex;justify-content:space-between;align
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">A persistent 5-step visual progress timeline — Booked → Matched → En Route → Arriving → Here — gives users a mental model of the ride lifecycle. This is the same pattern used by Amazon, Uber Eats, and FedEx to reduce "where is it?" anxiety across different domains.</p>
         <div class="screen-block sb-3">
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:12 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:14px">PHASE: MATCHED</div>
-              <div class="driver-status-card">
-                <div class="dsc-av">👨</div>
-                <div class="dsc-info">
-                  <div class="dsc-name">Kasun P.</div>
-                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
-                  <div class="dsc-status"><div class="dsc-status-dot"></div><div class="dsc-status-text">Starting route</div></div>
-                </div>
-                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
-              </div>
-              <div class="progress-timeline">
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">Matched</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">En Route</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-              </div>
-              <div style="background:rgba(10,179,168,.08);border:1px solid rgba(10,179,168,.2);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(10,179,168,.8)">✓ Kasun has accepted your ride and is preparing to start.</div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/phase-matched.png"
+                alt="PickMe Phase: Matched — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Phase: Matched</span><span class="tag">After</span></div>
           </div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:14px">PHASE: EN ROUTE</div>
-              <div class="driver-status-card">
-                <div class="dsc-av">👨</div>
-                <div class="dsc-info">
-                  <div class="dsc-name">Kasun P.</div>
-                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
-                  <div class="dsc-status"><div class="dsc-status-dot"></div><div class="dsc-status-text">Moving toward you — 1.2 km</div></div>
-                </div>
-                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
-              </div>
-              <div class="progress-timeline">
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">En Route</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-line"></div><div class="pt-label">Arriving</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-              </div>
-              <div style="background:var(--accent-tint);border:1px solid var(--pm-orange-border);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(15, 23, 42, 0.85)">🚗 Kasun is 4 minutes away and moving toward your location.</div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/phase-en-route.png"
+                alt="PickMe Phase: En Route — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Phase: En Route</span><span class="tag">After</span></div>
           </div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:18 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);margin-bottom:14px">PHASE: ARRIVING</div>
-              <div class="driver-status-card" style="border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.06)">
-                <div class="dsc-av" style="background:linear-gradient(135deg,#22C55E,#16a34a)">👨</div>
-                <div class="dsc-info">
-                  <div class="dsc-name">Kasun P.</div>
-                  <div class="dsc-sub">CBB-7782 · Toyota Prius</div>
-                  <div class="dsc-status"><div class="dsc-status-dot" style="background:var(--pm-green)"></div><div class="dsc-status-text">Almost there — 200m</div></div>
-                </div>
-                <div style="font-size:.72rem;color:var(--pm-yellow);font-weight:600">★ 4.9</div>
-              </div>
-              <div class="progress-timeline">
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Booked</div></div>
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">Matched</div></div>
-                <div class="pt-step"><div class="pt-dot done"></div><div class="pt-line done"></div><div class="pt-label done">En Route</div></div>
-                <div class="pt-step"><div class="pt-dot active"></div><div class="pt-line"></div><div class="pt-label active">Arriving</div></div>
-                <div class="pt-step"><div class="pt-dot"></div><div class="pt-label">Here</div></div>
-              </div>
-              <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(34,197,94,.9)">✓ Kasun is almost here! Head to your pickup point at Liberty Plaza entrance.</div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/phase-arriving.png"
+                alt="PickMe Phase: Arriving — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Phase: Arriving</span><span class="tag">After</span></div>
           </div>
@@ -1236,47 +1128,30 @@ footer{background:var(--accent);display:flex;justify-content:space-between;align
           <div class="sg-badges"><span class="tag">Redesigned</span></div>
         </div>
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;max-width:660px;line-height:1.8;">Replace generic, spammy push notifications with a state-triggered, contextual notification system. Each notification fires at a meaningful moment and says something useful — not just "Your driver is on the way" for the fourth time.</p>
-        <div class="screen-block sb-2">
+        <div class="screen-block sb-2 screen-block--compare">
           <div class="screen-card card">
             <div class="ui-screen">
               <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(15, 23, 42, 0.4);margin-bottom:10px">BEFORE — Generic notifications</div>
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pm-muted);margin-bottom:10px">BEFORE — Generic notifications</div>
               <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:10</span></div>
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:11</span></div>
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:12</span></div>
-                <div style="background:var(--accent-tint);border:1px solid var(--accent-border);border-radius:10px;padding:10px;font-size:.75rem;color:color-mix(in srgb, var(--bg-elevated) 50%, transparent)">🔔 Your driver is on the way. <span style="color:color-mix(in srgb, var(--bg-elevated) 25%, transparent);font-size:.65rem">9:14</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:10</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:11</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:12</span></div>
+                <div style="background:var(--pm-card-raised);border:1px solid var(--pm-border);border-radius:10px;padding:10px;font-size:.75rem;color:var(--pm-text)">🔔 Your driver is on the way. <span style="color:var(--pm-muted);font-size:.65rem">9:14</span></div>
               </div>
               <div style="margin-top:10px;background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.15);border-radius:10px;padding:10px;font-size:.75rem;color:rgba(232,64,64,.7)">😤 4 identical notifications. No useful information.</div>
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Current notification system</span><span class="tag">Before</span></div>
           </div>
+          <div class="screen-compare-divider" aria-hidden="true">→</div>
           <div class="screen-card card">
-            <div class="ui-screen">
-              <div class="status-bar"><span class="sb-time">9:14 AM</span><span class="sb-icons">▲ ● ●</span></div>
-              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(34,197,94,.5);margin-bottom:10px">AFTER — Contextual notifications</div>
-              <div class="notif-stream" style="padding:0;gap:8px;display:flex;flex-direction:column">
-                <div class="notif-item important">
-                  <div class="notif-icon-wrap ni-orange">🚗</div>
-                  <div class="notif-body"><div class="notif-title">Kasun is moving toward you</div><div class="notif-sub">1.4 km away · ETA 4 min · High confidence</div></div>
-                  <div class="notif-time">9:10</div>
-                </div>
-                <div class="notif-item">
-                  <div class="notif-icon-wrap" style="background:rgba(245,197,24,.12)">🚦</div>
-                  <div class="notif-body"><div class="notif-title">ETA updated to 7 min</div><div class="notif-sub">Traffic on Galle Road — route unchanged</div></div>
-                  <div class="notif-time">9:12</div>
-                </div>
-                <div class="notif-item">
-                  <div class="notif-icon-wrap ni-teal">📍</div>
-                  <div class="notif-body"><div class="notif-title">Kasun is 2 minutes away</div><div class="notif-sub">Head to Liberty Plaza main entrance</div></div>
-                  <div class="notif-time">9:16</div>
-                </div>
-                <div class="notif-item">
-                  <div class="notif-icon-wrap ni-green">✓</div>
-                  <div class="notif-body"><div class="notif-title">Your driver has arrived</div><div class="notif-sub">Look for CBB-7782 Toyota Prius</div></div>
-                  <div class="notif-time">9:18</div>
-                </div>
-              </div>
+            <div class="ui-screen ui-screen--after">
+              <img
+                src="/case-studies/pickme/redesigned-notification-system.png"
+                alt="PickMe Redesigned notification system — redesigned ride tracking screen"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="sc-footer"><span class="sc-footer-name">Redesigned notification system</span><span class="tag">After</span></div>
           </div>
