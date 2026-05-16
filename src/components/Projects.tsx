@@ -280,36 +280,30 @@ export function Projects() {
           border-radius: 12px;
           border: 1px solid var(--border);
           overflow: hidden;
-          background: var(--bg-elevated);
-          aspect-ratio: 16 / 9;
-          contain: layout paint;
+          line-height: 0;
         }
-        .works-row__media-inner,
-        .works-row__media-img {
-          position: absolute;
-          inset: 0;
+        .works-row__media-inner {
+          display: block;
           width: 100%;
-          height: 100%;
-          will-change: transform;
+          aspect-ratio: 4 / 3;
+          min-height: 12rem;
+        }
+        .works-row__media-img {
+          display: block;
+          width: 100%;
+          height: auto;
+          vertical-align: top;
           transform: scale(1);
           transform-origin: center center;
           transition: transform 0.35s ease;
         }
-        .works-row__media-img {
-          object-fit: contain;
-          object-position: center;
-          display: block;
-        }
-        .works-row:hover .works-row__media-inner,
         .works-row:hover .works-row__media-img {
-          transform: scale(1.03);
+          transform: scale(1.02);
         }
         @media (prefers-reduced-motion: reduce) {
-          .works-row__media-inner,
           .works-row__media-img {
             transition: none;
           }
-          .works-row:hover .works-row__media-inner,
           .works-row:hover .works-row__media-img {
             transform: none;
           }
@@ -326,9 +320,6 @@ export function Projects() {
           .works-row--flip .works-row__text,
           .works-row--flip .works-row__media {
             order: unset;
-          }
-          .works-row__media-frame {
-            aspect-ratio: 16 / 9;
           }
         }
       `}</style>
