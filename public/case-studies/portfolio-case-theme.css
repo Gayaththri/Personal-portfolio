@@ -22,6 +22,7 @@
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --font-mono: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 
   /* Rose by Basicare aliases */
   --rose: var(--accent);
@@ -30,11 +31,10 @@
   --petal: var(--accent-tint);
   --cream: var(--bg);
   --ink: var(--text);
-  --ink-60: rgba(71, 85, 105, 0.92);
+  --ink-60: var(--text-muted);
   --ink-30: rgba(15, 23, 42, 0.28);
   --ink-10: rgba(15, 23, 42, 0.07);
   --white: var(--bg-elevated);
-  --font-display: var(--font-serif);
   --font-ui: var(--font-sans);
   --font-body: var(--font-sans);
 

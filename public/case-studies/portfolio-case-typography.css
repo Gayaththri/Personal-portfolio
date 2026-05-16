@@ -1,0 +1,373 @@
+/**
+ * Case study typography — aligned with portfolio hero & section-head (index.css).
+ * Loaded after each case study’s inline styles.
+ */
+
+:root {
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --cs-max: 1120px;
+  --cs-pad-x: clamp(1.25rem, 4.5vw, 3.5rem);
+  --cs-section-y: clamp(3rem, 7vw, 5.5rem);
+  --cs-text-base: 1rem;
+  --cs-text-body: clamp(0.9375rem, 2.1vw, 1rem);
+  --cs-text-lead: clamp(0.9375rem, 2.2vw, 1.0625rem);
+  --cs-text-eyebrow: 11px;
+  --cs-text-h1: clamp(1.85rem, 4.5vw + 0.35rem, 2.75rem);
+  --cs-text-h2: clamp(1.65rem, 5vw + 0.5rem, 3rem);
+  --cs-text-h3: clamp(1.0625rem, 1.8vw, 1.25rem);
+  --cs-text-small: 0.8125rem;
+  --cs-text-meta: 0.6875rem;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-base) !important;
+  line-height: 1.6 !important;
+  color: var(--text) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout rhythm ── */
+.wrap {
+  max-width: var(--cs-max) !important;
+  padding-inline: var(--cs-pad-x) !important;
+}
+
+nav {
+  padding-inline: var(--cs-pad-x) !important;
+}
+
+.overview-section,
+section,
+footer {
+  padding-block: var(--cs-section-y) !important;
+}
+
+footer {
+  padding-inline: var(--cs-pad-x) !important;
+}
+
+/* ── Hero layout (embedded view) ── */
+.hero-left {
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 3.5rem) !important;
+}
+
+.hero-title {
+  font-family: var(--font-display) !important;
+  font-size: var(--cs-text-h1) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--text) !important;
+}
+
+.hero-title em {
+  font-style: normal !important;
+  font-weight: 700 !important;
+  color: var(--accent-light) !important;
+}
+
+/* PickMe only — dark hero panel */
+.hero-left:has(.hero-subtitle) .hero-title {
+  color: #fff !important;
+}
+
+.hero-left:has(.hero-subtitle) .hero-title em {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.hero-desc,
+.hero-subtitle {
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-lead) !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  color: var(--text-muted) !important;
+  max-width: 42rem;
+}
+
+.hero-left:has(.hero-subtitle) .hero-subtitle {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.hero-chip {
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-meta) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+  background: var(--accent-tint) !important;
+  border-color: var(--border) !important;
+}
+
+.hero-left:has(.hero-subtitle) .hero-chip {
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: var(--accent-tint-md) !important;
+  border-color: var(--accent-border) !important;
+}
+
+.meta-cell label,
+.hm-cell label {
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-meta) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+}
+
+.hero-left:has(.hero-subtitle) .hm-cell label {
+  color: var(--accent-light) !important;
+}
+
+.meta-cell span,
+.hm-cell span {
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-body) !important;
+  font-weight: 500 !important;
+  color: var(--text) !important;
+}
+
+.hero-left:has(.hero-subtitle) .hm-cell span {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+/* ── Section intros (portfolio section-head pattern) ── */
+.section-eyebrow,
+.eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-eyebrow) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+  margin-bottom: clamp(0.65rem, 1.5vw, 0.85rem) !important;
+}
+
+.section-eyebrow::before,
+.eyebrow::before {
+  content: "—" !important;
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  color: var(--text-muted) !important;
+  font-size: var(--cs-text-eyebrow) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.display-heading,
+.dh {
+  font-family: var(--font-display) !important;
+  font-size: var(--cs-text-h2) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--text) !important;
+}
+
+.display-heading em,
+.dh em {
+  font-style: normal !important;
+  font-weight: 700 !important;
+  color: var(--accent-light) !important;
+}
+
+/* ── Body copy ── */
+.overview-text p,
+.ov-body,
+.screens-header p,
+.annotation p,
+.decision-body,
+.challenge p,
+.learning-body,
+.pc-body,
+.persona-body,
+.solution-intro p,
+.process-body,
+.outcome-body,
+.ba-callout-body,
+.ba-point,
+.outcomes-intro,
+.process-section .display-heading + p,
+.type-sample-body,
+.kpi-text span {
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-body) !important;
+  line-height: 1.6 !important;
+  color: var(--text-muted) !important;
+}
+
+.ov-body strong,
+.overview-text p strong {
+  color: var(--text) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Subheadings & labels ── */
+.annotation h4,
+.decision-title,
+.pc-title,
+.persona-name,
+.screen-group-title h3,
+.process-title,
+.outcome-title,
+.learning-title,
+.sc-footer-name,
+.swatch-name,
+.type-label,
+.challenge h4,
+.next-label {
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  font-size: var(--cs-text-small) !important;
+  letter-spacing: 0.02em !important;
+  color: var(--text) !important;
+}
+
+.screen-group-title h3 {
+  font-size: var(--cs-text-h3) !important;
+  letter-spacing: -0.02em !important;
+}
+
+.screen-label,
+.role-pill,
+.ctx-tag {
+  font-family: var(--font-sans) !important;
+  font-size: var(--cs-text-meta) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* ── Stats & numerals ── */
+.kpi-num,
+.stat-n,
+.process-num,
+.challenge-stat,
+.track-eta-big,
+.nm-eta-big {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* ── Nav (parent app shows TopNav; hidden in theme) ── */
+.nav-logo,
+.nav-links a,
+.nav-cta,
+.nav-tag {
+  font-family: var(--font-sans) !important;
+}
+
+.nav-links a {
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+}
+
+/* ── Footer & next project ── */
+.footer-name,
+.next-title,
+.footer-sub,
+.footer-right,
+.footer-r {
+  font-family: var(--font-sans) !important;
+}
+
+.footer-name,
+.next-title {
+  font-weight: 700 !important;
+  font-size: clamp(1.125rem, 2vw, 1.35rem) !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ── Dark / tinted sections ── */
+.process-section .display-heading,
+.outcomes-section .display-heading,
+.outcomes-bg .dh {
+  color: #fff !important;
+}
+
+.process-section .display-heading em,
+.outcomes-section .display-heading em,
+.outcomes-bg .dh em {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.process-section .section-eyebrow,
+.outcomes-section .section-eyebrow,
+.outcomes-bg .eyebrow {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.process-section .section-eyebrow::before,
+.outcomes-section .section-eyebrow::before,
+.outcomes-bg .eyebrow::before {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.process-section p,
+.outcomes-section .outcomes-intro,
+.outcome-body {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* ── Cards & polish ── */
+.sc,
+.problem-card,
+.persona-card,
+.decision-card,
+.outcome-card,
+.process-card {
+  border-radius: 16px !important;
+}
+
+.sc {
+  border: 1px solid var(--border) !important;
+  background: var(--bg-elevated) !important;
+  overflow: hidden;
+}
+
+.overview-grid,
+.ov-grid {
+  gap: clamp(2rem, 5vw, 4rem) !important;
+}
+
+@media (max-width: 900px) {
+  .overview-grid,
+  .ov-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-right {
+    min-height: 280px;
+  }
+}
+
+.sc-footer {
+  font-family: var(--font-sans) !important;
+}
+
+/* Type specimens in Rose — keep brand samples readable */
+.type-sample-serif {
+  font-family: var(--font-serif) !important;
+}
+
+.type-sample-ui {
+  font-family: var(--font-sans) !important;
+}

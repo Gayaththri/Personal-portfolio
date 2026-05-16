@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -547,26 +547,64 @@ footer {
   align-items: center;
   padding: 0.75rem 0.75rem 0;
 }
-.sc img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-.sc:has(.label-desktop) img { max-width: min(100%, 700px); }
-.sc:has(.label-mobile) img { max-width: min(100%, 260px); }
+.sc .img-ph { width: 100%; }
+.sc:has(.label-desktop) .img-ph { max-width: min(100%, 700px); }
+.sc:has(.label-mobile) .img-ph { max-width: min(100%, 260px); margin-inline: auto; }
 .moodboard-img {
   display: flex;
   justify-content: center;
 }
-.moodboard-img img {
-  width: auto;
-  max-width: min(100%, 520px);
-  height: auto;
-  display: block;
+.phone .img-ph {
+  border-radius: 20px;
+  min-height: 100%;
+  aspect-ratio: 9 / 19;
 }
 
+/* Image placeholders — replace with assets when ready */
+.img-ph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  background: linear-gradient(160deg, #f8fafc 0%, #f1f5f9 48%, #e2e8f0 100%);
+  border: 1px dashed rgba(15, 23, 42, 0.14);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+.img-ph__icon {
+  font-size: 1.35rem;
+  line-height: 1;
+  opacity: 0.35;
+  color: var(--text-soft);
+}
+.img-ph__title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.img-ph__hint {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-soft);
+}
+.img-ph--phone-main { min-height: 420px; }
+.img-ph--phone-sub { min-height: 320px; }
+.img-ph--desktop { min-height: 400px; }
+.img-ph--mobile { min-height: 360px; }
+.img-ph--moodboard { min-height: 340px; max-width: min(100%, 520px); }
+.img-ph--filter { min-height: 300px; }
+.img-ph--short { min-height: 280px; }
+.img-ph--cart { min-height: 440px; max-width: 260px; margin-inline: auto; }
+
 </style>
+<link rel="stylesheet" href="/case-studies/portfolio-case-typography.css">
 </head>
 <body>
 
@@ -618,10 +656,18 @@ footer {
     <div class="hero-right-bg-circle"></div>
     <div class="phone-stack">
       <div class="phone phone-sub">
-        <img src="/case-studies/rose-assets/My_Bag.png" alt="Cart screen" onerror="this.style.background='#f2c4ca';this.style.height='320px'">
+        <div class="img-ph img-ph--phone-sub" role="img" aria-label="Cart screen">
+          <span class="img-ph__icon" aria-hidden>◇</span>
+          <span class="img-ph__title">Cart screen</span>
+          <span class="img-ph__hint">Image coming soon</span>
+        </div>
       </div>
       <div class="phone phone-main">
-        <img src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#e8919e';this.style.height='420px'">
+        <div class="img-ph img-ph--phone-main" role="img" aria-label="Homepage mobile">
+          <span class="img-ph__icon" aria-hidden>◇</span>
+          <span class="img-ph__title">Homepage mobile</span>
+          <span class="img-ph__hint">Image coming soon</span>
+        </div>
       </div>
     </div>
   </div>
@@ -695,7 +741,11 @@ footer {
         </div>
       </div>
       <div class="moodboard-img reveal reveal-d2">
-        <img src="/case-studies/rose-assets/Group_1.png" alt="K-beauty inspired moodboard" onerror="this.style.background='linear-gradient(135deg,#fceef0,#f2c4ca)';this.style.height='340px'">
+        <div class="img-ph img-ph--moodboard" role="img" aria-label="K-beauty inspired moodboard">
+          <span class="img-ph__icon" aria-hidden>◇</span>
+          <span class="img-ph__title">Moodboard</span>
+          <span class="img-ph__hint">Image coming soon</span>
+        </div>
       </div>
     </div>
 
@@ -798,11 +848,19 @@ footer {
       </div>
       <div class="grid-1-2">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Frame_1984078151.png" alt="Homepage desktop" onerror="this.style.background='#fceef0';this.style.height='400px'">
+          <div class="img-ph img-ph--desktop" role="img" aria-label="Homepage desktop">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Homepage desktop</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Homepage — Full page</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Homepage-3.png" alt="Homepage mobile" onerror="this.style.background='#f2c4ca';this.style.height='400px'">
+          <div class="img-ph img-ph--mobile" role="img" aria-label="Homepage mobile">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Homepage mobile</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Homepage — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -823,11 +881,19 @@ footer {
       </div>
       <div class="grid-2">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page.png" alt="Products desktop" onerror="this.style.background='#fceef0';this.style.height='360px'">
+          <div class="img-ph img-ph--desktop" role="img" aria-label="Products desktop">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Products desktop</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Desktop</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page-1.png" alt="Products mobile" onerror="this.style.background='#f2c4ca';this.style.height='360px'">
+          <div class="img-ph img-ph--mobile" role="img" aria-label="Products mobile">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Products mobile</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -845,29 +911,53 @@ footer {
       <p style="font-size:0.9rem;color:var(--ink-60);margin-bottom:1.5rem;max-width:700px;">Standard eCommerce filters (size, colour, price) don't solve the beauty shopper's real problem. A woman looking for lashes needs to filter by <em>eye shape, lash type, style, and length</em>. I designed a beauty-specific filter taxonomy — this was a BA-driven insight translated directly into UX.</p>
       <div class="grid-3" style="margin-bottom:1.5rem;">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filter.png" alt="Filter empty" onerror="this.style.background='#fceef0';this.style.height='300px'">
+          <div class="img-ph img-ph--filter" role="img" aria-label="Filter empty">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Filter panel — collapsed</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Filter panel — collapsed</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filter-1.png" alt="Filter active" onerror="this.style.background='#f2c4ca';this.style.height='300px'">
+          <div class="img-ph img-ph--filter" role="img" aria-label="Filter active">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Filters expanded</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Filters expanded (3 active)</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filters-2.png" alt="Filter full" onerror="this.style.background='#f9e8ea';this.style.height='300px'">
+          <div class="img-ph img-ph--filter" role="img" aria-label="Filter full">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Full filter taxonomy</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Full filter taxonomy</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
       </div>
       <div class="grid-3">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filters.png" alt="Mobile filter" onerror="this.style.background='#fceef0';this.style.height='300px'">
+          <div class="img-ph img-ph--mobile img-ph--filter" role="img" aria-label="Mobile filter">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Filter bottom sheet</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Filter bottom sheet</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filters-1.png" alt="Mobile filter expanded" onerror="this.style.background='#f2c4ca';this.style.height='300px'">
+          <div class="img-ph img-ph--mobile img-ph--filter" role="img" aria-label="Mobile filter expanded">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Categories expanded</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Categories expanded</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Products_Page_-_Filters-3.png" alt="Mobile filter selected" onerror="this.style.background='#f9e8ea';this.style.height='300px'">
+          <div class="img-ph img-ph--mobile img-ph--filter" role="img" aria-label="Mobile filter selected">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">3 filters active</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">3 filters active</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -888,21 +978,37 @@ footer {
       </div>
       <div class="grid-2">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page.png" alt="PDP desktop" onerror="this.style.background='#fceef0';this.style.height='400px'">
+          <div class="img-ph img-ph--desktop" role="img" aria-label="PDP desktop">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Product detail — desktop</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Product Detail — Desktop</span><span class="screen-label label-desktop">Desktop</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page-1.png" alt="PDP mobile" onerror="this.style.background='#f2c4ca';this.style.height='400px'">
+          <div class="img-ph img-ph--mobile" role="img" aria-label="PDP mobile">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Product detail — mobile</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Product Detail — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
       <div class="grid-2" style="margin-top:1.5rem;">
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page-2.png" alt="PDP state 2" onerror="this.style.background='#fceef0';this.style.height='280px'">
+          <div class="img-ph img-ph--mobile img-ph--short" role="img" aria-label="PDP state 2">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Product detail — quantity</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Product detail — quantity state</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/Product_Detail_Page-3.png" alt="PDP state 3" onerror="this.style.background='#f2c4ca';this.style.height='280px'">
+          <div class="img-ph img-ph--mobile img-ph--short" role="img" aria-label="PDP state 3">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Product detail — scrolled</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">Product detail — scrolled</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -924,7 +1030,11 @@ footer {
           <p style="margin-top:0.6rem;">The "You are $10 away from Free Shipping" nudge at the top of the cart is a conversion-focused design pattern I proposed after researching industry best practices. It creates a tangible incentive to add one more item — a low-cost product recommendation below the cart reinforces this without being pushy. The sticky Order Total with a prominent Checkout CTA removes any friction from completing purchase.</p>
         </div>
         <div class="sc">
-          <img src="/case-studies/rose-assets/My_Bag.png" alt="Shopping bag" onerror="this.style.background='#f2c4ca';this.style.height='440px'">
+          <div class="img-ph img-ph--cart" role="img" aria-label="Shopping bag">
+            <span class="img-ph__icon" aria-hidden>◇</span>
+            <span class="img-ph__title">Shopping bag — mobile</span>
+            <span class="img-ph__hint">Image coming soon</span>
+          </div>
           <div class="sc-footer"><span class="sc-footer-name">My Bag — Mobile</span><span class="screen-label label-mobile">Mobile</span></div>
         </div>
       </div>
@@ -1171,13 +1281,6 @@ window.addEventListener('scroll', () => {
   btn.classList.toggle('show', s > 600);
 });
 
-// Image fallback paths — try loading from uploads dir
-document.querySelectorAll('img[src]').forEach(img => {
-  const src = img.getAttribute('src');
-  if (!src.startsWith('/') && !src.startsWith('http')) {
-    img.src = '/case-studies/rose-assets/' + src;
-  }
-});
 </script>
 </body>
 </html>
