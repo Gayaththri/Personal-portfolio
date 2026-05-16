@@ -18,8 +18,6 @@ export type ShowcaseProject = {
   coverGradient: string;
   /** Pastel background + pattern for the visual block */
   accentWell?: CaseStudyWell;
-  /** Full HTML case study from /public (iframe mode on CaseStudyPage) */
-  embeddedHtmlPath?: string;
   /** Long-form sections for the in-app case study page */
   caseSections: CaseStudySection[];
   /** Shown on the case page only (e.g. GitHub) */
@@ -37,7 +35,6 @@ export const showcaseProjects: ShowcaseProject[] = [
     coverGradient:
       "linear-gradient(160deg, #fceef0 0%, #f9e8ea 45%, #f4dde0 100%, #e8c4cb 100%)",
     accentWell: "mint",
-    embeddedHtmlPath: "/case-studies/rose-by-basicare.html",
     caseSections: [],
   },
   {
@@ -50,7 +47,6 @@ export const showcaseProjects: ShowcaseProject[] = [
     coverGradient:
       "linear-gradient(145deg, #fff4ed 0%, #ffe8d9 42%, #ffd4bc 100%)",
     accentWell: "sky",
-    embeddedHtmlPath: "/case-studies/pickme.html",
     caseSections: [],
   },
 ];

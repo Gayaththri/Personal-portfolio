@@ -128,6 +128,16 @@ video {
   flex-direction: column;
 }
 
+/** Embedded case studies: page scrolls as one; footer follows full content */
+.app__main:has(.case-page--embed) {
+  flex: 0 1 auto;
+  min-height: auto;
+}
+
+.app__content:has(.case-page--embed) {
+  min-height: auto;
+}
+
 /** Shared fixed pill nav (TopNav) — single source for all routes */
 .topnav {
   position: fixed;

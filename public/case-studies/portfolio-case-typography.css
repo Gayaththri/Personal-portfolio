@@ -31,29 +31,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Layout rhythm ── */
-.wrap {
-  max-width: var(--cs-max) !important;
-  padding-inline: var(--cs-pad-x) !important;
-}
-
+/* ── Layout rhythm (padding on section; width on .wrap) ── */
 nav {
-  padding-inline: var(--cs-pad-x) !important;
-}
-
-.overview-section,
-section,
-footer {
-  padding-block: var(--cs-section-y) !important;
-}
-
-footer {
-  padding-inline: var(--cs-pad-x) !important;
+  padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end) !important;
 }
 
 /* ── Hero layout (embedded view) ── */
 .hero-left {
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 3.5rem) !important;
+  padding: 0 !important;
 }
 
 .hero-title {
@@ -73,11 +58,11 @@ footer {
 
 /* PickMe only — dark hero panel */
 .hero-left:has(.hero-subtitle) .hero-title {
-  color: #fff !important;
+  color: var(--bg-elevated) !important;
 }
 
 .hero-left:has(.hero-subtitle) .hero-title em {
-  color: rgba(255, 255, 255, 0.92) !important;
+  color: color-mix(in srgb, var(--bg-elevated) 92%, transparent) !important;
 }
 
 .hero-desc,
@@ -91,24 +76,7 @@ footer {
 }
 
 .hero-left:has(.hero-subtitle) .hero-subtitle {
-  color: rgba(255, 255, 255, 0.72) !important;
-}
-
-.hero-chip {
-  font-family: var(--font-sans) !important;
-  font-size: var(--cs-text-meta) !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-  color: var(--text-muted) !important;
-  background: var(--accent-tint) !important;
-  border-color: var(--border) !important;
-}
-
-.hero-left:has(.hero-subtitle) .hero-chip {
-  color: rgba(255, 255, 255, 0.85) !important;
-  background: var(--accent-tint-md) !important;
-  border-color: var(--accent-border) !important;
+  color: color-mix(in srgb, var(--bg-elevated) 72%, transparent) !important;
 }
 
 .meta-cell label,
@@ -134,72 +102,22 @@ footer {
 }
 
 .hero-left:has(.hero-subtitle) .hm-cell span {
-  color: rgba(255, 255, 255, 0.88) !important;
-}
-
-/* ── Section intros (portfolio section-head pattern) ── */
-.section-eyebrow,
-.eyebrow {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.35rem !important;
-  font-family: var(--font-sans) !important;
-  font-size: var(--cs-text-eyebrow) !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  color: var(--text-muted) !important;
-  margin-bottom: clamp(0.65rem, 1.5vw, 0.85rem) !important;
-}
-
-.section-eyebrow::before,
-.eyebrow::before {
-  content: "—" !important;
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-  background: none !important;
-  color: var(--text-muted) !important;
-  font-size: var(--cs-text-eyebrow) !important;
-  font-weight: 500 !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
-}
-
-.display-heading,
-.dh {
-  font-family: var(--font-display) !important;
-  font-size: var(--cs-text-h2) !important;
-  font-weight: 700 !important;
-  line-height: 1.08 !important;
-  letter-spacing: -0.03em !important;
-  color: var(--text) !important;
-}
-
-.display-heading em,
-.dh em {
-  font-style: normal !important;
-  font-weight: 700 !important;
-  color: var(--accent-light) !important;
+  color: color-mix(in srgb, var(--bg-elevated) 88%, transparent) !important;
 }
 
 /* ── Body copy ── */
 .overview-text p,
 .ov-body,
-.screens-header p,
 .annotation p,
 .decision-body,
 .challenge p,
 .learning-body,
 .pc-body,
 .persona-body,
-.solution-intro p,
 .process-body,
 .outcome-body,
 .ba-callout-body,
 .ba-point,
-.outcomes-intro,
-.process-section .display-heading + p,
 .type-sample-body,
 .kpi-text span {
   font-family: var(--font-sans) !important;
@@ -240,13 +158,8 @@ footer {
   letter-spacing: -0.02em !important;
 }
 
-.screen-label,
-.role-pill,
-.ctx-tag {
+.tag {
   font-family: var(--font-sans) !important;
-  font-size: var(--cs-text-meta) !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
 }
 
 /* ── Stats & numerals ── */
@@ -264,8 +177,7 @@ footer {
 /* ── Nav (parent app shows TopNav; hidden in theme) ── */
 .nav-logo,
 .nav-links a,
-.nav-cta,
-.nav-tag {
+.nav-cta {
   font-family: var(--font-sans) !important;
 }
 
@@ -292,50 +204,8 @@ footer {
   letter-spacing: -0.02em !important;
 }
 
-/* ── Dark / tinted sections ── */
-.process-section .display-heading,
-.outcomes-section .display-heading,
-.outcomes-bg .dh {
-  color: #fff !important;
-}
-
-.process-section .display-heading em,
-.outcomes-section .display-heading em,
-.outcomes-bg .dh em {
-  color: rgba(255, 255, 255, 0.88) !important;
-}
-
-.process-section .section-eyebrow,
-.outcomes-section .section-eyebrow,
-.outcomes-bg .eyebrow {
-  color: rgba(255, 255, 255, 0.65) !important;
-}
-
-.process-section .section-eyebrow::before,
-.outcomes-section .section-eyebrow::before,
-.outcomes-bg .eyebrow::before {
-  color: rgba(255, 255, 255, 0.65) !important;
-}
-
-.process-section p,
-.outcomes-section .outcomes-intro,
-.outcome-body {
-  color: rgba(255, 255, 255, 0.72) !important;
-}
-
-/* ── Cards & polish ── */
-.sc,
-.problem-card,
-.persona-card,
-.decision-card,
-.outcome-card,
-.process-card {
-  border-radius: 16px !important;
-}
-
+/* ── Cards: chrome from .card / .case-block in portfolio-case-theme.css ── */
 .sc {
-  border: 1px solid var(--border) !important;
-  background: var(--bg-elevated) !important;
   overflow: hidden;
 }
 
@@ -350,12 +220,12 @@ footer {
     grid-template-columns: 1fr !important;
   }
 
-  .hero {
-    grid-template-columns: 1fr !important;
-  }
-
   .hero-right {
     min-height: 280px;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -365,7 +235,7 @@ footer {
 
 /* Type specimens in Rose — keep brand samples readable */
 .type-sample-serif {
-  font-family: var(--font-serif) !important;
+  font-family: var(--font-display) !important;
 }
 
 .type-sample-ui {

@@ -1,0 +1,165 @@
+/**
+ * Rose by Basicare — alignment with site index.css (fonts, tokens, spacing, cards).
+ */
+
+.case-study-content {
+  background: var(--bg);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.case-study-content h1,
+.case-study-content h2,
+.case-study-content h3,
+.case-study-content h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.case-study-content.case-study--rose .hero,
+.case-study-content.case-study--rose .hero-left {
+  background: var(--bg);
+}
+
+.case-study-content.case-study--rose .hero-right,
+.case-study-content.case-study--rose .phone-stack {
+  background: transparent;
+}
+
+.case-study-content.case-study--rose img {
+  image-rendering: -webkit-optimize-contrast;
+  filter: none;
+  opacity: 1;
+  max-width: 100%;
+}
+
+.case-study-content.case-study--rose .hero-phones-img {
+  background: transparent;
+}
+
+.case-study-content.case-study--rose .hero-left::after {
+  display: none;
+}
+
+.case-study-content.case-study--rose .hero-right-bg-circle {
+  display: none;
+}
+
+.case-study-content .hero-title {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.case-study-content .hero-title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.case-study-content .overview-section,
+.case-study-content .decisions-section,
+.case-study-content .learnings-section,
+.case-study-content .moodboard-section,
+.case-study-content .screens-section,
+.case-study-content .challenges-section {
+  background: var(--bg);
+}
+
+.case-study-content ::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+.case-study-content ::-webkit-scrollbar-thumb {
+  background: var(--accent-border);
+}
+
+.case-study-content .meta-cell label,
+.case-study-content .kpi-text label,
+.case-study-content .type-label,
+.case-study-content .next-label {
+  color: var(--text-muted);
+}
+
+.case-study-content .kpi-number,
+.case-study-content .hero-chip-dot {
+  color: var(--accent);
+}
+
+.case-study-content .challenge-n,
+.case-study-content .ba-callout-label,
+.case-study-content .learning-num {
+  color: var(--text-soft);
+}
+
+.case-study-content .learning-card {
+  border-top-color: var(--accent);
+}
+
+.case-study-content .annotation {
+  border-left-color: var(--accent);
+}
+
+.case-study-content .annotation h4 {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.case-study-content .screen-group-title h3 {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.case-study-content .challenge-sol-label {
+  color: var(--text-muted);
+}
+
+.case-study-content .ba-point::before {
+  color: var(--accent);
+}
+
+.case-study-content .decision-result {
+  color: var(--accent);
+}
+
+.case-study-content .next-title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.case-study-content .next-btn:hover {
+  background: var(--accent-hover);
+}
+
+.case-study-content .sc-footer {
+  background: transparent;
+}
+
+.case-study-content .sc:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Nested .card on decision innards — layout only; outer .decision.card keeps chrome */
+.case-study-content .decision > .decision-title.card,
+.case-study-content .decision > .decision-body.card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+.case-study-content .progress-bar,
+.case-study-content .back-top {
+  display: none !important;
+}

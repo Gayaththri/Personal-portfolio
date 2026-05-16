@@ -1,65 +1,33 @@
-/* Shared tokens — matches src/index.css (slate navy, no purple) */
+/* Case study aliases — use site tokens from index.css (loaded on app shell) */
 :root {
-  --bg: #f8f9fc;
-  --bg-elevated: #ffffff;
-  --text: #0f172a;
-  --text-dark-hover: #1e293b;
-  --text-muted: #475569;
-  --text-soft: #64748b;
-  --border: rgba(15, 23, 42, 0.08);
-  --accent: #0f172a;
-  --accent-2: #334155;
-  --accent-light: #64748b;
-  --accent-hover: #1e293b;
-  --accent-tint: rgba(15, 23, 42, 0.06);
-  --accent-tint-md: rgba(15, 23, 42, 0.1);
-  --accent-tint-strong: rgba(15, 23, 42, 0.12);
-  --accent-border: rgba(15, 23, 42, 0.15);
-  --accent-border-strong: rgba(15, 23, 42, 0.22);
-  --shadow-neutral: rgba(15, 23, 42, 0.12);
-  --shadow-neutral-md: rgba(15, 23, 42, 0.18);
-  --gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #334155 100%);
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  --font-mono: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
-  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-
-  /* Rose by Basicare aliases */
   --rose: var(--accent);
   --rose-lt: var(--accent-light);
-  --blush: #94a3b8;
+  --blush: var(--text-soft);
   --petal: var(--accent-tint);
   --cream: var(--bg);
   --ink: var(--text);
   --ink-60: var(--text-muted);
-  --ink-30: rgba(15, 23, 42, 0.28);
-  --ink-10: rgba(15, 23, 42, 0.07);
+  --ink-30: color-mix(in srgb, var(--text) 28%, transparent);
+  --ink-10: var(--accent-tint);
   --white: var(--bg-elevated);
   --font-ui: var(--font-sans);
   --font-body: var(--font-sans);
 
-  /* PickMe aliases */
   --pm-orange: var(--accent);
   --pm-orange-lt: var(--accent-light);
   --pm-orange-bg: var(--accent-tint);
   --pm-orange-border: var(--accent-border);
   --pm-teal: var(--accent-2);
-  --pm-teal-bg: rgba(51, 65, 85, 0.08);
+  --pm-teal-bg: var(--accent-tint-md);
   --surface: var(--bg);
-  --ink-80: rgba(15, 23, 42, 0.8);
-  --ink-50: rgba(15, 23, 42, 0.5);
-  --ink-20: rgba(15, 23, 42, 0.2);
+  --ink-80: color-mix(in srgb, var(--text) 80%, transparent);
+  --ink-50: color-mix(in srgb, var(--text) 50%, transparent);
+  --ink-20: color-mix(in srgb, var(--text) 20%, transparent);
 
-  /* Layout — matches src/index.css */
   --max: 1120px;
-  --section-pad-y: clamp(40px, 5.5vw, 72px);
-  --section-pad-x: clamp(20px, 4.5vw, 56px);
-  --section-pad-inline-start: max(var(--section-pad-x), env(safe-area-inset-left, 0px));
-  --section-pad-inline-end: max(var(--section-pad-x), env(safe-area-inset-right, 0px));
-  --section-head-gap: clamp(1.15rem, 2.5vw, 1.65rem);
-  --radius: 16px;
-  --radius-sm: 12px;
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --text-dark-hover: var(--accent-hover);
+  --shadow-neutral: color-mix(in srgb, var(--text) 12%, transparent);
+  --shadow-neutral-md: color-mix(in srgb, var(--text) 18%, transparent);
 }
 
 /* Shared surfaces — matches src/index.css */
@@ -122,7 +90,7 @@
   width: 100%;
 }
 
-section {
+.case-study-content section {
   padding-block: var(--section-pad-y);
   padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
 }
@@ -229,7 +197,7 @@ section {
   margin-bottom: 4rem;
 }
 
-/* Embedded in portfolio iframe — parent renders TopNav */
+/* Parent app renders TopNav — hide legacy case-study nav if present */
 #mainNav,
 #nav {
   display: none !important;
@@ -239,8 +207,9 @@ section {
 .back-top,
 #backTop {
   background: var(--text) !important;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28) !important;
+  box-shadow: var(--shadow-md) !important;
 }
+
 .back-top:hover,
 #backTop:hover {
   background: var(--text-dark-hover) !important;
@@ -249,9 +218,10 @@ section {
 /* Case study nav CTA — dark pill like portfolio resume */
 .nav-cta {
   background: var(--text) !important;
-  color: #fff !important;
+  color: var(--bg-elevated) !important;
 }
+
 .nav-cta:hover {
   background: var(--text-dark-hover) !important;
-  color: #fff !important;
+  color: var(--bg-elevated) !important;
 }

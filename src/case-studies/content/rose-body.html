@@ -1,530 +1,3 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rose by Basicare — Case Study · Srigayaththri Tharmasoruban</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/case-studies/portfolio-case-theme.css">
-<style>
-/* ─── RESET & BASE ─── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-
-:root {
-  --r-sm: 12px;
-  --r-md: 16px;
-  --r-lg: 20px;
-  --r-xl: 24px;
-}
-
-body {
-  font-family: var(--font-sans);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-}
-
-p, li {
-  font-family: var(--font-sans);
-}
-
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--petal); }
-::-webkit-scrollbar-thumb { background: var(--rose-lt); border-radius: 2px; }
-
-/* ─── NAV ─── */
-nav {
-  position: fixed; inset: 0 0 auto 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
-  height: 64px;
-  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
-  backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom: 1px solid var(--border);
-  transition: box-shadow 0.3s;
-}
-nav.scrolled { box-shadow: 0 4px 32px rgba(15, 23, 42, 0.08); }
-.nav-logo {
-  font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text);
-  text-decoration: none;
-}
-.nav-logo span { color: var(--rose); }
-.nav-links { display: flex; gap: 0; list-style: none; }
-.nav-links a {
-  font-family: var(--font-sans); font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
-  text-decoration: none; padding: 0.4rem 1.1rem;
-  border-radius: 6px; transition: color 0.2s, background 0.2s;
-}
-.nav-links a:hover { color: var(--rose); background: var(--petal); }
-.nav-cta {
-  font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--rose); color: var(--bg-elevated) !important;
-  padding: 0.45rem 1.2rem !important; border-radius: 8px !important;
-}
-.nav-cta:hover { background: var(--accent-hover) !important; color: var(--bg-elevated) !important; }
-
-/* ─── HERO ─── */
-.hero-layout {
-  display: grid;
-  grid-template-columns: 55% 45%;
-  align-items: stretch;
-}
-.hero-left {
-  display: flex; flex-direction: column; justify-content: center;
-  position: relative;
-}
-.hero-left::after {
-  content: '';
-  position: absolute; right: 0; top: 10%; bottom: 10%;
-  width: 1px; background: var(--border);
-}
-.hero-chip {
-  display: inline-flex; align-items: center; gap: 8px;
-  margin-bottom: 2.5rem; width: fit-content;
-  animation: chipIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
-}
-.hero-chip-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--rose); animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.4); }
-}
-@keyframes chipIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(3.4rem, 5.5vw, 6rem);
-  font-weight: 400; line-height: 1.02;
-  color: var(--text); margin-bottom: 2rem;
-  animation: titleIn 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
-}
-.hero-title em { font-style: italic; color: var(--rose); }
-@keyframes titleIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero-desc {
-  font-size: 1.05rem; color: var(--text-muted); line-height: 1.85;
-  max-width: 480px; margin-bottom: 3rem;
-  animation: titleIn 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) both;
-}
-
-.hero-meta {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  animation: titleIn 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
-}
-.meta-cell {
-  padding: 1.2rem 1.4rem;
-}
-.meta-cell label {
-  display: block; font-family: var(--font-sans);
-  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--rose); margin-bottom: 0.3rem;
-}
-.meta-cell span { font-size: 0.88rem; font-weight: 400; color: var(--text); }
-
-.hero-right {
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(160deg, var(--bg) 0%, var(--accent-tint) 50%, var(--accent-tint-md) 100%);
-  position: relative; overflow: hidden;
-  animation: fadeIn 1s 0.2s both;
-}
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.hero-right-bg-circle {
-  position: absolute; border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-tint-strong), transparent 70%);
-  width: 700px; height: 700px; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  animation: breathe 6s ease-in-out infinite;
-}
-@keyframes breathe {
-  0%,100% { transform: translate(-50%,-50%) scale(1); }
-  50% { transform: translate(-50%,-50%) scale(1.08); }
-}
-.phone-stack {
-  position: relative; z-index: 2;
-  display: flex; align-items: center; justify-content: center;
-  width: 100%;
-  padding: 1.5rem 1rem;
-}
-.hero-phones-img {
-  width: min(100%, 440px);
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 28px 56px rgba(15, 23, 42, 0.22));
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.phone-stack:hover .hero-phones-img {
-  transform: translateY(-6px) scale(1.02);
-}
-
-/* ─── REVEAL ANIMATION ─── */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.in { opacity: 1; transform: translateY(0); }
-.reveal-d1 { transition-delay: 0.05s; }
-.reveal-d2 { transition-delay: 0.12s; }
-.reveal-d3 { transition-delay: 0.19s; }
-.reveal-d4 { transition-delay: 0.26s; }
-
-/* ─── OVERVIEW SECTION ─── */
-.overview-section { background: var(--bg-elevated); }
-.overview-grid { display: grid; grid-template-columns: 1fr 400px; gap: 6rem; align-items: start; }
-.overview-text p {
-  font-size: 1.02rem; color: var(--text-muted); line-height: 1.9;
-  margin-top: 1.8rem;
-}
-.overview-text p + p { margin-top: 1rem; }
-
-.role-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-
-.kpi-grid { display: flex; flex-direction: column; gap: 1rem; }
-.kpi-cell {
-  padding: 2rem 1.8rem;
-  display: flex; align-items: center; gap: 1.4rem;
-}
-.kpi-number {
-  font-family: var(--font-sans); font-size: 2.6rem;
-  font-weight: 400; color: var(--rose); line-height: 1; min-width: 80px;
-}
-.kpi-text label {
-  display: block; font-family: var(--font-sans); font-size: 0.68rem;
-  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--rose); margin-bottom: 0.2rem;
-}
-.kpi-text span { font-size: 0.85rem; color: var(--text-muted); }
-
-/* ─── MOODBOARD SECTION ─── */
-.moodboard-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 3rem; }
-.moodboard-img {
-  border-radius: var(--r-lg); overflow: hidden;
-  box-shadow: 0 24px 64px var(--shadow-neutral);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.moodboard-img:hover {
-  transform: scale(1.01);
-  box-shadow: 0 32px 80px var(--shadow-neutral-md);
-}
-.moodboard-img img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-/* COLOR PALETTE */
-.palette-strip { display: flex; gap: 1rem; margin-top: 3rem; }
-.swatch { flex: 1; overflow: hidden; padding: 0; }
-.swatch-fill { height: 72px; }
-.swatch-info { padding: 0.9rem 1rem; border: none; box-shadow: none; border-radius: 0; }
-.swatch-name { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; color: var(--text); }
-.swatch-hex { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.05em; }
-.swatch-pantone { font-size: 0.62rem; color: var(--text-soft); margin-top: 2px; }
-
-/* TYPOGRAPHY DISPLAY */
-.type-demo {
-  padding: 2.5rem; margin-top: 1.5rem;
-}
-.type-row { display: flex; gap: 2rem; flex-wrap: wrap; }
-.type-item { flex: 1; min-width: 200px; }
-.type-label { font-family: var(--font-sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.5rem; }
-.type-sample-ui { font-family: var(--font-sans); font-size: 1.6rem; font-weight: 600; color: var(--text); }
-.type-sample-serif { font-family: var(--font-display); font-size: 1.6rem; color: var(--text); }
-.type-sample-body { font-family: var(--font-sans); font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; }
-
-/* ─── PROCESS SECTION ─── */
-.process-section { background: var(--accent); }
-.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 4rem; }
-.process-card {
-  padding: 2.5rem 2rem;
-  position: relative; overflow: hidden;
-}
-.process-card::before {
-  content: attr(data-num);
-  font-family: var(--font-sans); font-size: 5rem; font-weight: 400;
-  color: color-mix(in srgb, var(--bg-elevated) 4%, transparent);
-  position: absolute; top: -1rem; right: 1rem;
-  line-height: 1; pointer-events: none;
-}
-.process-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
-.process-title {
-  font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600;
-  color: var(--text); letter-spacing: 0.04em; margin-bottom: 1rem;
-}
-.process-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.8; }
-.process-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
-
-/* ─── SCREENS SECTION ─── */
-/* screen group heading */
-.screen-group { margin-bottom: 4rem; }
-.screen-group-title {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 1.5rem; padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-.screen-group-title h3 {
-  font-family: var(--font-display); font-size: 0.8rem; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text);
-}
-
-/* screen card */
-.sc { overflow: hidden; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
-.sc:hover { transform: translateY(-6px); box-shadow: var(--shadow-md, 0 12px 40px rgba(15, 23, 42, 0.12)); }
-.sc img { width: auto; max-width: 100%; height: auto; display: block; }
-.sc-footer { padding: 0.75rem 1rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); background: var(--bg-elevated); }
-.sc-footer-name { font-size: 0.78rem; color: var(--text-muted); }
-
-/* layout helpers */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
-.grid-1-2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; }
-.grid-2-1 { display: grid; grid-template-columns: 1fr 1.5fr; gap: 1.5rem; }
-
-/* annotation callout */
-.annotation {
-  border-left: 3px solid var(--rose);
-  margin-top: 1.5rem;
-}
-.annotation.annotation--align-center { margin-top: 0; height: fit-content; align-self: center; }
-.annotation h4 { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; color: var(--rose); letter-spacing: 0.06em; margin-bottom: 0.3rem; }
-.annotation p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; }
-
-/* ─── DECISIONS SECTION ─── */
-.decisions-section { background: var(--bg-elevated); }
-.decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.5rem; }
-.decision {
-  padding: 2.5rem;
-  display: flex; flex-direction: column; gap: 1rem;
-  position: relative; overflow: hidden;
-}
-
-.decision-icon-wrap {
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
-  padding: 0;
-}
-.decision-title { font-family: var(--font-sans); font-size: 1rem; font-weight: 600; color: var(--text); }
-.decision-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; flex: 1; }
-.decision-result {
-  font-size: 0.8rem; color: var(--rose); font-weight: 500;
-  line-height: 1.6;
-}
-.decision-result::before { content: '→  '; font-weight: 700; }
-
-/* ─── CHALLENGES SECTION ─── */
-.challenges-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3.5rem; }
-.challenge {
-  padding: 2.5rem;
-  display: grid; grid-template-columns: 60px 1fr 1fr; gap: 2.5rem;
-  align-items: start;
-}
-.challenge-n {
-  font-family: var(--font-sans); font-size: 3.5rem;
-  font-weight: 400; color: var(--blush); line-height: 1; padding-top: 0.2rem;
-}
-.challenge h4 { font-family: var(--font-display); font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; }
-.challenge p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.8; }
-.challenge-sol-wrap {
-  padding: 1.5rem;
-}
-.challenge-sol-label {
-  font-family: var(--font-sans); font-size: 0.62rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose);
-  margin-bottom: 0.6rem;
-}
-.challenge-sol-wrap p {
-  font-size: 0.84rem; color: var(--text-muted); line-height: 1.8;
-}
-
-/* ─── OUTCOMES SECTION ─── */
-.outcomes-section { background: var(--accent); }
-.outcomes-section .section-head {
-  margin-bottom: 4rem;
-}
-
-.outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.outcome-cell {
-  padding: 2.5rem;
-}
-.outcome-emoji { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
-.outcome-title { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; letter-spacing: 0.03em; }
-.outcome-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.8; }
-
-/* BA VALUE CALLOUT */
-.ba-callout {
-  padding: 3rem; margin-top: 4rem;
-  display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;
-}
-.ba-callout-label {
-  font-family: var(--font-sans); font-size: 2.2rem;
-  font-weight: 400; font-style: italic; color: var(--blush); line-height: 1.2;
-}
-.ba-callout-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.9; }
-.ba-points { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
-.ba-point { font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
-.ba-point::before { content: '→'; position: absolute; left: 0; color: var(--rose); }
-
-/* ─── LEARNINGS ─── */
-.learnings-section { background: var(--bg-elevated); }
-.learnings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
-.learning-card {
-  padding: 2rem 1.8rem;
-  border-top: 2px solid var(--rose);
-}
-.learning-num {
-  font-family: var(--font-sans); font-size: 1.3rem; font-style: italic;
-  color: var(--blush); margin-bottom: 0.8rem; line-height: 1;
-}
-.learning-title { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; }
-.learning-body { font-size: 0.83rem; color: var(--text-muted); line-height: 1.8; }
-
-/* ─── NEXT CASE STUDY ─── */
-.next-section { background: var(--bg); border-top: 1px solid var(--border); }
-.next-inner { display: flex; justify-content: space-between; align-items: center; }
-.next-label { font-family: var(--font-sans); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.5rem; }
-.next-title { font-family: var(--font-sans); font-size: 2rem; font-weight: 400; color: var(--text); }
-.next-title em { font-style: italic; color: var(--rose); }
-.next-btn {
-  display: inline-flex; align-items: center; gap: 0.8rem;
-  background: var(--accent); color: var(--bg-elevated); text-decoration: none;
-  font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 1rem 2rem; border-radius: 100px;
-  transition: background 0.2s, transform 0.2s;
-}
-.next-btn:hover { background: var(--rose); transform: translateX(4px); }
-.next-btn-arrow { font-size: 1rem; transition: transform 0.2s; }
-.next-btn:hover .next-btn-arrow { transform: translateX(4px); }
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--accent);
-  display: flex; justify-content: space-between; align-items: center;
-  border-top: 1px solid var(--accent-border);
-}
-.footer-name { font-family: var(--font-sans); font-size: 1.1rem; font-weight: 400; color: var(--bg-elevated); }
-.footer-sub { font-size: 0.78rem; color: color-mix(in srgb, var(--bg-elevated) 35%, transparent); margin-top: 0.2rem; }
-.footer-right { font-family: var(--font-sans); font-size: 0.72rem; color: color-mix(in srgb, var(--bg-elevated) 30%, transparent); letter-spacing: 0.06em; }
-
-/* ─── PROGRESS BAR ─── */
-.progress-bar {
-  position: fixed; top: 64px; left: 0; height: 2px;
-  background: var(--rose); width: 0%; z-index: 200;
-  transition: width 0.1s linear;
-}
-
-/* ─── BACK TO TOP ─── */
-.back-top {
-  position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 200;
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--text); color: var(--bg-elevated); border: none; cursor: pointer;
-  font-size: 1rem; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28);
-  opacity: 0; transform: translateY(8px);
-  transition: opacity 0.3s, transform 0.3s, background 0.2s;
-}
-.back-top.show { opacity: 1; transform: translateY(0); }
-.back-top:hover { background: var(--text-dark-hover); }
-
-/* Portfolio iframe — parent app renders TopNav */
-.hero { min-height: auto; }
-.progress-bar { top: 0; }
-
-/* Screens at intrinsic size, capped so mockups don’t dominate */
-.sc {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.75rem 0.75rem 0;
-}
-.sc .img-ph { width: 100%; }
-.sc:has(.label-desktop) .img-ph { max-width: min(100%, 700px); }
-.sc:has(.label-mobile) .img-ph { max-width: min(100%, 280px); margin-inline: auto; }
-.moodboard-img {
-  display: flex;
-  justify-content: center;
-}
-
-/* Image placeholders — proportional, no fixed heights */
-.img-ph {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  width: 100%;
-  background: var(--bg-elevated);
-  border: 1.5px dashed rgba(0, 0, 0, 0.12);
-  border-radius: 16px;
-  color: var(--text-muted);
-  font-family: var(--font-sans);
-  text-align: center;
-  padding: 1rem;
-}
-.img-ph__icon {
-  font-size: 0.85rem;
-  line-height: 1;
-  color: var(--text-muted);
-}
-.img-ph__label {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-.img-ph--desktop,
-.img-ph--filter:not(.img-ph--mobile),
-.img-ph--moodboard {
-  aspect-ratio: 16 / 9;
-}
-.img-ph--mobile,
-.img-ph--cart,
-.img-ph--short {
-  aspect-ratio: 9 / 19.5;
-}
-.img-ph--cart {
-  max-width: 280px;
-  margin-inline: auto;
-}
-
-</style>
-<link rel="stylesheet" href="/case-studies/portfolio-case-typography.css">
-</head>
-<body>
-
-<div class="progress-bar" id="progressBar"></div>
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<!-- ══ NAV ══ -->
-<nav id="mainNav">
-  <a class="nav-logo" href="/" target="_parent"><span>Sri</span>gaya</a>
-  <ul class="nav-links">
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#screens">Screens</a></li>
-    <li><a href="#decisions">Decisions</a></li>
-    <li><a href="#outcomes">Outcomes</a></li>
-    <li><a href="/#projects" target="_parent" class="nav-cta">Portfolio ↗</a></li>
-  </ul>
-</nav>
-
 <!-- ══ HERO ══ -->
 <section class="hero">
   <div class="wrap">
@@ -556,15 +29,18 @@ footer {
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-right-bg-circle"></div>
     <div class="phone-stack">
-      <img
-        class="hero-phones-img"
-        src="/case-studies/rose-assets/hero-phones.png"
-        alt="Rose by Basicare mobile screens — product page and checkout"
-        loading="lazy"
-        decoding="async"
-      />
+      <div class="case-screen-desktop case-screen-desktop--hero">
+        <img
+          class="hero-phones-img"
+          src="/case-studies/rose-assets/hero-mockup.png?v=6"
+          alt="Rosé by Basicare mobile screens — product listing and checkout"
+          width="794"
+          height="1015"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
     </div>
   </div>
     </div>
@@ -631,25 +107,20 @@ footer {
       </p>
     </header>
 
-    <div class="moodboard-layout reveal">
-      <div>
-        <p>
+    <div class="moodboard-copy reveal">
         <p>
           The moodboard was my first client deliverable. It defined the brand's emotional register — the balance between <em>premium softness</em> and <em>youthful energy</em> — and became the reference point every design decision was checked against. Getting this right in round one built the trust that carried the rest of the project.
         </p>
-        <div class="annotation case-block">
-          <h4>Business Analyst Lens</h4>
-          <p>Before presenting the moodboard, I mapped the client's business goals against audience insights — the brand needed to compete with K-beauty imports while being accessible to a Southeast Asian market. The visual direction had to signal premium quality at affordable price points, a strategic constraint that shaped every aesthetic decision.</p>
-        </div>
-      </div>
-      <div class="moodboard-img reveal reveal-d2">
-        <img
-          src="/case-studies/rose-assets/moodboard.png"
-          alt="K-beauty inspired moodboard for Rose by Basicare"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
+    </div>
+    <div class="case-moodboard reveal reveal-d2">
+      <img
+        src="/case-studies/rose-assets/moodboard.png"
+        alt="K-beauty inspired moodboard for Rose by Basicare"
+        width="1024"
+        height="256"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
 
     <!-- COLOUR PALETTE -->
@@ -746,7 +217,7 @@ footer {
       <p class="section-head__lead">The primary audience browses beauty content through Instagram and TikTok — on their phones. Every screen was designed for mobile first, then extended to desktop. The result is a consistent, scroll-native experience that feels at home on any device.</p>
     </div>
 
-    <!-- HOMEPAGE -->
+    <!-- HOMEPAGE — Layout A -->
     <div class="screen-group reveal">
       <div class="screen-group-title">
         <h3>Homepage</h3>
@@ -755,20 +226,38 @@ footer {
           <span class="tag label-mobile">Mobile</span>
         </div>
       </div>
-      <div class="grid-1-2">
-        <div class="sc card">
-          <div class="img-ph img-ph--desktop" role="img" aria-label="Homepage desktop">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+      <div class="screen-layout screen-layout--a">
+        <div class="screen-layout__item">
+          <div class="case-screen-desktop">
+            <img
+              src="/case-studies/rose-assets/homepage-desktop.png"
+              alt="Rosé by Basicare homepage — desktop"
+              width="1024"
+              height="578"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Homepage — Full page</span><span class="tag label-desktop">Desktop</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Homepage — Desktop</span>
+            <span class="tag label-desktop">Desktop</span>
+          </div>
         </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile" role="img" aria-label="Homepage mobile">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+        <div class="screen-layout__item screen-layout__item--phone">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/homepage-mobile.png"
+              alt="Rosé by Basicare homepage — mobile"
+              width="375"
+              height="852"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Homepage — Mobile</span><span class="tag label-mobile">Mobile</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Homepage — Mobile</span>
+            <span class="tag label-mobile">Mobile</span>
+          </div>
         </div>
       </div>
       <div class="annotation case-block">
@@ -777,7 +266,7 @@ footer {
       </div>
     </div>
 
-    <!-- PRODUCT LISTING -->
+    <!-- PRODUCT LISTING — Layout B -->
     <div class="screen-group reveal">
       <div class="screen-group-title">
         <h3>Product Listing Page</h3>
@@ -786,78 +275,97 @@ footer {
           <span class="tag label-mobile">Mobile</span>
         </div>
       </div>
-      <div class="grid-2">
-        <div class="sc card">
-          <div class="img-ph img-ph--desktop" role="img" aria-label="Products desktop">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+      <div class="screen-layout screen-layout--b">
+        <div class="screen-layout__desktop">
+          <div class="case-screen-desktop">
+            <img
+              src="/case-studies/rose-assets/products-desktop.png"
+              alt="Rosé by Basicare product listing — desktop"
+              width="1024"
+              height="578"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Desktop</span><span class="tag label-desktop">Desktop</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Rosé Collection — Desktop</span>
+            <span class="tag label-desktop">Desktop</span>
+          </div>
         </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile" role="img" aria-label="Products mobile">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+        <div class="screen-layout__mobile">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/products-mobile.png"
+              alt="Rosé by Basicare product listing — mobile"
+              width="375"
+              height="812"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Rosé Collection — Mobile</span><span class="tag label-mobile">Mobile</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Rosé Collection — Mobile</span>
+            <span class="tag label-mobile">Mobile</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- FILTER SYSTEM -->
+    <!-- FILTER SYSTEM — Layout C -->
     <div class="screen-group reveal">
       <div class="screen-group-title">
         <h3>Filter System — A UX Innovation</h3>
-        <div style="display:flex;gap:0.5rem;">
-          <span class="tag label-desktop">Desktop</span>
-          <span class="tag label-mobile">Mobile</span>
-        </div>
+        <span class="tag label-mobile">Mobile</span>
       </div>
       <p style="font-size:0.9rem;color: var(--text-muted);margin-bottom:1.5rem;max-width:700px;">Standard eCommerce filters (size, colour, price) don't solve the beauty shopper's real problem. A woman looking for lashes needs to filter by <em>eye shape, lash type, style, and length</em>. I designed a beauty-specific filter taxonomy — this was a BA-driven insight translated directly into UX.</p>
-      <div class="grid-3">
-        <div class="sc card">
-          <div class="img-ph img-ph--filter" role="img" aria-label="Filter empty">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+      <div class="screen-layout screen-layout--c">
+        <div class="screen-layout__col">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/filter-mobile-collapsed.png"
+              alt="Rosé filter bottom sheet — collapsed"
+              width="375"
+              height="812"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Filter panel — collapsed</span><span class="tag label-desktop">Desktop</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Filter bottom sheet</span>
+            <span class="tag label-mobile">Mobile</span>
+          </div>
         </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--filter" role="img" aria-label="Filter active">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+        <div class="screen-layout__col">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/filter-mobile-expanded.png"
+              alt="Rosé filter categories expanded"
+              width="375"
+              height="1426"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Filters expanded (3 active)</span><span class="tag label-desktop">Desktop</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Categories expanded</span>
+            <span class="tag label-mobile">Mobile</span>
+          </div>
         </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--filter" role="img" aria-label="Filter full">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+        <div class="screen-layout__col">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/filter-mobile-active.png"
+              alt="Rosé filters with 3 active"
+              width="375"
+              height="812"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Full filter taxonomy</span><span class="tag label-desktop">Desktop</span></div>
-        </div>
-      </div>
-      <div class="grid-3">
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile img-ph--filter" role="img" aria-label="Mobile filter">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">3 filters active</span>
+            <span class="tag label-mobile">Mobile</span>
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Filter bottom sheet</span><span class="tag label-mobile">Mobile</span></div>
-        </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile img-ph--filter" role="img" aria-label="Mobile filter expanded">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
-          </div>
-          <div class="sc-footer"><span class="sc-footer-name">Categories expanded</span><span class="tag label-mobile">Mobile</span></div>
-        </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile img-ph--filter" role="img" aria-label="Mobile filter selected">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
-          </div>
-          <div class="sc-footer"><span class="sc-footer-name">3 filters active</span><span class="tag label-mobile">Mobile</span></div>
         </div>
       </div>
       <div class="annotation case-block">
@@ -866,7 +374,7 @@ footer {
       </div>
     </div>
 
-    <!-- PDP -->
+    <!-- PDP — Layout B -->
     <div class="screen-group reveal">
       <div class="screen-group-title">
         <h3>Product Detail Page</h3>
@@ -875,36 +383,38 @@ footer {
           <span class="tag label-mobile">Mobile</span>
         </div>
       </div>
-      <div class="grid-2">
-        <div class="sc card">
-          <div class="img-ph img-ph--desktop" role="img" aria-label="PDP desktop">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+      <div class="screen-layout screen-layout--b">
+        <div class="screen-layout__desktop">
+          <div class="case-screen-desktop">
+            <img
+              src="/case-studies/rose-assets/pdp-mobile-1.png"
+              alt="Rosé product detail — desktop"
+              width="1920"
+              height="2561"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Product Detail — Desktop</span><span class="tag label-desktop">Desktop</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Product Detail — Desktop</span>
+            <span class="tag label-desktop">Desktop</span>
+          </div>
         </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile" role="img" aria-label="PDP mobile">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+        <div class="screen-layout__mobile">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/pdp-mobile-2.png"
+              alt="Rosé product detail — mobile"
+              width="1920"
+              height="2561"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Product Detail — Mobile</span><span class="tag label-mobile">Mobile</span></div>
-        </div>
-      </div>
-      <div class="grid-2" style="margin-top:1.5rem;">
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile img-ph--short" role="img" aria-label="PDP state 2">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">Product Detail — Mobile</span>
+            <span class="tag label-mobile">Mobile</span>
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">Product detail — quantity state</span><span class="tag label-mobile">Mobile</span></div>
-        </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--mobile img-ph--short" role="img" aria-label="PDP state 3">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
-          </div>
-          <div class="sc-footer"><span class="sc-footer-name">Product detail — scrolled</span><span class="tag label-mobile">Mobile</span></div>
         </div>
       </div>
       <div class="annotation case-block">
@@ -913,27 +423,64 @@ footer {
       </div>
     </div>
 
-    <!-- CART -->
+    <!-- CART — Layout C -->
     <div class="screen-group reveal">
       <div class="screen-group-title">
         <h3>Shopping Bag</h3>
         <span class="tag label-mobile">Mobile</span>
       </div>
-      <div class="grid-2-1">
-        <div class="annotation case-block annotation--align-center">
-          <h4>Cart UX — Micro-persuasion at the Right Moment</h4>
-          <p>The "You are $10 away from Free Shipping" nudge at the top of the cart is a conversion-focused design pattern I proposed after researching industry best practices. It creates a tangible incentive to add one more item — a low-cost product recommendation below the cart reinforces this without being pushy. The sticky Order Total with a prominent Checkout CTA removes any friction from completing purchase.</p>
-        </div>
-        <div class="sc card">
-          <div class="img-ph img-ph--cart" role="img" aria-label="Shopping bag">
-            <span class="img-ph__icon" aria-hidden>◇</span>
-            <span class="img-ph__label">Coming soon</span>
+      <p style="font-size:0.9rem;color: var(--text-muted);margin-bottom:1.5rem;max-width:700px;">The cart uses micro-persuasion at the moment of highest intent — free-shipping progress, clear line items, and a sticky checkout CTA reduce abandonment without feeling pushy.</p>
+      <div class="screen-layout screen-layout--c">
+        <div class="screen-layout__col">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/cart-mobile-1.png"
+              alt="Rosé cart — item list"
+              width="375"
+              height="812"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="sc-footer"><span class="sc-footer-name">My Bag — Mobile</span><span class="tag label-mobile">Mobile</span></div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">My Bag — item list</span>
+            <span class="tag label-mobile">Mobile</span>
+          </div>
+        </div>
+        <div class="screen-layout__col">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/cart-mobile-2.png"
+              alt="Rosé shopping bag — checkout"
+              width="375"
+              height="812"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">My Bag — Mobile</span>
+            <span class="tag label-mobile">Mobile</span>
+          </div>
+        </div>
+        <div class="screen-layout__col">
+          <div class="case-phone">
+            <img
+              src="/case-studies/rose-assets/cart-mobile-3.png"
+              alt="Rosé cart — order breakdown"
+              width="375"
+              height="812"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="case-screen-label">
+            <span class="case-screen-label__name">My Bag — breakdown</span>
+            <span class="tag label-mobile">Mobile</span>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1084,19 +631,6 @@ footer {
       </div>
     </div>
 
-    <!-- BA CALLOUT -->
-    <div class="ba-callout reveal card">
-      <div class="ba-callout-label card">The BA<br>Difference</div>
-      <div class="ba-callout-body card">
-        <p>This project demonstrates why UI/UX and Business Analysis skills belong together. Decisions I made as a designer were informed by requirements I gathered as a BA:</p>
-        <div class="ba-points">
-          <div class="ba-point">The beauty-specific filter taxonomy came from mapping the product catalogue — a BA task — before designing any UI</div>
-          <div class="ba-point">The "In This Set" cross-sell component came from identifying basket size as a business KPI during stakeholder discussions</div>
-          <div class="ba-point">The "Free Shipping" nudge in cart came from researching conversion best practices and translating them into a UX requirement</div>
-          <div class="ba-point">AR try-on was identified as the highest-impact differentiator through competitive analysis, then scoped as a feature requirement before design began</div>
-        </div>
-      </div>
-    </div>
 
   </div>
 </section>
@@ -1153,27 +687,3 @@ footer {
     <a href="/case/pickme" target="_parent" class="next-btn">View case study <span class="next-btn-arrow">→</span></a>
   </div>
 </section>
-
-<script>
-// Scroll reveal
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.07 });
-revealEls.forEach(el => io.observe(el));
-
-// Progress bar + nav shadow + back to top
-const bar = document.getElementById('progressBar');
-const nav = document.getElementById('mainNav');
-const btn = document.getElementById('backTop');
-window.addEventListener('scroll', () => {
-  const s = window.scrollY;
-  const h = document.body.scrollHeight - window.innerHeight;
-  bar.style.width = (s / h * 100) + '%';
-  nav.classList.toggle('scrolled', s > 60);
-  btn.classList.toggle('show', s > 600);
-});
-
-</script>
-</body>
-</html>

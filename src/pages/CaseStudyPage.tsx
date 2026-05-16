@@ -1,13 +1,55 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { getShowcaseProject } from "../data/showcase-projects";
+import { getCaseStudyComponent, hasEmbeddedCaseStudy } from "../case-studies";
 import { siteConfig } from "../config";
+
+function useReadingProgress(active: boolean) {
+  const fillRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const update = () => {
+      const fill = fillRef.current;
+      if (!fill) return;
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      const pct = Math.min(100, Math.max(0, ratio * 100));
+      fill.style.width = `${pct}%`;
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    let resizeObserver: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(update);
+      resizeObserver.observe(document.documentElement);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      resizeObserver?.disconnect();
+    };
+  }, [active]);
+
+  return fillRef;
+}
 
 export function CaseStudyPage() {
   const { projectId } = useParams<{ projectId: string }>();
   const reduce = useReducedMotion();
   const project = projectId ? getShowcaseProject(projectId) : undefined;
+  const EmbeddedStudy =
+    projectId && hasEmbeddedCaseStudy(projectId)
+      ? getCaseStudyComponent(projectId)
+      : undefined;
+  const progressFillRef = useReadingProgress(Boolean(EmbeddedStudy));
 
   useEffect(() => {
     if (!project) return;
@@ -21,47 +63,107 @@ export function CaseStudyPage() {
     return <Navigate to="/" replace />;
   }
 
-  if (project.embeddedHtmlPath) {
+  if (EmbeddedStudy) {
     return (
       <main id="case-study" className="case-page case-page--embed">
-        <div className="case-page__embed-bar wrap">
-          <Link to="/#projects" className="case-page__back">
-            ← Back to projects
-          </Link>
+        <div
+          className="case-page__progress"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-hidden
+        >
+          <div ref={progressFillRef} className="case-page__progress-fill" />
         </div>
-        <iframe
-          className="case-page__iframe"
-          src={project.embeddedHtmlPath}
-          title={`${project.title} — full case study`}
-        />
+        <div className="case-page__embed-bar">
+          <div className="case-page__embed-bar-inner wrap">
+            <Link to="/#projects" className="case-page__embed-back">
+              ← Works
+            </Link>
+            <span className="case-page__embed-crumb" aria-current="page">
+              {project.title}
+            </span>
+          </div>
+        </div>
+        <EmbeddedStudy />
 
         <style>{`
+          .case-page__progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            z-index: 200;
+            pointer-events: none;
+            background: transparent;
+          }
+          .case-page__progress-fill {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+          }
           .case-page--embed {
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-            min-height: 0;
+            display: block;
             width: 100%;
             padding: 0;
-            padding-top: var(--topnav-stack);
-            background: var(--bg-elevated);
+            background: var(--bg);
             color: var(--text);
           }
           .case-page__embed-bar {
-            flex-shrink: 0;
-            padding-block: 0.65rem 0.5rem;
+            position: sticky;
+            top: var(--topnav-stack);
+            z-index: 50;
             padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
             border-bottom: 1px solid var(--border);
-            background: var(--bg-elevated);
+            background: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
           }
-          .case-page__iframe {
-            flex: 1 1 0;
-            width: 100%;
-            min-height: 0;
-            border: 0;
-            display: block;
-            background: var(--bg);
+          .case-page__embed-bar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            height: 44px;
+            max-height: 44px;
+            min-width: 0;
+          }
+          .case-page__embed-back {
+            flex-shrink: 0;
+            font-family: var(--font-sans);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            line-height: 1;
+            color: var(--text-muted);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+          }
+          .case-page__embed-back:hover {
+            color: var(--text);
+          }
+          .case-page__embed-back:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+          }
+          .case-page__embed-crumb {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 500;
+            line-height: 1;
+            color: var(--text-soft);
+            text-align: right;
+          }
+          .case-study-content section {
+            scroll-margin-top: calc(var(--topnav-stack) + 3rem);
           }
         `}</style>
       </main>
@@ -94,7 +196,9 @@ export function CaseStudyPage() {
           <p className="section-head__eyebrow">Case study</p>
           <h1 className="section-head__title">{project.title}</h1>
           <p className="case-page__meta">{project.metaLine}</p>
-          <p className="section-head__lead case-page__lead">{project.description}</p>
+          <p className="section-head__lead case-page__lead">
+            {project.description}
+          </p>
         </motion.header>
 
         <motion.div
@@ -177,7 +281,7 @@ export function CaseStudyPage() {
           font-family: var(--font-sans);
           font-size: clamp(0.875rem, 1.8vw, 0.97rem);
           font-weight: 600;
-          color: #c96b5c;
+          color: var(--accent-light);
           line-height: 1.4;
         }
         .case-page__lead {
