@@ -36,22 +36,20 @@ const WORK_ROWS: WorkRow[] = [
   },
 ];
 
-function getProjectVisual(id: string): CSSProperties {
+function getProjectCover(id: string) {
+  return showcaseProjects.find((p) => p.id === id)?.coverImage;
+}
+
+function getProjectFallbackStyle(id: string): CSSProperties {
   const project = showcaseProjects.find((p) => p.id === id);
   if (!project) return { background: "var(--bg-elevated)" };
-  if (project.coverImage) {
-    return {
-      backgroundImage: `url(${project.coverImage})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    };
-  }
   return { background: project.coverGradient };
 }
 
 function WorkRowItem({ row, index }: { row: WorkRow; index: number }) {
   const reduce = useReducedMotion();
-  const visualStyle = getProjectVisual(row.id);
+  const coverSrc = getProjectCover(row.id);
+  const fallbackStyle = getProjectFallbackStyle(row.id);
   const caseHref = `/case/${row.id}`;
 
   return (
@@ -86,7 +84,17 @@ function WorkRowItem({ row, index }: { row: WorkRow; index: number }) {
 
       <div className="works-row__media">
         <div className="works-row__media-frame">
-          <div className="works-row__media-inner" style={visualStyle} aria-hidden />
+          {coverSrc ? (
+            <img
+              className="works-row__media-img"
+              src={coverSrc}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <div className="works-row__media-inner" style={fallbackStyle} aria-hidden />
+          )}
         </div>
       </div>
       </Link>
@@ -151,7 +159,7 @@ export function Projects() {
           position: relative;
           isolation: isolate;
           display: grid;
-          grid-template-columns: minmax(0, 55%) minmax(0, 45%);
+          grid-template-columns: minmax(0, 40%) minmax(0, 60%);
           gap: clamp(1.15rem, 3vw, 2rem);
           align-items: center;
           padding: clamp(0.9rem, 2.25vw, 1.35rem) clamp(0.5rem, 2vw, 1rem);
@@ -184,7 +192,7 @@ export function Projects() {
           z-index: 1;
         }
         .works-row--flip {
-          grid-template-columns: minmax(0, 45%) minmax(0, 55%);
+          grid-template-columns: minmax(0, 60%) minmax(0, 40%);
         }
         .works-row--flip .works-row__text {
           order: 2;
@@ -273,10 +281,11 @@ export function Projects() {
           border: 1px solid var(--border);
           overflow: hidden;
           background: var(--bg-elevated);
-          aspect-ratio: 4 / 3;
+          aspect-ratio: 16 / 9;
           contain: layout paint;
         }
-        .works-row__media-inner {
+        .works-row__media-inner,
+        .works-row__media-img {
           position: absolute;
           inset: 0;
           width: 100%;
@@ -286,14 +295,22 @@ export function Projects() {
           transform-origin: center center;
           transition: transform 0.35s ease;
         }
-        .works-row:hover .works-row__media-inner {
+        .works-row__media-img {
+          object-fit: contain;
+          object-position: center;
+          display: block;
+        }
+        .works-row:hover .works-row__media-inner,
+        .works-row:hover .works-row__media-img {
           transform: scale(1.03);
         }
         @media (prefers-reduced-motion: reduce) {
-          .works-row__media-inner {
+          .works-row__media-inner,
+          .works-row__media-img {
             transition: none;
           }
-          .works-row:hover .works-row__media-inner {
+          .works-row:hover .works-row__media-inner,
+          .works-row:hover .works-row__media-img {
             transform: none;
           }
           .works-row__num {
@@ -311,7 +328,7 @@ export function Projects() {
             order: unset;
           }
           .works-row__media-frame {
-            aspect-ratio: 16 / 10;
+            aspect-ratio: 16 / 9;
           }
         }
       `}</style>
