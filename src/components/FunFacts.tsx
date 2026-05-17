@@ -9,19 +9,19 @@ const FACTS: { doodle: FunFactDoodleId; text: string }[] = [
   { doodle: "headphones", text: "there's always music in the background" },
   {
     doodle: "stethoscope",
-    text: "thought I'd become a doctor. now I diagnose UX problems",
+    text: "thought I'd become a doctor — ended up in UX instead",
   },
-  { doodle: "sparkles", text: "turning chaos into organized systems is oddly satisfying" },
+  { doodle: "sparkles", text: "I reorganize Figma files when I'm procrastinating" },
 ];
 
-const CARD_ROTATIONS = ["-2deg", "1.5deg", "-1deg", "2deg", "-1.5deg", "1deg"] as const;
+const CARD_ROTATIONS = ["0deg", "0deg", "0deg", "0deg", "0deg", "0deg"] as const;
 const CARD_BACKGROUNDS = [
-  "#fffbe6",
-  "#eff6ff",
-  "#fdf2f8",
-  "#f0fdf4",
-  "#f5f3ff",
-  "#fff7ed",
+  "var(--bg-elevated)",
+  "var(--bg-elevated)",
+  "var(--bg-elevated)",
+  "var(--bg-elevated)",
+  "var(--bg-elevated)",
+  "var(--bg-elevated)",
 ] as const;
 
 export function FunFacts() {
@@ -104,27 +104,16 @@ export function FunFacts() {
           align-items: flex-start;
           gap: 0.65rem;
           padding: 1.15rem 1.25rem;
-          border-radius: 4px;
-          border: none;
+          border-radius: 12px;
+          border: 1px solid var(--border);
           background: var(--card-bg);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-          transform: rotate(var(--card-rotate));
-          transform-origin: center center;
-          transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
+          box-shadow: none;
+          transform: none;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .funfacts__card:hover {
-          transform: rotate(0deg) scale(1.05);
-          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .funfacts__card {
-            transition: box-shadow 0.3s ease;
-          }
-          .funfacts__card:hover {
-            transform: rotate(var(--card-rotate));
-          }
+          border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+          box-shadow: var(--shadow-sm);
         }
         .funfacts__doodle {
           display: block;

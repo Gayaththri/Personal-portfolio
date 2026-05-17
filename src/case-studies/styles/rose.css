@@ -596,7 +596,26 @@
   line-height: 1; pointer-events: none;
 }
 
-.case-study-content .process-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
+.case-study-content .process-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 1.2rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--rose) 10%, var(--bg-elevated));
+  border: 1px solid color-mix(in srgb, var(--rose) 22%, var(--border));
+}
+
+.case-study-content.case-study--rose .process-icon .pm-icon svg,
+.case-study-content.case-study--rose .decision-icon-wrap .pm-icon svg,
+.case-study-content.case-study--rose .outcome-emoji.pm-icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: var(--rose);
+}
 
 .case-study-content .process-title {
   font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600;
@@ -666,10 +685,15 @@
 }
 
 .case-study-content .decision-icon-wrap {
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--rose) 10%, var(--bg-elevated));
+  border: 1px solid color-mix(in srgb, var(--rose) 22%, var(--border));
 }
 
 .case-study-content .decision-title { font-family: var(--font-sans); font-size: 1rem; font-weight: 600; color: var(--text); }
@@ -726,7 +750,17 @@
   padding: 2.5rem;
 }
 
-.case-study-content .outcome-emoji { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
+.case-study-content .outcome-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 1.2rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--rose) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rose) 22%, var(--border));
+}
 
 .case-study-content .outcome-title { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; letter-spacing: 0.03em; }
 

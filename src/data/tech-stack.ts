@@ -3,13 +3,9 @@ export const techStackItemIds = [
   "notion",
   "framer",
   "figma",
-  "midjourney",
   "vscode",
-  "claude",
   "lottiefiles",
   "premiere",
-  "gemini",
-  "chatgpt",
   "react",
   "jira",
   "powerbi",
@@ -35,17 +31,9 @@ export const techStackMeta: Record<
     name: "Figma",
     description: "UI systems, prototyping, and dev-ready handoff.",
   },
-  midjourney: {
-    name: "Midjourney",
-    description: "AI imagery for mood boards and visual exploration.",
-  },
   vscode: {
     name: "Visual Studio Code",
     description: "Fast editing, extensions, and debugging in one editor.",
-  },
-  claude: {
-    name: "Claude",
-    description: "Long-context AI for drafting, analysis, and research.",
   },
   lottiefiles: {
     name: "LottieFiles",
@@ -54,14 +42,6 @@ export const techStackMeta: Record<
   premiere: {
     name: "Adobe Premiere Pro",
     description: "Timeline editing for reels, cuts, and story pacing.",
-  },
-  gemini: {
-    name: "Google Gemini",
-    description: "Multimodal AI for summaries, ideas, and quick research.",
-  },
-  chatgpt: {
-    name: "ChatGPT",
-    description: "Brainstorming, copy iteration, and structured Q&A.",
   },
   react: {
     name: "React",

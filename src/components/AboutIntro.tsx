@@ -45,26 +45,17 @@ export function AboutIntro() {
           >
             <motion.div className="about-intro__body">
               <p>
-                I&apos;m a Computer Science graduate interested in UI/UX, Product Thinking, and
-                Business Analysis, which gives me a broader perspective on how digital products are
-                designed, structured, and experienced.
+                I&apos;m a Computer Science graduate working across UI/UX and business analysis. Most
+                of my projects start with research and workflows — who uses the product, what
+                breaks, and what to fix first.
               </p>
               <p>
-                I&apos;m especially drawn to the systems behind the interface - the workflows,
-                logic, and user interactions that shape how a product actually functions.
-              </p>
-              <blockquote className="about-intro__pullquote">
-                I enjoy creating systems that feel simple, thoughtful, and reliable.
-              </blockquote>
-              <p>
-                A big part of my work involves understanding messy problems and turning them into
-                clear workflows, intuitive experiences, and practical solutions. Whether it&apos;s
-                through research, user flows, requirement analysis, or interface design.
+                Recent work includes Rose by Basicare (K-beauty ecommerce, mobile-first) and a
+                concept study on PickMe ride tracking. I&apos;m comfortable in Figma, documenting
+                requirements, and working with developers through handoff.
               </p>
               <p>
-                At the center of how I work is curiosity - understanding how things work, why users
-                behave the way they do, and how technology can make experiences more meaningful and
-                intuitive.
+                Based in Sri Lanka. Open to full-time UI/UX roles and freelance projects.
               </p>
               <ul className="about-intro__chips" aria-label="Quick facts">
                 {STAT_CHIPS.map((chip) => (
@@ -172,24 +163,8 @@ export function AboutIntro() {
           font-size: 0.9375rem;
           line-height: 1.7;
           color: var(--text-muted);
-          text-align: justify;
+          text-align: left;
           text-wrap: pretty;
-          hyphens: auto;
-        }
-        .about-intro__pullquote {
-          margin: 0.25rem 0;
-          padding: 0 0 0 0.85rem;
-          border: none;
-          border-left: 2px solid var(--border);
-          font-family: var(--font-sans);
-          font-size: 1rem;
-          font-weight: 500;
-          font-style: normal;
-          line-height: 1.6;
-          color: var(--text);
-          text-align: justify;
-          text-wrap: pretty;
-          hyphens: auto;
         }
         .about-intro__chips {
           list-style: none;

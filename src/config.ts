@@ -1,12 +1,11 @@
-/** Update these with your live links before publishing. */
 export const siteConfig = {
   name: "Srigayaththri Tharmasoruban",
   /** Shown in the top navigation brand */
   navBrand: "Gaya",
-  title: "Business Analyst & UI/UX Designer | Product Analyst",
+  title: "UI/UX Designer & Business Analyst",
   email: "sriigaya3@gmail.com",
   linkedin: "https://www.linkedin.com/in/srigayaththri",
-  github: "https://github.com/srigayaththri",
+  github: "https://github.com/Gayaththri",
   /** Optional — shows “Blogs” in the top nav when set */
   blogUrl: "",
   /** Optional — X (Twitter) icon in the top nav when set */

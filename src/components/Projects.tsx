@@ -20,7 +20,7 @@ const WORK_ROWS: WorkRow[] = [
     title: "Rose by Basicare",
     tags: ["Beauty eCommerce", "K-beauty", "Mobile-first"],
     description:
-      "End-to-end UX and brand system design for a mobile-first K-beauty eCommerce platform.",
+      "Mobile-first ecommerce UI and brand system for a K-beauty launch.",
     accent: "#c96b5c",
     flipped: true,
   },
@@ -30,7 +30,7 @@ const WORK_ROWS: WorkRow[] = [
     title: "PickMe",
     tags: ["Mobility", "Ride tracking", "UX case study"],
     description:
-      "UX redesign of ride tracking—improving transparency and rebuilding trust during the most stressful moments of a trip.",
+      "Concept study: ride tracking screen — driver status, ETA context, and notifications.",
     accent: "#ff6b2b",
     flipped: false,
   },

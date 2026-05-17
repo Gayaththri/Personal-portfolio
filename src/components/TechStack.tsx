@@ -7,7 +7,6 @@ const VB = "0 0 40 40" as const;
 function StackIcon({ id, instance }: { id: TechStackItemId; instance: string }) {
   const s = { width: 40, height: 40, viewBox: VB, "aria-hidden": true as const };
   const lg = `lottie-${instance}-${id}`;
-  const gg = `gem-${instance}-${id}`;
   switch (id) {
     case "figma":
       return (
@@ -139,38 +138,11 @@ function StackIcon({ id, instance }: { id: TechStackItemId; instance: string }) 
           />
         </svg>
       );
-    case "midjourney":
-      return (
-        <svg {...s}>
-          <circle cx="20" cy="20" r="16" fill="#111" />
-          <path
-            d="M12 24l6-10 4 6 6-10"
-            fill="none"
-            stroke="#fff"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
     case "vscode":
       return (
         <svg {...s}>
           <path d="M26 6l8 5v18l-8 5-12-9-8 5V10l8 5 12-9z" fill="#007acc" />
           <path d="M26 6L14 15v10l12 9" fill="none" stroke="#1a8ad6" strokeWidth="1" opacity="0.5" />
-        </svg>
-      );
-    case "claude":
-      return (
-        <svg {...s}>
-          <circle cx="20" cy="20" r="15" fill="#d97757" />
-          <path
-            d="M20 8v24M8 20h24M11 11l18 18M29 11L11 29"
-            stroke="#fff"
-            strokeWidth="2"
-            strokeLinecap="round"
-            opacity="0.95"
-          />
         </svg>
       );
     case "lottiefiles":
@@ -211,37 +183,6 @@ function StackIcon({ id, instance }: { id: TechStackItemId; instance: string }) 
           >
             Pr
           </text>
-        </svg>
-      );
-    case "gemini":
-      return (
-        <svg {...s}>
-          <defs>
-            <linearGradient id={gg} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4285f4" />
-              <stop offset="35%" stopColor="#9b72cb" />
-              <stop offset="70%" stopColor="#d96570" />
-              <stop offset="100%" stopColor="#fbbc04" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M20 5l4 8 9 1-6 7 1.5 9-8.5-4-8.5 4L13 21l-6-7 9-1 4-8z"
-            fill={`url(#${gg})`}
-          />
-        </svg>
-      );
-    case "chatgpt":
-      return (
-        <svg {...s}>
-          <circle cx="20" cy="20" r="15" fill="#10a37f" />
-          <path
-            d="M12 20c0-4 3-7 7-7 2 0 4 1 5 2M28 20c0 4-3 7-7 7-2 0-4-1-5-2"
-            fill="none"
-            stroke="#fff"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <circle cx="20" cy="20" r="3" fill="#fff" opacity="0.9" />
         </svg>
       );
     default:

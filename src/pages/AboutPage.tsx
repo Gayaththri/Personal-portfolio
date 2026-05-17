@@ -7,7 +7,7 @@ import { siteConfig } from "../config";
 export function AboutPage() {
   useEffect(() => {
     const prev = document.title;
-    document.title = siteConfig.name;
+    document.title = `About · ${siteConfig.name}`;
     return () => {
       document.title = prev;
     };

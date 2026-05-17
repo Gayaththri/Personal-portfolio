@@ -11,7 +11,7 @@ export function Footer() {
           </span>
           <span className="footer__left-compact">@{year}</span>
         </p>
-        <p className="footer__right">Designed &amp; built with care</p>
+        <p className="footer__right">React · Vite</p>
       </div>
       <style>{`
         .footer {

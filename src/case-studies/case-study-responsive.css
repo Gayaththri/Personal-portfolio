@@ -86,10 +86,8 @@
     margin-inline: auto;
   }
 
-  .case-study-content.case-study--pickme .phone-mockup {
-    width: min(280px, 78vw);
-    height: calc(min(280px, 78vw) * 2);
-    border-width: clamp(6px, 1.5vw, 8px);
+  .case-study-content.case-study--pickme .hero-phones-img {
+    max-width: min(420px, 100%);
   }
 }
 
@@ -267,15 +265,9 @@
     margin: 0 auto;
   }
 
-  .case-study-content .trust-chain {
-    padding: 1.5rem;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .case-study-content .tc-arrow {
-    transform: rotate(90deg);
-    align-self: center;
+  .case-study-content .trust-journey {
+    margin-top: 2rem;
+    border-radius: 16px;
   }
 }
 

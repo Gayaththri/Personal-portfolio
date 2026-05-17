@@ -46,6 +46,7 @@
 
 .case-study-content.case-study--pickme .overview-bg,
 .case-study-content.case-study--pickme .bi-section,
+.case-study-content.case-study--pickme .outcomes-bg,
 .case-study-content.case-study--pickme #decisions,
 .case-study-content.case-study--pickme .next-section {
   background: var(--bg);

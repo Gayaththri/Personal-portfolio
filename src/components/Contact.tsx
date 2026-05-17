@@ -57,15 +57,15 @@ export function Contact() {
         <div className="wrap contact-touch__inner">
           <div className="contact-touch__primary">
             <header className="section-head contact-touch__head">
-              <p className="section-head__eyebrow">Get in touch</p>
+              <p className="section-head__eyebrow">Contact</p>
               <h2
                 id="contact-heading"
                 className="section-head__title section-head__title--sans contact-touch__title"
               >
-                Let&apos;s work together.
+                Email me about roles or projects.
               </h2>
               <p className="section-head__lead contact-touch__subtitle">
-                Open to UI/UX Design roles - available for full-time and freelance.
+                Open to full-time UI/UX roles and freelance work in Sri Lanka and remote.
               </p>
               <a className="contact-touch__email" href={`mailto:${siteConfig.email}`}>
                 <span>{siteConfig.email}</span>
@@ -130,14 +130,15 @@ export function Contact() {
           margin: 0;
         }
         .contact-touch__title.section-head__title {
-          font-weight: 800;
+          font-size: var(--type-h2);
+          font-weight: 700;
           letter-spacing: -0.03em;
-          line-height: 1.1;
-          font-size: clamp(1.75rem, 4.5vw + 0.25rem, 2.75rem);
+          line-height: 1.08;
         }
         .contact-touch__subtitle.section-head__lead {
           margin: 0 0 0.85rem;
           max-width: 38rem;
+          font-size: var(--type-lead);
         }
         .contact-touch__email {
           display: inline-flex;
@@ -146,7 +147,7 @@ export function Contact() {
           gap: 0.55rem;
           max-width: 100%;
           font-family: var(--font-sans);
-          font-size: clamp(0.875rem, 1.5vw, 0.97rem);
+          font-size: var(--type-body-sm);
           font-weight: 600;
           letter-spacing: -0.02em;
           line-height: 1.35;
@@ -203,7 +204,7 @@ export function Contact() {
           width: 100%;
           max-width: min(14rem, 100%);
           font-family: var(--font-sans);
-          font-size: clamp(0.9375rem, 2vw, 1rem);
+          font-size: var(--type-body-sm);
           font-weight: 500;
           color: var(--text);
           text-decoration: none;

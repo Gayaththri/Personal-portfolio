@@ -30,7 +30,7 @@ export const showcaseProjects: ShowcaseProject[] = [
     title: "Rose by Basicare",
     metaLine: "Beauty eCommerce • K-beauty · Mobile-first UX & brand system",
     description:
-      "A complete eCommerce experience for a new K-beauty sub-brand—mobile-first UX, visual identity, AR try-on planning, and a scalable brand system. From brief toward launch in 3–4 months.",
+      "Mobile-first ecommerce and brand system for a new K-beauty sub-brand — Figma UI, filters, checkout flows, and developer handoff.",
     coverImage: "/case-studies/rose-assets/rose-thumbnail.png",
     coverGradient:
       "linear-gradient(160deg, #fceef0 0%, #f9e8ea 45%, #f4dde0 100%, #e8c4cb 100%)",
@@ -42,7 +42,7 @@ export const showcaseProjects: ShowcaseProject[] = [
     title: "PickMe",
     metaLine: "Mobility · Ride tracking · UX case study",
     description:
-      "A workflow-focused UX redesign of PickMe's ride tracking experience—reducing rider anxiety, improving transparency, and rebuilding trust during the most emotionally charged moments of a ride.",
+      "Unsolicited concept: clearer driver status, ETAs, and notifications on the ride tracking screen (review + workflow analysis).",
     coverImage: "/case-studies/pickme-assets/pickme-cover.png",
     coverGradient:
       "linear-gradient(145deg, #fff4ed 0%, #ffe8d9 42%, #ffd4bc 100%)",

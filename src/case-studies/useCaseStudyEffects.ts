@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { injectCaseStudyIcons } from "./pickme-icons";
 
 /** Scroll-reveal for `.reveal` / `.r` nodes inside embedded case study markup. */
 export function useCaseStudyEffects() {
@@ -7,6 +8,13 @@ export function useCaseStudyEffects() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+
+    if (
+      root.classList.contains("case-study--pickme") ||
+      root.classList.contains("case-study--rose")
+    ) {
+      injectCaseStudyIcons(root);
+    }
 
     const revealEls = root.querySelectorAll(".reveal, .r");
     const io = new IntersectionObserver(
