@@ -40,17 +40,26 @@ export function AboutIntro() {
 
             <div className="about-intro__body">
               <p>
-                I&apos;m a Computer Science graduate working across UI/UX and business analysis.
-                Most of my projects start with research and workflows - who uses the product, what
-                breaks, and what to fix first.
+                I&apos;m a UI/UX designer with a Computer Science background, interested in how
+                products feel, function, and earn user trust.
               </p>
               <p>
-                Recent work includes Rose by Basicare (K-beauty ecommerce, mobile-first) and a
-                concept study on PickMe ride tracking. I&apos;m comfortable in Figma, documenting
-                requirements, and working with developers through handoff.
+                Most of my work starts with understanding workflows and friction points first: who
+                the users are, where experiences break down, and how design can make complex
+                interactions feel clearer and more intuitive.
+              </p>
+              <p>
+                Recently, I&apos;ve worked on projects ranging from a mobile-first K-beauty
+                eCommerce experience for Rose by Basicare to a UX case study redesigning
+                PickMe&apos;s ride-tracking experience to reduce rider anxiety and improve
+                transparency.
+              </p>
+              <p>
+                I enjoy working across UX research, interaction design, and developer collaboration
+                - turning ideas into experiences that are both usable and technically realistic.
               </p>
               <p className="about-intro__body-close">
-                Based in Sri Lanka. Open to full-time UI/UX roles and freelance projects.
+                Based in Sri Lanka. Open to UI/UX, product design, and freelance opportunities.
               </p>
               <ul className="about-intro__chips" aria-label="Quick facts">
                 {STAT_CHIPS.map((chip) => (
@@ -83,8 +92,8 @@ export function AboutIntro() {
         }
         @media (min-width: 768px) {
           .about-intro__layout {
-            grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
-            column-gap: clamp(2.5rem, 5vw, 4rem);
+            grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+            column-gap: clamp(2rem, 4vw, 3rem);
             align-items: center;
           }
         }
@@ -102,6 +111,8 @@ export function AboutIntro() {
           flex-direction: column;
           gap: clamp(1.25rem, 2.5vw, 1.75rem);
           min-width: 0;
+          width: 100%;
+          max-width: none;
         }
         .about-intro__head {
           display: flex;
@@ -147,7 +158,8 @@ export function AboutIntro() {
           display: flex;
           flex-direction: column;
           gap: 1rem;
-          max-width: 38rem;
+          width: 100%;
+          max-width: none;
         }
         .about-intro__body p {
           margin: 0;
