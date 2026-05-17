@@ -13,7 +13,7 @@ type FunFactDoodleProps = {
   className?: string;
 };
 
-/** Hand-drawn style icons — clear silhouettes matched to each fun fact */
+/** Hand-drawn style icons - clear silhouettes matched to each fun fact */
 const DOODLE_PATHS: Record<FunFactDoodleId, ReactNode> = {
   books: (
     <>

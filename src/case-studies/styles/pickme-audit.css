@@ -1,5 +1,5 @@
 /**
- * PickMe — alignment with site index.css (fonts, tokens, spacing, max-width).
+ * PickMe - alignment with site index.css (fonts, tokens, spacing, max-width).
  */
 
 .case-study-content.case-study--pickme {
@@ -70,7 +70,7 @@
 }
 
 .case-study-content.case-study--pickme .hero-right {
-  background: var(--bg-elevated);
+  background: transparent;
 }
 
 .case-study-content.case-study--pickme .hero-title {

@@ -23,7 +23,7 @@ while (depth > 0) {
 const img = `      <div class="phone-mockup">
         <img
           src="/case-studies/pickme-assets/hero-tracking.png"
-          alt="PickMe ride tracking screen — driver ETA, map, and trip status"
+          alt="PickMe ride tracking screen - driver ETA, map, and trip status"
           width="280"
           height="560"
           loading="eager"

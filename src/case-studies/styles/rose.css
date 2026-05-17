@@ -84,7 +84,7 @@
 
 .case-study-content .hero-chip {
   display: inline-flex; align-items: center; gap: 8px;
-  margin-bottom: 1.15rem; width: fit-content;
+  margin-bottom: 0.6rem; width: fit-content;
   animation: chipIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
 }
 
@@ -110,6 +110,7 @@
   line-height: 0.95;
   letter-spacing: -0.045em;
   color: var(--text);
+  margin-top: 0;
   margin-bottom: 2rem;
   animation: titleIn 0.8s 0.1s cubic-bezier(0.16,1,0.3,1) both;
 }
@@ -264,7 +265,7 @@
   text-wrap: pretty;
 }
 
-/* Rose case study — screen imagery */
+/* Rose case study - screen imagery */
 .case-study-content img {
   display: block;
   width: 100%;
@@ -318,7 +319,7 @@
   margin-inline: auto;
 }
 
-/* Layout A — single full-width stack */
+/* Layout A - single full-width stack */
 .case-study-content .screen-layout--a {
   display: flex;
   flex-direction: column;
@@ -336,7 +337,7 @@
   align-items: center;
 }
 
-/* Layout B — desktop + mobile side by side */
+/* Layout B - desktop + mobile side by side */
 .case-study-content .screen-layout--b {
   display: flex;
   flex-direction: row;
@@ -352,7 +353,7 @@
   flex-direction: column;
 }
 
-/* Homepage pair — desktop + mobile side by side; desktop scaled down */
+/* Homepage pair - desktop + mobile side by side; desktop scaled down */
 .case-study-content .screen-layout--homepage {
   display: grid;
   grid-template-columns: minmax(0, 460px) minmax(200px, 260px);
@@ -405,7 +406,7 @@
   padding-bottom: 0;
 }
 
-/* Layout C — 3-column mobile grid */
+/* Layout C - 3-column mobile grid */
 .case-study-content .screen-layout--c {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -504,7 +505,7 @@
   }
 }
 
-/* Image placeholders — proportional, no fixed heights */
+/* Image placeholders - proportional, no fixed heights */
 .case-study-content .img-ph {
   display: flex;
   flex-direction: column;

@@ -314,7 +314,7 @@
   }
 }
 
-/* ── Screen layouts (Rose) — extend existing 767px rules ── */
+/* ── Screen layouts (Rose) - extend existing 767px rules ── */
 @media (max-width: 767px) {
   .case-study-content .screen-layout--a {
     gap: 1.5rem;

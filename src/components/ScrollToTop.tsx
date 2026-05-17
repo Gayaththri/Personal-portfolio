@@ -24,7 +24,7 @@ export function ScrollToTop() {
       if (!hash) {
         return;
       }
-      // e.g. /#contact on reload — fall through to scroll to that section
+      // e.g. /#contact on reload - fall through to scroll to that section
     }
 
     if (hash) {

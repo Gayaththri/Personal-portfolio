@@ -1,4 +1,4 @@
-/* Case study aliases — use site tokens from index.css (loaded on app shell) */
+/* Case study aliases - use site tokens from index.css (loaded on app shell) */
 :root {
   --rose: var(--accent);
   --rose-lt: var(--accent-light);
@@ -30,7 +30,7 @@
   --shadow-neutral-md: color-mix(in srgb, var(--text) 18%, transparent);
 }
 
-/* Shared surfaces — matches src/index.css */
+/* Shared surfaces - matches src/index.css */
 .card {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -66,7 +66,7 @@
   margin: 0.35rem 0 0;
 }
 
-/* Shared tags — matches src/index.css */
+/* Shared tags - matches src/index.css */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -97,7 +97,7 @@
   padding-inline: var(--section-pad-inline-start) var(--section-pad-inline-end);
 }
 
-/* Section headings — matches src/index.css */
+/* Section headings - matches src/index.css */
 .section-head {
   margin: 0 0 var(--section-head-gap);
   text-align: left;
@@ -118,7 +118,7 @@
 }
 
 .section-head__eyebrow::before {
-  content: "—";
+  content: "-";
   flex-shrink: 0;
   color: var(--text-muted);
   font-size: 11px;
@@ -199,13 +199,13 @@
   margin-bottom: 4rem;
 }
 
-/* Parent app renders TopNav — hide legacy case-study nav if present */
+/* Parent app renders TopNav - hide legacy case-study nav if present */
 #mainNav,
 #nav {
   display: none !important;
 }
 
-/* Scroll-to-top — matches portfolio dark buttons */
+/* Scroll-to-top - matches portfolio dark buttons */
 .back-top,
 #backTop {
   background: var(--text) !important;
@@ -217,7 +217,7 @@
   background: var(--text-dark-hover) !important;
 }
 
-/* Case study nav CTA — dark pill like portfolio resume */
+/* Case study nav CTA - dark pill like portfolio resume */
 .nav-cta {
   background: var(--text) !important;
   color: var(--bg-elevated) !important;
@@ -228,7 +228,7 @@
   color: var(--bg-elevated) !important;
 }
 
-/* Typography — match homepage hero + section scale */
+/* Typography - match homepage hero + section scale */
 .case-study-content {
   font-size: var(--type-body);
   line-height: var(--leading-body);

@@ -338,7 +338,7 @@ export function Hero() {
             </motion.span>
             <span className="visually-hidden">
               {" "}
-              — {siteConfig.name}, {siteConfig.title}, 2026
+              - {siteConfig.name}, {siteConfig.title}, 2026
             </span>
           </h1>
 
@@ -518,11 +518,12 @@ export function Hero() {
         .hero-canvas__subtitle {
           margin: 0;
           font-family: var(--font-sans);
-          font-size: clamp(1rem, 2.2vw, 1.125rem);
+          font-size: clamp(0.9375rem, 1.95vw, 1.0625rem);
           font-weight: 400;
           line-height: 1.5;
           color: var(--text-muted);
           text-align: center;
+          white-space: nowrap;
         }
         .hero-canvas__tags-row {
           display: none;
@@ -660,6 +661,7 @@ export function Hero() {
             font-size: clamp(0.9rem, 3.8vw, 1.02rem);
             line-height: 1.45;
             padding: 0 0.15rem;
+            white-space: normal;
           }
           .hero-canvas__tags-row {
             display: flex;

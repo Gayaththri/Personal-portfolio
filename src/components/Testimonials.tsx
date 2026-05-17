@@ -11,7 +11,7 @@ const CARDS = [
     title: "CEO & CPO",
     company: "Meridian Creative Solutions",
     pullQuote:
-      "She's got that rare mix of curiosity, grit, and creative instinct — I have no doubt she'll go far.",
+      "She's got that rare mix of curiosity, grit, and creative instinct - I have no doubt she'll go far.",
     paragraphs: [
       "I had the absolute pleasure of working with Gayathri during her time at Meridian. She first joined us as an intern UI designer, and in what felt like no time at all, she grew into a confident designer who could hold her own in any project we threw her way.",
       "From day one, she stood out for how fast she learned and how eager she was to take on new challenges. Whether it was picking up new tools, experimenting with different styles, or jumping into complex client projects, she never once backed down. By the end of her time with us, she was handling clients independently, thinking strategically beyond just UI, and contributing to projects with a level of ownership well beyond her role. Watching that kind of growth in real time was genuinely rewarding.",

@@ -9,7 +9,7 @@ const FACTS: { doodle: FunFactDoodleId; text: string }[] = [
   { doodle: "headphones", text: "there's always music in the background" },
   {
     doodle: "stethoscope",
-    text: "thought I'd become a doctor — ended up in UX instead",
+    text: "thought I'd become a doctor - ended up in UX instead",
   },
   { doodle: "sparkles", text: "I reorganize Figma files when I'm procrastinating" },
 ];

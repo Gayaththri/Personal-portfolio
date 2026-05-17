@@ -1,5 +1,5 @@
 /**
- * Rose by Basicare — alignment with site index.css (fonts, tokens, spacing, cards).
+ * Rose by Basicare - alignment with site index.css (fonts, tokens, spacing, cards).
  */
 
 .case-study-content {
@@ -58,13 +58,13 @@
   background: var(--bg);
 }
 
-/* Portfolio embed shell: extra air below sticky “← Works” bar */
+/* Portfolio embed shell: clearance below sticky “← Works” bar */
 .case-page--embed .case-study-content.case-study--rose .hero {
-  padding-top: clamp(3.5rem, 7vw, 5.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 .case-study-content.case-study--rose .hero-left {
-  padding-top: clamp(2rem, 4vw, 3.25rem);
+  padding-top: clamp(0.75rem, 2vw, 1.25rem);
   padding-bottom: clamp(1.25rem, 3vw, 2.5rem);
 }
 
@@ -194,7 +194,7 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Nested .card on decision innards — layout only; outer .decision.card keeps chrome */
+/* Nested .card on decision innards - layout only; outer .decision.card keeps chrome */
 .case-study-content .decision > .decision-title.card,
 .case-study-content .decision > .decision-body.card {
   background: transparent;

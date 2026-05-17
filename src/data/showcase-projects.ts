@@ -1,4 +1,4 @@
-/** Featured case studies — text above a large pastel “well” with screen preview. */
+/** Featured case studies - text above a large pastel “well” with screen preview. */
 export type CaseStudyWell = "mint" | "sky";
 
 export type CaseStudySection = {
@@ -30,7 +30,7 @@ export const showcaseProjects: ShowcaseProject[] = [
     title: "Rose by Basicare",
     metaLine: "Beauty eCommerce • K-beauty · Mobile-first UX & brand system",
     description:
-      "Mobile-first ecommerce and brand system for a new K-beauty sub-brand — Figma UI, filters, checkout flows, and developer handoff.",
+      "Mobile-first ecommerce and brand system for a new K-beauty sub-brand - Figma UI, filters, checkout flows, and developer handoff.",
     coverImage: "/case-studies/rose-assets/rose-thumbnail.png",
     coverGradient:
       "linear-gradient(160deg, #fceef0 0%, #f9e8ea 45%, #f4dde0 100%, #e8c4cb 100%)",

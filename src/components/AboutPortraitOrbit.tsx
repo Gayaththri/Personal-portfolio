@@ -28,7 +28,7 @@ type AboutPortraitOrbitProps = {
   lead?: boolean;
 };
 
-/** Oval portrait, orbital rings, sparkles, and keyword labels — shared by home About and /about. */
+/** Oval portrait, orbital rings, sparkles, and keyword labels - shared by home About and /about. */
 export function AboutPortraitOrbit({ lead = false }: AboutPortraitOrbitProps) {
   const reduce = useReducedMotion();
   const [photoOk, setPhotoOk] = useState(true);

@@ -1,5 +1,5 @@
 /**
- * Case study typography — aligned with portfolio hero & section-head (index.css).
+ * Case study typography - aligned with portfolio hero & section-head (index.css).
  * Loaded after each case study’s inline styles.
  */
 
@@ -56,7 +56,7 @@ nav {
   color: var(--accent-light) !important;
 }
 
-/* PickMe only — dark hero panel */
+/* PickMe only - dark hero panel */
 .hero-left:has(.hero-subtitle) .hero-title {
   color: var(--bg-elevated) !important;
 }
@@ -233,7 +233,7 @@ nav {
   font-family: var(--font-sans) !important;
 }
 
-/* Type specimens in Rose — keep brand samples readable */
+/* Type specimens in Rose - keep brand samples readable */
 .type-sample-serif {
   font-family: var(--font-display) !important;
 }

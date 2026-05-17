@@ -6,12 +6,12 @@ export const siteConfig = {
   email: "sriigaya3@gmail.com",
   linkedin: "https://www.linkedin.com/in/srigayaththri",
   github: "https://github.com/Gayaththri",
-  /** Optional — shows “Blogs” in the top nav when set */
+  /** Optional - shows “Blogs” in the top nav when set */
   blogUrl: "",
-  /** Optional — X (Twitter) icon in the top nav when set */
+  /** Optional - X (Twitter) icon in the top nav when set */
   xUrl: "",
   behanceUrl: "",
-  /** Served from /public — also copied from Desktop for local dev */
+  /** Served from /public - also copied from Desktop for local dev */
   cvUrl: "/Srigayaththri-CV.pdf",
   /**
    * Canonical site origin (https://yourdomain.com, no trailing slash).

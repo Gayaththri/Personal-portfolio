@@ -77,15 +77,13 @@
 
 .case-study-content.case-study--pickme .hero-left {
   display:flex;flex-direction:column;justify-content:center;
-  background:var(--bg-elevated);
-  position:relative;overflow:hidden;
+  background:transparent;
+  position:relative;overflow:visible;
+  border-right:none;
 }
 
-.case-study-content.case-study--pickme .hero-grid-bg {
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(15, 23, 42, 0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(15, 23, 42, 0.06) 1px,transparent 1px);
-  background-size:40px 40px;
-  opacity:0.45;
+.case-study-content.case-study--pickme .hero-left::after {
+  display: none;
 }
 
 .case-study-content.case-study--pickme .hero-chip {
@@ -135,7 +133,8 @@
 
 .case-study-content.case-study--pickme .hero-right {
   display:flex;align-items:center;justify-content:center;
-  background:var(--bg-elevated);position:relative;overflow:hidden;
+  background:transparent;position:relative;overflow:visible;
+  border-left:none;
   animation:fadeIn 1s .2s both;
 }
 

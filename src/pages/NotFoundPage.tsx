@@ -5,7 +5,7 @@ import { siteConfig } from "../config";
 export function NotFoundPage() {
   useEffect(() => {
     const prev = document.title;
-    document.title = `404 — ${siteConfig.name}`;
+    document.title = `404 - ${siteConfig.name}`;
     return () => {
       document.title = prev;
     };

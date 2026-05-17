@@ -46,7 +46,7 @@ export function AboutIntro() {
             <motion.div className="about-intro__body">
               <p>
                 I&apos;m a Computer Science graduate working across UI/UX and business analysis. Most
-                of my projects start with research and workflows — who uses the product, what
+                of my projects start with research and workflows - who uses the product, what
                 breaks, and what to fix first.
               </p>
               <p>

@@ -41,7 +41,7 @@
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-serif: "Playfair Display", ui-serif, serif;
-  /** Typography scale — shared with case studies */
+  /** Typography scale - shared with case studies */
   --type-hero: clamp(2.4rem, 4vw, 3.75rem);
   --type-h2: clamp(1.4rem, 3vw, 2.2rem);
   --type-lead: clamp(0.9375rem, 2vw, 1.0625rem);
@@ -139,7 +139,7 @@ video {
 }
 
 /** Embedded case studies: page scrolls as one; footer follows full content */
-/** Routed page content — enter/exit transitions (see PageTransition.tsx) */
+/** Routed page content - enter/exit transitions (see PageTransition.tsx) */
 .page-transition {
   flex: 1 1 auto;
   display: flex;
@@ -190,7 +190,7 @@ video {
   min-height: auto;
 }
 
-/** Shared fixed pill nav (TopNav) — single source for all routes */
+/** Shared fixed pill nav (TopNav) - single source for all routes */
 .topnav {
   position: fixed;
   top: max(0.65rem, env(safe-area-inset-top, 0px));
@@ -484,7 +484,7 @@ main [role="region"][id] {
 }
 .section-head__eyebrow::before,
 .section__label::before {
-  content: "—";
+  content: "-";
   flex-shrink: 0;
   width: auto;
   height: auto;

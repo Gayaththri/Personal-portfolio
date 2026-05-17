@@ -30,7 +30,7 @@ const WORK_ROWS: WorkRow[] = [
     title: "PickMe",
     tags: ["Mobility", "Ride tracking", "UX case study"],
     description:
-      "Concept study: ride tracking screen — driver status, ETA context, and notifications.",
+      "Concept study: ride tracking screen - driver status, ETA context, and notifications.",
     accent: "#ff6b2b",
     flipped: false,
   },

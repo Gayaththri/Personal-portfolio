@@ -15,7 +15,7 @@ export const workExperienceEntries: WorkExperienceEntry[] = [
     title: "Junior UI/UX Designer",
     company: "Meridian Creative Solutions",
     description: [
-      "Owned end-to-end interface work on client projects—discovery workshops, user flows, and polished Figma handoffs.",
+      "Owned end-to-end interface work on client projects-discovery workshops, user flows, and polished Figma handoffs.",
       "Partnered with developers on responsive layouts, component consistency, and accessibility-minded specs.",
       "Shipped iterations quickly while keeping documentation clear for stakeholders.",
     ],
@@ -26,6 +26,6 @@ export const workExperienceEntries: WorkExperienceEntry[] = [
     title: "UI/UX Intern",
     company: "Meridian Creative Solutions",
     description:
-      "Supported senior designers with wireframes, visual polish, and design QA across marketing and product surfaces. Contributed to research notes, mood boards, and prototype reviews—building a strong baseline in agile rituals, critique, and translating feedback into concrete UI updates.",
+      "Supported senior designers with wireframes, visual polish, and design QA across marketing and product surfaces. Contributed to research notes, mood boards, and prototype reviews-building a strong baseline in agile rituals, critique, and translating feedback into concrete UI updates.",
   },
 ];
