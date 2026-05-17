@@ -5,8 +5,43 @@
 .case-study-content {
   background: var(--bg);
   font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+/* Unified body-copy rhythm (Rose) */
+.case-study-content.case-study--rose {
+  --rose-prose-gap: 1.25rem;
+}
+
+.case-study-content.case-study--rose :is(
+  .section-head__lead,
+  .screens-header .section-head__lead,
+  .annotation p,
+  .decision-body,
+  .decision-impact,
+  .challenge p,
+  .challenge-solution,
+  .outcome-body,
+  .learning-body,
+  .ba-callout-body,
+  .case-prose,
+  .ba-point
+) {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.case-study-content.case-study--rose .case-prose {
+  margin: 0 0 var(--rose-prose-gap);
+  max-width: 44rem;
+  color: var(--text-muted);
+  text-align: justify;
+  text-wrap: pretty;
+}
+
+.case-study-content.case-study--rose .case-prose:last-child {
+  margin-bottom: 0;
 }
 
 .case-study-content h1,
@@ -21,6 +56,11 @@
 .case-study-content.case-study--rose .hero,
 .case-study-content.case-study--rose .hero-left {
   background: var(--bg);
+}
+
+/* Portfolio embed shell: extra air below sticky “← Works” bar */
+.case-page--embed .case-study-content.case-study--rose .hero {
+  padding-top: clamp(2.25rem, 4.5vw, 3.25rem);
 }
 
 .case-study-content.case-study--rose .hero-right,
@@ -48,8 +88,8 @@
 }
 
 .case-study-content .hero-title {
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  letter-spacing: -0.045em;
 }
 
 .case-study-content .hero-title em {

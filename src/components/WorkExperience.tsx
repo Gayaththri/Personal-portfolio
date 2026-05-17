@@ -184,6 +184,7 @@ export function WorkExperience() {
         }
         .wxp__intro .section-head__title {
           font-family: var(--font-sans);
+          font-size: clamp(1.3rem, 3vw, 2rem);
           font-weight: 700;
           font-style: normal;
         }

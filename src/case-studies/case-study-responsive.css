@@ -48,7 +48,7 @@
   }
 
   .case-study-content .hero-left {
-    padding-block: clamp(2.5rem, 8vw, 4rem);
+    padding-block: clamp(1.75rem, 5vw, 2.75rem);
   }
 
   .case-study-content .hero-right {
@@ -57,13 +57,14 @@
   }
 
   .case-study-content .hero-title {
-    font-size: clamp(2.25rem, 9vw, 3.75rem);
+    font-size: clamp(2rem, 10vw + 0.35rem, 2.75rem);
     margin-bottom: 1.25rem;
   }
 
   .case-study-content .hero-desc,
   .case-study-content .hero-subtitle {
-    font-size: clamp(0.9375rem, 2.5vw, 1.05rem);
+    font-size: clamp(0.9rem, 3.8vw, 1.02rem);
+    line-height: 1.45;
     max-width: 100%;
     margin-bottom: 2rem;
   }
@@ -300,7 +301,7 @@
 
 @media (max-width: 480px) {
   .case-study-content .hero-chip {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 0.7rem;
   }
 

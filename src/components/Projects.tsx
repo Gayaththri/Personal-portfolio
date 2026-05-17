@@ -138,7 +138,7 @@ export function Projects() {
           max-width: 100%;
         }
         .works__title.section-head__title {
-          font-size: clamp(1.35rem, 2.8vw + 0.35rem, 2rem);
+          font-size: clamp(1.25rem, 2.4vw + 0.25rem, 1.75rem);
           white-space: nowrap;
           max-width: 100%;
         }
@@ -159,10 +159,10 @@ export function Projects() {
           position: relative;
           isolation: isolate;
           display: grid;
-          grid-template-columns: minmax(0, 40%) minmax(0, 60%);
-          gap: clamp(1.15rem, 3vw, 2rem);
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: clamp(1rem, 2.5vw, 1.65rem);
           align-items: center;
-          padding: clamp(0.9rem, 2.25vw, 1.35rem) clamp(0.5rem, 2vw, 1rem);
+          padding: clamp(0.8rem, 2vw, 1.15rem) clamp(0.5rem, 2vw, 1rem);
           margin: 0;
           text-decoration: none;
           color: inherit;
@@ -192,7 +192,7 @@ export function Projects() {
           z-index: 1;
         }
         .works-row--flip {
-          grid-template-columns: minmax(0, 60%) minmax(0, 40%);
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         }
         .works-row--flip .works-row__text {
           order: 2;
@@ -221,7 +221,7 @@ export function Projects() {
         .works-row__title {
           margin: 0 0 0.75rem;
           font-family: var(--font-sans);
-          font-size: clamp(1.75rem, 2.8vw, 2rem);
+          font-size: clamp(1.5rem, 2.4vw, 1.65rem);
           font-weight: 800;
           letter-spacing: -0.03em;
           line-height: 1.12;
@@ -274,9 +274,16 @@ export function Projects() {
         }
         .works-row__media {
           min-width: 0;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .works-row--flip .works-row__media {
+          justify-content: flex-start;
         }
         .works-row__media-frame {
           position: relative;
+          width: 100%;
+          max-width: 32rem;
           border-radius: 12px;
           border: 1px solid var(--border);
           overflow: hidden;
@@ -286,7 +293,7 @@ export function Projects() {
           display: block;
           width: 100%;
           aspect-ratio: 4 / 3;
-          min-height: 12rem;
+          min-height: 10rem;
         }
         .works-row__media-img {
           display: block;
@@ -320,6 +327,13 @@ export function Projects() {
           .works-row--flip .works-row__text,
           .works-row--flip .works-row__media {
             order: unset;
+          }
+          .works-row__media,
+          .works-row--flip .works-row__media {
+            justify-content: center;
+          }
+          .works-row__media-frame {
+            max-width: 100%;
           }
         }
       `}</style>

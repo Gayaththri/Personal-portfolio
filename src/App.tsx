@@ -5,6 +5,8 @@ import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { CaseStudyPage } from "./pages/CaseStudyPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { PageTransition } from "./components/PageTransition";
 
 function AppShell() {
   return (
@@ -14,7 +16,9 @@ function AppShell() {
         <ScrollToTop />
         <TopNav />
         <div className="app__main">
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </div>
         <Footer />
       </div>
@@ -30,6 +34,7 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="case/:projectId" element={<CaseStudyPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

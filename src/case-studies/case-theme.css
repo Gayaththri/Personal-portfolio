@@ -56,7 +56,8 @@
 
 .case-block p,
 .case-block li {
-  font-size: 0.9rem;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
   color: var(--text-muted);
 }
 
@@ -128,7 +129,7 @@
 .section-head__title {
   margin: 0 0 0.35rem;
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 5vw + 0.5rem, 3rem);
+  font-size: var(--type-h2);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.08;
@@ -147,9 +148,9 @@
   margin: 0;
   max-width: 42rem;
   font-family: var(--font-sans);
-  font-size: clamp(0.875rem, 2.1vw, 0.9375rem);
+  font-size: var(--type-lead);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: var(--leading-body);
   color: var(--text-muted);
 }
 
@@ -224,4 +225,49 @@
 .nav-cta:hover {
   background: var(--text-dark-hover) !important;
   color: var(--bg-elevated) !important;
+}
+
+/* Typography — match homepage hero + section scale */
+.case-study-content {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.case-study-content .hero-title {
+  font-size: var(--type-hero);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.case-study-content .hero-desc,
+.case-study-content .hero-subtitle {
+  font-size: var(--type-lead);
+  line-height: var(--leading-body);
+}
+
+.case-study-content .hero-chip {
+  font-size: var(--type-body-sm);
+}
+
+.case-study-content :is(
+  .overview-text p,
+  .moodboard-copy p,
+  .ov-body,
+  .process-body,
+  .annotation p,
+  .decision-body,
+  .decision-impact,
+  .challenge p,
+  .challenge-solution,
+  .outcome-body,
+  .learning-body,
+  .ba-callout-body,
+  .case-prose,
+  .pc-body,
+  .persona-body,
+  .bi-body
+) {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
 }

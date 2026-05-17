@@ -5,8 +5,30 @@
 .case-study-content.case-study--pickme {
   background: var(--bg);
   font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.case-study-content.case-study--pickme :is(
+  .section-head__lead,
+  .ov-body,
+  .process-body,
+  .annotation p,
+  .pc-body,
+  .persona-body,
+  .bi-body,
+  .decision-body,
+  .outcome-body,
+  .learning-body,
+  .case-prose
+) {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.case-study-content.case-study--pickme .hero-title {
+  font-weight: 800;
+  letter-spacing: -0.045em;
 }
 
 .case-study-content.case-study--pickme h1,
