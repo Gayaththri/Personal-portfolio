@@ -40,7 +40,12 @@
 /* ── Hero ── */
 @media (max-width: 960px) {
   .case-study-content .hero-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+  }
+
+  .case-study-content .hero-left {
+    width: 100%;
+    min-width: 0;
   }
 
   .case-study-content .hero-left::after {
@@ -52,7 +57,9 @@
   }
 
   .case-study-content .hero-right {
-    padding-block: clamp(2rem, 6vw, 3rem);
+    width: 100%;
+    min-width: 0;
+    padding-block: clamp(1.25rem, 4vw, 2.5rem);
     min-height: auto;
   }
 
@@ -65,13 +72,14 @@
   .case-study-content .hero-subtitle {
     font-size: clamp(0.9rem, 3.8vw, 1.02rem);
     line-height: 1.45;
-    max-width: 100%;
+    max-width: 100% !important;
     margin-bottom: 2rem;
+    text-align: left;
   }
 
   .case-study-content .hero-meta,
   .case-study-content .hero-meta-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 0.75rem;
   }
 
@@ -86,8 +94,9 @@
     margin-inline: auto;
   }
 
-  .case-study-content.case-study--pickme .hero-phones-img {
+  .case-study-content .hero-phones-img {
     max-width: min(420px, 100%);
+    margin-inline: auto;
   }
 }
 
@@ -95,15 +104,24 @@
 @media (max-width: 960px) {
   .case-study-content .screens-header,
   .case-study-content .solution-intro {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 1.5rem;
     margin-bottom: 2.5rem;
   }
 
   .case-study-content .overview-grid,
   .case-study-content .ov-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 2rem;
+  }
+
+  .case-study-content .overview-text,
+  .case-study-content .overview-grid > div {
+    min-width: 0;
+  }
+
+  .case-study-content .kpi-grid {
+    width: 100%;
   }
 }
 
@@ -112,7 +130,7 @@
   .case-study-content .process-grid,
   .case-study-content .bi-grid,
   .case-study-content .metric-strip {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
   .case-study-content .outcomes-grid,
@@ -162,6 +180,10 @@
   .case-study-content .bi-grid,
   .case-study-content .metric-strip,
   .case-study-content .personas,
+  .case-study-content .decisions-grid,
+  .case-study-content .dec-grid,
+  .case-study-content .oc-grid,
+  .case-study-content .problem-grid,
   .case-study-content .grid-2,
   .case-study-content .grid-3,
   .case-study-content .grid-1-2,
@@ -169,7 +191,28 @@
   .case-study-content .sb-2,
   .case-study-content .sb-3,
   .case-study-content .sb-1-2 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+  }
+
+  .case-study-content .kpi-cell {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.35rem 1.25rem;
+  }
+
+  .case-study-content .kpi-number {
+    min-width: 3.25rem;
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+
+  .case-study-content .kpi-text {
+    flex: 1 1 12rem;
+    min-width: 0;
+  }
+
+  .case-study-content .overview-text p {
+    text-align: left;
   }
 
   .case-study-content .screen-block--compare {

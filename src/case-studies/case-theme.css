@@ -78,10 +78,11 @@
   color: var(--accent);
 }
 
-/* PickMe dark hero — legible tags on accent panel */
+/* PickMe hero chip on light panel */
 .hero-left:has(.hero-subtitle) .hero-chip.tag {
-  background: var(--accent-tint-md);
-  color: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  background: color-mix(in srgb, var(--pm-primary, #ff6b35) 10%, var(--bg-elevated));
+  color: var(--text-muted);
+  border: 1px solid color-mix(in srgb, var(--pm-primary, #ff6b35) 18%, var(--border));
 }
 
 /* Section rhythm + content width (matches main site .section / .wrap) */

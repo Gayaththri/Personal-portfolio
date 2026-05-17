@@ -60,7 +60,12 @@
 
 /* Portfolio embed shell: extra air below sticky “← Works” bar */
 .case-page--embed .case-study-content.case-study--rose .hero {
-  padding-top: clamp(2.25rem, 4.5vw, 3.25rem);
+  padding-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.case-study-content.case-study--rose .hero-left {
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+  padding-bottom: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 .case-study-content.case-study--rose .hero-right,

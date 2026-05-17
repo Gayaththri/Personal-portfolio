@@ -44,6 +44,18 @@
   background: var(--bg);
 }
 
+.case-study-content.case-study--pickme section.hero {
+  background: var(--bg-elevated);
+}
+
+.case-page--embed .case-study-content.case-study--pickme .hero {
+  padding-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.case-study-content.case-study--pickme .hero-left {
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+}
+
 .case-study-content.case-study--pickme .overview-bg,
 .case-study-content.case-study--pickme .bi-section,
 .case-study-content.case-study--pickme .outcomes-bg,
@@ -58,7 +70,7 @@
 }
 
 .case-study-content.case-study--pickme .hero-right {
-  background: var(--bg);
+  background: var(--bg-elevated);
 }
 
 .case-study-content.case-study--pickme .hero-title {
@@ -69,7 +81,7 @@
 .case-study-content.case-study--pickme .hero-title em {
   font-style: italic;
   font-weight: 700;
-  color: color-mix(in srgb, var(--bg-elevated) 92%, var(--pm-yellow));
+  color: var(--pm-primary);
 }
 
 .case-study-content.case-study--pickme .section-head__title em {
