@@ -89,7 +89,9 @@ export function TopNav() {
               <a
                 className="topnav__resume"
                 href={cvHref}
-                {...(cvIsFile ? { download: true } : { target: "_blank", rel: "noreferrer" })}
+                {...(cvIsFile
+                  ? { download: siteConfig.cvDownloadName }
+                  : { target: "_blank", rel: "noreferrer" })}
               >
                 Resume
               </a>

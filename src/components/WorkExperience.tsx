@@ -57,6 +57,21 @@ export function WorkExperience() {
           <p className="section-head__lead">
             Highlights from teams I&apos;ve joined and how I contributed.
           </p>
+          <div className="wxp__actions">
+            {cv ? (
+              <a
+                className="wxp-btn wxp-btn--solid"
+                href={cv}
+                download={siteConfig.cvDownloadName}
+              >
+                <IconDoc />
+                My Resume
+              </a>
+            ) : null}
+            <a className="wxp-btn wxp-btn--ghost" href={`mailto:${siteConfig.email}`}>
+              Email Me
+            </a>
+          </div>
         </header>
 
         <div className="wxp__col">
@@ -142,18 +157,6 @@ export function WorkExperience() {
               );
             })}
           </div>
-
-          <div className="wxp__actions">
-            {cv ? (
-              <a className="wxp-btn wxp-btn--solid" href={cv} download>
-                <IconDoc />
-                My Resume
-              </a>
-            ) : null}
-            <a className="wxp-btn wxp-btn--ghost" href={`mailto:${siteConfig.email}`}>
-              Email Me
-            </a>
-          </div>
         </div>
       </div>
 
@@ -181,6 +184,9 @@ export function WorkExperience() {
         }
         .wxp__intro {
           max-width: 28rem;
+        }
+        .wxp__intro .wxp__actions {
+          margin-top: 1.25rem;
         }
         .wxp__intro .section-head__title {
           font-family: var(--font-sans);
@@ -302,7 +308,7 @@ export function WorkExperience() {
           flex-wrap: wrap;
           align-items: center;
           gap: 0.85rem 1.5rem;
-          margin-top: 1.75rem;
+          margin-top: 0;
         }
         .wxp-btn {
           display: inline-flex;

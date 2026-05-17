@@ -11,8 +11,9 @@ export const siteConfig = {
   /** Optional - X (Twitter) icon in the top nav when set */
   xUrl: "",
   behanceUrl: "",
-  /** Served from /public - also copied from Desktop for local dev */
+  /** Served from /public */
   cvUrl: "/Srigayaththri-CV.pdf",
+  cvDownloadName: "Srigayaththri_CV.pdf",
   /**
    * Canonical site origin (https://yourdomain.com, no trailing slash).
    * Used at build time for Open Graph `og:url` and absolute `og:image`.

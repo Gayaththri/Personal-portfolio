@@ -29,14 +29,14 @@ export function Contact() {
   const sideLinks: {
     label: string;
     href: string;
-    download?: boolean;
+    download?: string | boolean;
     blank?: boolean;
   }[] = [];
   if (cvHref) {
     sideLinks.push({
       label: "Resume",
       href: cvHref,
-      download: cvIsFile,
+      download: cvIsFile ? siteConfig.cvDownloadName : undefined,
       blank: !cvIsFile,
     });
   }
@@ -81,7 +81,7 @@ export function Contact() {
                   <a
                     className="contact-touch__link"
                     href={item.href}
-                    {...(item.download ? { download: true } : {})}
+                    {...(item.download ? { download: item.download } : {})}
                     {...(item.blank ? { target: "_blank", rel: "noreferrer" } : {})}
                   >
                     <span>{item.label}</span>
