@@ -997,7 +997,13 @@
   color: var(--text-muted);
 }
 
-.case-study-content.case-study--pickme .oc-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+.case-study-content.case-study--pickme .oc-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
 
 .case-study-content.case-study--pickme .oc-cell {padding:2.4rem}
 
