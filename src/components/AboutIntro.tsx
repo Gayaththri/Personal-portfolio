@@ -49,12 +49,6 @@ export function AboutIntro() {
                 interactions feel clearer and more intuitive.
               </p>
               <p>
-                Recently, I&apos;ve worked on projects ranging from a mobile-first K-beauty
-                eCommerce experience for Rose by Basicare to a UX case study redesigning
-                PickMe&apos;s ride-tracking experience to reduce rider anxiety and improve
-                transparency.
-              </p>
-              <p>
                 I enjoy working across UX research, interaction design, and developer collaboration
                 - turning ideas into experiences that are both usable and technically realistic.
               </p>
