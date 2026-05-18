@@ -88,7 +88,7 @@ export function AboutIntro() {
           .about-intro__layout {
             grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
             column-gap: clamp(2rem, 4vw, 3rem);
-            align-items: center;
+            align-items: start;
           }
         }
         .about-intro__stack {
@@ -98,6 +98,7 @@ export function AboutIntro() {
         @media (min-width: 768px) {
           .about-intro__stack {
             justify-content: flex-start;
+            padding-top: clamp(2.5rem, 5vw, 3.5rem);
           }
         }
         .about-intro__main {
